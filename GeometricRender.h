@@ -27,3 +27,20 @@ struct Point{
         y = y_;
     }
 };
+
+struct Color{
+    short r,g,b,a;
+    Color(){
+        r=g=b=a=100;
+    }
+    Color(short r, short g, short b, short a){
+        this->r = r;
+        this->g = g;
+        this->b = b;
+        this->a = a;
+    }
+};
+
+void DrawPoint(const Point& p, const Color& c );
+void DrawRect(const Rect &r, const Color &c, bool filled= false);
+ 

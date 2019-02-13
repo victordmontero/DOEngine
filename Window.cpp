@@ -38,25 +38,9 @@ void Window::UpdateScreen()
     gsm->Render(render);
     SDL_RenderPresent(render);
 }
-void Window::PollEvent(SDL_Event *ev )
+void Window::PollEvent(  )
 {
-    if(ev==nullptr)
-    {
-        memset(&event, 0x00, sizeof(event));
-        while(SDL_PollEvent(&this->event))
-        {
-            if(this->event.type==SDL_QUIT)
-                running =false;
-        }
-        gsm->Update(&event);
-    }
-    else
-    {
-        while(SDL_PollEvent(ev))
-        {
-            if(ev->type==SDL_QUIT)
-                running =false;
-        }
-        gsm->Update(ev);
-    }
+   this->event.PollEvent();
+   SDL_Event event;
+   gsm->Update(&event);
 }
