@@ -64,10 +64,12 @@ endif
 
 OBJECTS :=
 
+OBJECTS += $(OBJDIR)/Arkanoid.o
 OBJECTS += $(OBJDIR)/BlockObject.o
 OBJECTS += $(OBJDIR)/Event.o
 OBJECTS += $(OBJDIR)/GeometricRender.o
 OBJECTS += $(OBJDIR)/Map.o
+OBJECTS += $(OBJDIR)/Sprite.o
 OBJECTS += $(OBJDIR)/StateMachine.o
 OBJECTS += $(OBJDIR)/Texture.o
 OBJECTS += $(OBJDIR)/Window.o
@@ -133,6 +135,9 @@ endif
 # File Rules
 # #############################################
 
+$(OBJDIR)/Arkanoid.o: Arkanoid.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/BlockObject.o: BlockObject.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
@@ -143,6 +148,9 @@ $(OBJDIR)/GeometricRender.o: GeometricRender.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/Map.o: Map.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/Sprite.o: Sprite.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/StateMachine.o: StateMachine.cpp

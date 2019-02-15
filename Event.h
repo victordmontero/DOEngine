@@ -58,4 +58,14 @@ struct Event
    
     void PollEvent();
 
+    static Event *getEventHandler(){
+       if(!single)
+          single = new Event;
+          return single;
+    }
+
+    private:
+    static Event *single;
+    Event(){}
+
 };

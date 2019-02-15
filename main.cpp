@@ -6,38 +6,23 @@
 #include "Map.h"
 #include "GeometricRender.h"
 #include "Event.h"
+#include "Arkanoid.h"
 
 
 Window *window;
-
-struct KeyboardListener: public KeyboardObserver{
-       virtual void onKeyDown(std::map<SDL_Keycode, bool>keys){
-           SDL_Log("keyboard Down");
-       }
-   virtual void onKeyUp(std::map<SDL_Keycode, bool>keys){
-       SDL_Log("Sdl_KEyboard UP");
-   }
-};
-
-
-
-int test_map[]=
-{
-    1, 1, 1, 1, 1,1, 1, 1, 1, 1,
-    1, 1, 1, 1, 1,1, 1, 1, 1, 1,
-    1, 1, 1, 1, 1,1, 1, 1, 1, 1,
-    1, 1, 1, 1, 1,1, 1, 1, 1, 1,
-    1, 1, 1, 1, 1,1, 1, 1, 1, 1,
-    1, 1, 1, 1, 1,1, 1, 1, 1, 1
-};
-
+ 
 
 
 int main(int argc, char *argv[])
 {
    window = new Window(900,600,"test");
-   std::shared_ptr<KeyboardListener> listener(new KeyboardListener());
-   window->addKeyListener(listener.get());
+    
+   Texture::LoadTexture(ARKANOID_SPRITE, "C:\\Aneury\\2D-ENGINE\\bin\\Debug\\sprite-arkanoid.bmp");
+   Texture::LoadTexture(BALL_SPRITE, "C:\\Aneury\\2D-ENGINE\\bin\\Debug\\ball.bmp");
+   window->getGSM()->addState(ARKANOID_STATE, new ArkanoidGame());
+   window->getGSM()->setState(ARKANOID_STATE);
+
+ 
    while(window->isRunning())
    {
        window->PollEvent();

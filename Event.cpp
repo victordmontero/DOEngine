@@ -1,6 +1,6 @@
 #include "Event.h"
 #include "Window.h"
-
+Event *Event::single =nullptr;
 void Event::addKeyboardObserver(KeyboardObserver *ob){
     this->keyboard_observers.emplace_back(ob);
 }

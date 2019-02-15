@@ -25,14 +25,22 @@ void GameStateMachine::setState(int state_id)
               states[current_state]->onEnter();
         }
     }
+    else
+    {
+        if(states[state_id])
+        {
+            current_state = state_id;
+            states[current_state]->onEnter();
+        }
+    }
 }
-void GameStateMachine::Update(SDL_Event *event)
+void GameStateMachine::Update()
 {
    if(current_state!=-1 && states[current_state])
-       states[current_state]->Update(event);
+       states[current_state]->Update();
 }
-void GameStateMachine::Render(SDL_Renderer *render)
+void GameStateMachine::Render()
 {
        if(current_state!=-1 && states[current_state])
-       states[current_state]->Render(render);
+       states[current_state]->Render();
 }

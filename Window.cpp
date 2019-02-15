@@ -1,6 +1,6 @@
 
 #include <string.h>
-
+#include "Sprite.h"
 #include "Window.h"
 
 
@@ -18,6 +18,9 @@ Window::Window(int w, int h, const char *title, bool gl) :  gsm( new GameStateMa
 
 
     }
+
+    gsm = new GameStateMachine();
+
 }
 Window::~Window()
 {
@@ -35,12 +38,16 @@ void Window::Clear()
 }
 void Window::UpdateScreen()
 {
-    gsm->Render(render);
+    gsm->Render();
     SDL_RenderPresent(render);
 }
 void Window::PollEvent(  )
 {
-   this->event.PollEvent();
-   SDL_Event event;
-   gsm->Update(&event);
+    Event::getEventHandler()->PollEvent();
+   gsm->Update();
 }
+
+ void Window::DrawSprite(Sprite* sprite)
+ {
+    Texture::DrawTexture(sprite->getTextureID(), sprite->getRect(), sprite->getCropRect());
+ }

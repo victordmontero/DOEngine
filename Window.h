@@ -4,6 +4,9 @@
 #include "StateMachine.h"
 #include "Event.h" 
 
+#include "Texture.h"
+
+class Sprite;
 
 class Window
 {
@@ -11,8 +14,6 @@ class Window
    SDL_Window   *window;
    SDL_Renderer *render;
    SDL_Rect      window_rect;
-   Event     event;
-   Uint8        *keystate;
    GameStateMachine* gsm;
    bool running;
 
@@ -33,9 +34,16 @@ class Window
        running =false;
    }
 
+  inline GameStateMachine* getGSM(){
+      return gsm;
+  }
+
   inline void addKeyListener(KeyboardObserver *observer){
-       event.addKeyboardObserver(observer);
+       Event::getEventHandler()->addKeyboardObserver(observer);
    }
+
+   void DrawSprite(Sprite* sprite);
+
 
 };
 extern Window *window;

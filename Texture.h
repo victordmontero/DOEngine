@@ -19,6 +19,15 @@ struct DrawConfiguration
    DrawConfiguration();
 };
 
+enum
+{
+    ARKANOID_SPRITE = 0, 
+    BALL_SPRITE,
+
+
+    TOTAL_TEXTURE_LOADED
+};
+
 
 class Texture
 {
@@ -30,10 +39,20 @@ public:
 
     Texture(const char *src);
     Texture(const char *src,SDL_Color color);
-   ~Texture();
+    ~Texture();
+    
+    int getW();
+    int getH();
+
     void Draw(int x, int y, int w, int h);
     void Draw(int x, int y, int w, int h, int cx, int cy, int cw, int ch);
 
    static std::map<int, Texture *>texture_ints;
    static bool LoadTexture(int id, const char *path);
+   static void DrawTexture(int id, Rect offset, Rect clip, float *angle=nullptr, Point *point=nullptr, bool flipped = false);
+   static Texture *getTexture(int id){
+       return texture_ints[id];
+   }
 };
+
+

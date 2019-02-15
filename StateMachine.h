@@ -1,7 +1,7 @@
 #pragma once
 #include <SDL2/SDL.h>
 #include <map>
- 
+#include "Event.h" 
 
 
 
@@ -17,11 +17,15 @@ class GameState
   virtual ~GameState(){}
   virtual void onEnter()=0;
   virtual void onExit()=0;
-  virtual void Update(SDL_Event *event)=0;
-  virtual void Render(SDL_Renderer *render)=0;
+  virtual void Update()=0;
+  virtual void Render()=0;
 };
 
+enum{
+    ARKANOID_STATE, 
 
+    TOTAL_STATE_LOADED
+};
 
 
 class GameStateMachine{
@@ -36,7 +40,7 @@ public:
     void removeState(int state_id);
     void setState(int state_id);
 
-    void Update(SDL_Event *event);
-    void Render(SDL_Renderer *render);
+    void Update();
+    void Render();
 
  };
