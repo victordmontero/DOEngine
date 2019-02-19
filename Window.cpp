@@ -18,7 +18,10 @@ Window::Window(int w, int h, const char *title, bool gl) :  gsm( new GameStateMa
 
 
     }
-
+    window_rect.x =SDL_WINDOWPOS_CENTERED;
+    window_rect.y =SDL_WINDOWPOS_CENTERED;
+    window_rect.w =w;
+    window_rect.h =h;
     gsm = new GameStateMachine();
 
 }
@@ -40,6 +43,7 @@ void Window::UpdateScreen()
 {
     gsm->Render();
     SDL_RenderPresent(render);
+    SDL_Delay(100/60);
 }
 void Window::PollEvent(  )
 {

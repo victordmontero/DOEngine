@@ -17,8 +17,8 @@ int main(int argc, char *argv[])
 {
    window = new Window(900,600,"test");
     
-   Texture::LoadTexture(ARKANOID_SPRITE, "C:\\Aneury\\2D-ENGINE\\bin\\Debug\\sprite-arkanoid.bmp");
-   Texture::LoadTexture(BALL_SPRITE, "C:\\Aneury\\2D-ENGINE\\bin\\Debug\\ball.bmp");
+   Texture::LoadTexture(ARKANOID_SPRITE, "./sprite-arkanoid.bmp");
+   Texture::LoadTexture(BALL_SPRITE, "./ball.bmp");
    window->getGSM()->addState(ARKANOID_STATE, new ArkanoidGame());
    window->getGSM()->setState(ARKANOID_STATE);
 
