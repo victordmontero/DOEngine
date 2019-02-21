@@ -51,11 +51,11 @@ struct Event
 
     void addKeyboardObserver(KeyboardObserver *ob);
     void addMouseObserver(MouseObserver *mo);
-    void addTouchObserver(MouseObserver *to);
+    void addTouchObserver(TouchObserver *to);
  
     void removeKeyboardObserver(KeyboardObserver *ob);
     void removeMouseObserver(MouseObserver *mo);
-    void removeTouchObserver(MouseObserver *to);
+    void removeTouchObserver(TouchObserver *to);
    
     void PollEvent();
 
