@@ -24,3 +24,17 @@ void DrawRect(const Rect &r, const Color &c, bool filled)
         SDL_RenderDrawRect(window->getRender(), &rect);
     }
 }
+
+void DrawLine(const Point& p1, const Point& p2, const Color& c)
+{
+   extern Window *window;
+   SDL_SetRenderDrawColor(window->getRender(), c.r, c.g, c.b, c.a);
+   SDL_RenderDrawLine(window->getRender(), p1.x, p1.y, p2.x,p2.y);
+}
+
+void DrawTriangle(const Point& p1, const Point& p2,  const Point& p3,const Color& c )
+{
+   DrawLine(p1,p2,c);
+   DrawLine(p2,p3,c);
+   DrawLine(p3,p1,c);
+}

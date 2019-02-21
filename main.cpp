@@ -7,20 +7,39 @@
 #include "GeometricRender.h"
 #include "Event.h"
 #include "Arkanoid.h"
-
-
+#include "onelonecoder.h"
+#include "UDP.h"
+#include "SnakeState.h"
+#include "DoodleJump.h"
 Window *window;
- 
 
 
 int main(int argc, char *argv[])
 {
+
    window = new Window(900,600,"test");
-    
-   Texture::LoadTexture(ARKANOID_SPRITE, "./sprite-arkanoid.bmp");
-   Texture::LoadTexture(BALL_SPRITE, "./ball.bmp");
+
+   ////FOR ARKANID 
+   Texture::LoadTexture(ARKANOID_SPRITE, "C:\\Aneury\\2D-ENGINE\\bin\\Debug\\sprite-arkanoid.bmp");
+   Texture::LoadTexture(BALL_SPRITE, "C:\\Aneury\\2D-ENGINE\\bin\\Debug\\ball.bmp");
+  
+    ////FOR DOODLE
+   Texture::LoadTexture(DOODLE_SPRITE, "C:\\Aneury\\2D-ENGINE\\bin\\Debug\\doodle.bmp");
+   Texture::LoadTexture(PLATFORM_SPRITE, "C:\\Aneury\\2D-ENGINE\\bin\\Debug\\platform.bmp");
+
+    ////FOR SNAKE
+   Texture::LoadTexture(GREEN_SPRITE, "C:\\Aneury\\2D-ENGINE\\bin\\Debug\\green.bmp");
+   Texture::LoadTexture(RED_SPRITE, "C:\\Aneury\\2D-ENGINE\\bin\\Debug\\red.bmp");
+   Texture::LoadTexture(WHITE_SPRITE, "C:\\Aneury\\2D-ENGINE\\bin\\Debug\\white.bmp");
+
+
+   window->getGSM()->addState(DOODLE_JUMP, new DoodleState());
    window->getGSM()->addState(ARKANOID_STATE, new ArkanoidGame());
-   window->getGSM()->setState(ARKANOID_STATE);
+   window->getGSM()->addState(SNAKE_STATE, new SnakeState());
+   
+
+   
+   window->getGSM()->setState(SNAKE_STATE);
 
  
    while(window->isRunning())
@@ -30,5 +49,6 @@ int main(int argc, char *argv[])
        window->Clear();
        window->UpdateScreen();
    }
-    return 0;
+ 
+
 }

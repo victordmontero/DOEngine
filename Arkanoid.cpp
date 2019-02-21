@@ -4,26 +4,16 @@
 #include "Sprite.h"
 #include "Texture.h"
 
-#include <time.h>
-#include <stdlib.h>
-
-namespace {
+namespace 
+{
     Sprite block[1000];
     int n;
     Sprite paddle;
     float x=0;
+    Sprite Ball;  
+};
 
-    Sprite Ball;
-    float dx = 1, dy=1;
 
-    bool isCollide(Sprite s1, Sprite s2){
-      SDL_Rect r1={s1.getX(), s1.getY(), s1.getW(), s1.getH()};
-      SDL_Rect r2={s2.getX(), s2.getY(), s2.getW(), s2.getH()};
-      return SDL_HasIntersection(&r1, &r2)==SDL_TRUE;
-    }
-}
-
- extern Window *window;
 void ArkanoidGame::onEnter()
 {
   extern Window *window;
@@ -58,33 +48,7 @@ void ArkanoidGame::onExit()
 {}
 void ArkanoidGame::Update()
 {
-
-   srand(time(NULL));
    paddle.Move(x,0);
-   if(isCollide(Ball, paddle))
-   {
-      dy = -(rand()%2+1);
-   }
-
-
- 
-   Ball.Move(dx,0);
-    for(int i=0;i<n;i++)
-      {
-         if(isCollide(Ball, block[i])){block[i].SetPosition(0,-500); dx = -dx;}
-      }
- 
-    Ball.Move(0,dy);
-    for(int i=0;i<n;i++)
-      {
-         if(isCollide(Ball, block[i])){block[i].SetPosition(0,-500); dy = -dy;}
-      }
- 
-
-   Rect rect = Ball.getRect();
-   if(rect.x < 0 || rect.x >= window->getWindowRect().w) dx =-dx;
-   if(rect.y < 0 || rect.y >= window->getWindowRect().h) dy =-dy;
-
 }
 void ArkanoidGame::Render()
 {

@@ -33,9 +33,15 @@ class Window
    void Quit(){
        running =false;
    }
-
+  SDL_Rect getWindowRect(){return window_rect;}
+  int getWidth(){return window_rect.w;}
+   int getHeight(){return window_rect.h;}
   inline GameStateMachine* getGSM(){
       return gsm;
+  }
+
+  int getScaleFactor(){
+      return (int)window_rect.h/window_rect.w;
   }
 
   inline void addKeyListener(KeyboardObserver *observer){

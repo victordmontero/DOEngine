@@ -23,6 +23,9 @@ class GameState
 
 enum{
     ARKANOID_STATE, 
+    DOODLE_JUMP,
+    SNAKE_STATE,
+
 
     TOTAL_STATE_LOADED
 };

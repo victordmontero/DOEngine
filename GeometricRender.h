@@ -31,7 +31,7 @@ struct Point{
 struct Color{
     short r,g,b,a;
     Color(){
-        r=g=b=a=100;
+        r=g=b=a=0xff;
     }
     Color(short r, short g, short b, short a){
         this->r = r;
@@ -43,4 +43,5 @@ struct Color{
 
 void DrawPoint(const Point& p, const Color& c );
 void DrawRect(const Rect &r, const Color &c, bool filled= false);
- 
+void DrawLine(const Point& p1, const Point& p2, const Color& color);
+void DrawTriangle(const Point& p1, const Point& p2,  const Point& p3,const Color& color);

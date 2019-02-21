@@ -23,7 +23,7 @@ INCLUDES +=
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
 ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
-LIBS += -lMingw32 -lSDL2Main -lSDL2
+LIBS += -lMingw32 -lSDL2Main -lSDL2 -lwsock32
 LDDEPS +=
 LINKCMD = $(CXX) -o "$@" $(OBJECTS) $(RESOURCES) $(ALL_LDFLAGS) $(LIBS)
 define PREBUILDCMDS
@@ -66,14 +66,18 @@ OBJECTS :=
 
 OBJECTS += $(OBJDIR)/Arkanoid.o
 OBJECTS += $(OBJDIR)/BlockObject.o
+OBJECTS += $(OBJDIR)/DoodleJump.o
 OBJECTS += $(OBJDIR)/Event.o
 OBJECTS += $(OBJDIR)/GeometricRender.o
 OBJECTS += $(OBJDIR)/Map.o
+OBJECTS += $(OBJDIR)/SnakeState.o
 OBJECTS += $(OBJDIR)/Sprite.o
 OBJECTS += $(OBJDIR)/StateMachine.o
 OBJECTS += $(OBJDIR)/Texture.o
+OBJECTS += $(OBJDIR)/UDP.o
 OBJECTS += $(OBJDIR)/Window.o
 OBJECTS += $(OBJDIR)/main.o
+OBJECTS += $(OBJDIR)/onelonecoder.o
 
 # Rules
 # #############################################
@@ -141,6 +145,9 @@ $(OBJDIR)/Arkanoid.o: Arkanoid.cpp
 $(OBJDIR)/BlockObject.o: BlockObject.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/DoodleJump.o: DoodleJump.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/Event.o: Event.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
@@ -148,6 +155,9 @@ $(OBJDIR)/GeometricRender.o: GeometricRender.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/Map.o: Map.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/SnakeState.o: SnakeState.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/Sprite.o: Sprite.cpp
@@ -159,10 +169,16 @@ $(OBJDIR)/StateMachine.o: StateMachine.cpp
 $(OBJDIR)/Texture.o: Texture.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/UDP.o: UDP.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/Window.o: Window.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/main.o: main.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/onelonecoder.o: onelonecoder.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 

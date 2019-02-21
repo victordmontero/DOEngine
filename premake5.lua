@@ -22,7 +22,7 @@ project "2D-engine"
 --filter { "platforms:linux" }
   --  system "linux"
   ---  links { "SDL2" ,"dl"}
-  links {"Mingw32", "SDL2Main" ,"SDL2"  }
+  links {"Mingw32", "SDL2Main" ,"SDL2", "wsock32"  }
 
    ---links { "wsock32", "Mingw32","SDL2Main", "SDL2" }
    files { "**.h", "**.cpp", "**.c" }

@@ -4,7 +4,8 @@
 #include <vector>
 #include "GeometricRender.h"
 
-struct WindowObserver{
+struct WindowObserver
+{
     virtual void OnQuit()=0;
     virtual void OnFullscreen()=0;
     virtual void OnMinimize()=0;
