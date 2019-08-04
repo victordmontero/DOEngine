@@ -1,5 +1,10 @@
 #pragma once
 
+#ifdef __linux__
+#include <sys/socket.h>
+#include <netdb.h>
+#include <netinet/in.h>
+#endif
 #include <string>
 #ifdef __WIN32__
 #include <winsock2.h>

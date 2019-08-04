@@ -1,6 +1,12 @@
 #include "UDP.h"
 #include <stdio.h>
 
+#ifdef __linux__
+#include <sys/socket.h>
+#include <netdb.h>
+#include <netinet/in.h>
+#endif
+
 UDPServer::UDPServer(sockaddr_in* addr)
 {
    this->server_socket = socket(AF_INET, SOCK_DGRAM, 0);
@@ -20,7 +26,7 @@ bool UDPServer::isRunning()
 std::string UDPServer::recv()
 {
    char buffer[MAXLINE+1]={0};
-   int len, n; 
+   socklen_t len, n; 
    sockaddr_in cliaddr;
 #ifdef __linux__
     n = recvfrom(server_socket, (char *)buffer, MAXLINE,  
