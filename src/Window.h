@@ -19,7 +19,7 @@ class Window
 
    public:
 
-   Window(int w, int h, const char *title, bool gl=false);
+   Window(int w, int h, const char *title );
    ~Window();
    bool isRunning();
    void setClearColor(Uint8 r, Uint8 g, Uint8 b);

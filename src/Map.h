@@ -20,8 +20,7 @@ struct Tile
 struct Tileset
 {
    std::vector<Tile*>layer0;
- 
-    public:
-    Tileset(int r, int c, int *array, int tilesize=32);
-    void Draw();
+   public:
+   Tileset(int r, int c, int *array, int tilesize=32);
+   void Draw();
 };

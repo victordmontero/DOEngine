@@ -1,4 +1,5 @@
 #include <SDL2/SDL.h>
+#include <math.h>
 
 #include "Window.h"
 #include "GeometricRender.h"
@@ -38,3 +39,21 @@ void DrawTriangle(const Point& p1, const Point& p2,  const Point& p3,const Color
    DrawLine(p2,p3,c);
    DrawLine(p3,p1,c);
 }
+
+
+
+
+void Spline::Draw()
+{
+    extern Window *window;
+    SDL_SetRenderDrawColor(window->getRender(), this->color.r, color->g. color->b, 255);
+    for(auto it : points)
+    {
+
+    }
+
+
+}
+
+
+

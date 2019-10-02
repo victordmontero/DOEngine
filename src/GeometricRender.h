@@ -1,4 +1,6 @@
 #pragma once
+#include <vector>
+using std::vector;
 
 struct Rect{
     int x;
@@ -40,6 +42,18 @@ struct Color{
         this->a = a;
     }
 };
+
+
+struct Spline{
+  vector<Point> points;
+  Color *color;
+  void Draw();
+
+};
+
+
+
+
 
 void DrawPoint(const Point& p, const Color& c );
 void DrawRect(const Rect &r, const Color &c, bool filled= false);

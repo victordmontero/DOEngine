@@ -1,5 +1,18 @@
 #include "Texture.h"
 
+#ifdef __SDL_IMAGE_INCLUDE__
+#include <SDL2/SDL_image.h>
+struct image_initializer{
+   image_initializer(){
+      int flags =     IMG_INIT_JPG |
+    IMG_INIT_PNG |  
+    IMG_INIT_TIF |  
+    IMG_INIT_WEBP;
+      IMG_Init(flags);
+   }
+};
+
+#endif
 
 std::map<int, Texture *> Texture::texture_ints;
 
