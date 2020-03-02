@@ -1,67 +1,65 @@
 -- premake5.lua
 workspace "DOEngine"
    configurations { "Debug", "Release" }
-   platforms { "Win32", "Win64", "Linux" }
+   platforms { "Win32", "Linux" }
 
 project "DOEngine"
-   kind "ConsoleApp"
+   kind "WindowedApp"
    language "C++"
    targetdir "bin/%{cfg.buildcfg}"
-   targetname("DOEngine")
+   -- targetname("DOEngine")
+   location("proj%{_ACTION}")
 
+   includedirs{
+	"src",
+	"thirdparty/SDL/include",
+	"thirdparty/SDL/build/include/"
+	}
 
-   files { "src/**.h", "src/**.cpp", "src/**.c", "**.lua" }
+   files {
+	"src/**.h",
+	"src/**.cpp",
+	"src/**.c",
+	"*.lua"
+	}
+
+	-- removefiles {"src/old_state/**"}
 
    defines({"SQLITE_THREADSAFE=1"})
 
-   postbuildcommands{"{COPY} assets %{cfg.buildtarget.directory}"}
+   --postbuildcommands{"{COPY} assets %{cfg.buildtarget.directory}"}
 
   filter "configurations:Debug"
     defines { "DEBUG" }
     symbols "On"
+	
+	-- libdirs {
+		-- "thirdparty/SDL/build/Debug"
+	-- }
+
+	links {
+      -- "Mingw32",
+      "SDL2Maind",
+      "SDL2d",
+      "wsock32"
+     }
 
   filter "configurations:Release"
     defines { "NDEBUG" }
     optimize "On"
+	
+	--libdirs {
+	--	"thirdparty/SDL/build/Release"
+	--}
 
   filter  "platforms:Win32" 
-    defines{"WIN64"}
+    defines{"WIN32"}
     system "windows"
     architecture "x32"
-
-    includedirs{
-      "../SDL2-2.0.9/i686-w64-mingw32/include/"
-    }
  
-    libdirs{
-     "../SDL2-2.0.9/i686-w64-mingw32/lib/"
-    }
-
-    links {
-      "Mingw32",
-      "SDL2Main",
-      "SDL2",
-      "wsock32"
-     }
-  
-  filter  "platforms:Win64" 
-    defines{"WIN64"}
-    system "windows"
-    architecture "x64"
-
-    includedirs{
-      "../SDL2-2.0.9/x86_64-w64-mingw32/include/"
-    }
- 
-    libdirs{
-     "../SDL2-2.0.9/x86_64-w64-mingw32/lib/"
-    }
-
-    links {
-      "Mingw32",
-      "SDL2Main",
-      "SDL2",
-      "wsock32"
+     libdirs{
+      -- "thirdparty/SDL2-2.0.10/lib/x86/",
+	  "thirdparty/SDL/build/Debug"
      }
 
   filter  "platforms:Linux" 
@@ -71,21 +69,50 @@ project "DOEngine"
       "SDL2"
      }
 
-  -- project "SDL2Proj"
-  --   kind "Makefile"
- 
-  --   buildcommands {
-  --     --  '{MKDIR} %{wks.location}/thirdparty/SDL2/build',
-  --      'cmake ../thirdparty/SDL2',
-  --      'cmake --build .'
-  --   }
- 
-  --   rebuildcommands {
-  --     -- '{MKDIR} %{wks.location}/thirdparty/SDL2/build',
-  --     'cmake ../thirdparty/SDL2',
-  --     'cmake --build .'
-  --   }
- 
-  --   cleancommands {
-  --     '{RMDIR} build'
-  --   }
+project "SDL2"
+   kind "Makefile"
+   targetdir "thirdparty/SDL/build/Debug"
+   targetname "SDL2d.dll"
+   
+   cleancommands {
+	"{ECHO} Cleaning SDL2",
+	"{RMDIR} thirdparty/SDL/build/"
+   }
+   
+   filter "configurations:Debug"
+		defines { "DEBUG" }
+		symbols "On"
+		targetname "SDL2d.dll"
+   
+   buildcommands {
+	"{ECHO} Building SDL2",
+	"cmake thirdparty/SDL/ -A Win32 -B thirdparty/SDL/build/",
+	"cmake --build thirdparty/SDL/build/"
+   }
+   
+   rebuildcommands {
+	"{ECHO} Re Building SDL2",
+	"{RMDIR} thirdparty/SDL/build/",
+	"cmake thirdparty/SDL/ -A Win32 -B thirdparty/SDL/build/",
+	"cmake --build thirdparty/SDL/build/"
+   }
+   
+   filter "configurations:Release"
+		defines { "NDEBUG" }
+		optimize "On"
+		targetname "SDL2d.dll"
+   
+   buildcommands {
+	"{ECHO} Building SDL2",
+	"cmake -DCMAKE_BUILD_TYPE=Release thirdparty/SDL/ -A Win32 -B thirdparty/SDL/build/",
+	"cmake --build thirdparty/SDL/build/"
+   }
+   
+   rebuildcommands {
+	"{ECHO} Re Building SDL2",
+	"{RMDIR} thirdparty/SDL/build/",
+	"cmake -DCMAKE_BUILD_TYPE=Release thirdparty/SDL/ -A Win32 -B thirdparty/SDL/build/",
+	"cmake --build thirdparty/SDL/build/"
+   }
+   
+		
