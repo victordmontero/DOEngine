@@ -12,6 +12,7 @@ class GameObject{
      bool   solid;
      int    layer;
      Rect   *rect;
+	 Rect    collide_rect;
      Sprite *sprite;
      std::string sprite_id;
      std::string texture_id;
