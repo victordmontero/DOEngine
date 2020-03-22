@@ -1,12 +1,12 @@
 #pragma once
 
-#include <SDL2/SDL_ttf.h>
+#include <SDL_ttf.h>
 #include <string>
 
 class TTFText
 {
 
-    TTFText(){
+    TTFText():font(NULL){
         color.r = 0xAA;
         color.g = 0xFF;
         color.b = 0xBB;
