@@ -5,13 +5,16 @@
 TTFText* TTFText::singleton =nullptr;
 
 void TTFText::setFont(const std::string& path, int fntsize){
-     TTF_Font *tmp = TTF_OpenFont(path.c_str(), fntsize);
-     if(tmp)
-     {
-        if(this->font)
-           TTF_CloseFont(font);
-        this->font = tmp;
-     }
+	if (TTF_Init()==0)
+	{
+		TTF_Font* tmp = TTF_OpenFont(path.c_str(), fntsize);
+		if (tmp)
+		{
+			if (this->font)
+				TTF_CloseFont(font);
+			this->font = tmp;
+		}
+	}
 }
     
     

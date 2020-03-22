@@ -4,10 +4,10 @@
 std::vector<KeyDownEvent*>       Event::keydown;
 std::vector<KeyUpEvent*>         Event::keyup;
 std::vector<MouseMovementEvent*> Event::mouse;
-bool Event::mousePressed = false;
-bool Event::mouseReleased= false;
-bool Event::keyDown= false;
-bool Event::keyUp= false;
+bool Event::mousePressed    = false;
+bool Event::mouseReleased   = false;
+bool Event::keyDown         = false;
+bool Event::keyUp           = false;
 
 
 void Event::PollEvent(Window *window)
@@ -26,7 +26,7 @@ void Event::PollEvent(Window *window)
            case SDL_KEYDOWN:
            {
                 SDL_Log("Window quit");
-                window->Quit();
+                ////window->Quit();
                 mousePressed = false;
                 mouseReleased= false;
                 keyDown= true;

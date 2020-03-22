@@ -1,22 +1,24 @@
-#include "Window/Window.h"
-#include "Texture/Texture.h"
-
-#include "Drawable/Grids.h"
+#include "Window.h"
+#include "Texture.h"
+#include "Grids.h"
 #include <iostream>
+#include <Vector.h>
 
-int main(int argc, char *argv[])
+
+
+int  main(int argc, char *argv[])
 { 
-     Window *window = new Window(800,600); 
+    Vector<int> fl;
+#if 0
+   Window *window = new Window(400,600); 
     while(window->IsRunning())
     {
-        
         window->PollEvent();
         window->Update();
-
         window->Render();
     }
    delete window;
-   window = nullptr;
- 
+   window = nullptr;  
+#endif
    return 0;
 }
