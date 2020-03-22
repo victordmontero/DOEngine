@@ -1,5 +1,5 @@
 
-#include "../Drawable/Geometric.h"
+#include <Drawable/Geometric.h>
 #include "ConwayState.h"
 
 void ConwayState::OnEnter()

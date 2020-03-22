@@ -1,9 +1,9 @@
 #pragma once 
-#include <SDL2/SDL.h>
+#include <SDL.h>
 #include <vector>
 
 #include "EventHandler.h"
-#include "../Window/Window.h"
+#include <Window/Window.h>
 
 struct Event{
     

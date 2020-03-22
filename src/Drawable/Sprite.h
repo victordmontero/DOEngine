@@ -20,7 +20,7 @@ class Sprite{
   
    protected:
    
-   vector<DefaultSpritePosition> position;
+   std::vector<DefaultSpritePosition> position;
    DefaultSpritePosition current_position;
    int current_number;
    

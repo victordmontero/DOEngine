@@ -1,10 +1,10 @@
 #pragma once 
 
-#include <SDL2/SDL.h>
+#include <SDL.h>
 
 
-#include "../Timer/FPSManager.h"
-#include "../GameState/GameStateManager.h"
+#include <Timer/FPSManager.h>
+#include <GameState/GameStateManager.h>
 
 class GameStateManager;
 

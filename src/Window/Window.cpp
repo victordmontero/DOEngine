@@ -1,16 +1,16 @@
 
-#include<SDL2/SDL.h>
-#include <SDL2/SDL_ttf.h>
+#include<SDL.h>
+#include <SDL_ttf.h>
 #include "Window.h"
-#include "../Texture/Texture.h"
-#include "../Font/TTFText.h"
-#include "../Event/Event.h"
+#include <Texture/Texture.h>
+#include <Font/TTFText.h>
+#include <Event/Event.h>
 
 
-#include "../GameState/Bejweeled.h"
-#include "../GameState/Hanoi.h"
-#include "../GameState/AsteroidState.h"
-#include "../GameState/ConwayState.h" 
+#include <GameState/Bejweeled.h>
+#include <GameState/Hanoi.h>
+#include <GameState/AsteroidState.h>
+#include <GameState/ConwayState.h> 
 
 
 void Window::_CreateNeededInstance()

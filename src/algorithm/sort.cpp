@@ -1,7 +1,7 @@
 #include "sort.h"
 
 int ParticionFunc(int *array, int low, int high){
-
+	return 0;
 }
 
 
