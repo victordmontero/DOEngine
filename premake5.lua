@@ -27,7 +27,7 @@ project "DOEngine"
 
 	-- removefiles {"src/old_state/**"}
 
-   defines({"SQLITE_THREADSAFE=1"})
+   ---defines({"SQLITE_THREADSAFE=1"})
 
    --postbuildcommands{"{COPY} assets %{cfg.buildtarget.directory}"}
 

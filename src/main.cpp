@@ -6,10 +6,7 @@
 
 int main(int argc, char *argv[])
 { 
-     Window *window = new Window(800,600);
-     
-    
-  
+     Window *window = new Window(800,600); 
     while(window->IsRunning())
     {
         

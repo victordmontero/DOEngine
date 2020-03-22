@@ -20,6 +20,7 @@ objects = obj/FPSManager.o \
 		  obj/Hanoi.o \
 		  obj/AsteroidState.o \
 		  obj/ConwayState.o \
+		  obj/tetrisState1.o \
 		  obj/main.o
 
 all: $(objects)
