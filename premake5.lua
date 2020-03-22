@@ -12,7 +12,7 @@ project "DOEngine"
 
    files { "src/**.h", "src/**.cpp", "src/**.c", "**.lua" }
 
-   defines({"SQLITE_THREADSAFE=1"})
+   ---defines({"SQLITE_THREADSAFE=1"})
 
    postbuildcommands{"{COPY} assets %{cfg.buildtarget.directory}"}
 
