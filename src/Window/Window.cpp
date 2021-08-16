@@ -1,17 +1,18 @@
 
+#include <vector>
+#include <sstream>
+
+extern "C" {
 #include<SDL.h>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
-
-
+}
 
 #include "Window.h"
-#include <Texture.h>
-#include <TTFText.h>
-#include <Event.h>
-#include <vector>
-#include <sstream>
-#include <Geometric.h>
+#include <Texture/Texture.h>
+#include <Font/TTFText.h>
+#include <Event/Event.h>
+#include <Drawable/Geometric.h>
 
 
 namespace {
@@ -45,8 +46,6 @@ Window::Window(int w, int h)
     flags = 0x00;
     SDL_DisplayMode mode;
     SDL_GetCurrentDisplayMode(1, &mode);
-    screen_rect.w = mode.w;
-    screen_rect.h = mode.h;
     window = SDL_CreateWindow("", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, w,h,SDL_WINDOW_SHOWN|SDL_WINDOW_BORDERLESS);
     render = SDL_CreateRenderer(window, -1, SDL_RENDERER_PRESENTVSYNC|SDL_RENDERER_ACCELERATED);
     run = render != NULL;
@@ -91,7 +90,6 @@ void Window::PollEvent()
     if (Event::keyDown)
     {
         SDL_Log("Keydown");
-        saveScreenshotBMP("C:\\aneury\\img-test", this);
     }
 
 }
