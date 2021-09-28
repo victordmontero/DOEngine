@@ -1,15 +1,13 @@
-#include "Window.h"
-#include "Texture.h"
-#include "Grids.h"
+#include <Window/Window.h>
+#include <Texture/Texture.h>
+#include <Drawable/Grids.h>
 #include <iostream>
-#include <Vector.h>
-
-
+#include <Physics/Vector.h>
 
 int  main(int argc, char *argv[])
 { 
-    Vector<int> fl;
 #if 0
+	Vector<int> fl;
    Window *window = new Window(400,600); 
     while(window->IsRunning())
     {

@@ -49,7 +49,7 @@ void Texture::DrawImage(std::string id, int x, int y, int w, int h )
 }
 
 #include <iostream>
-#include <Window.h>
+#include <Window/Window.h>
 #include <sstream>
 #include <string>
 bool saveScreenshotBMP(std::string filepath, Window *window)

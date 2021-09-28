@@ -2,7 +2,7 @@
 workspace "DOEngine"
    configurations { "Debug", "Release" }
    platforms { "Win32", "Win64", "Linux" }
-   location "proj_%{_ACTION}"
+   -- location "proj_%{_ACTION}"
 
 project "DOEngine"
    kind "ConsoleApp"
