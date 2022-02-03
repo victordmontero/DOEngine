@@ -1,7 +1,6 @@
 #pragma once 
-#include <SDL.h>
-#include <string>
-#include <map>
+
+#include "DOEngine.h"
 
 class Texture
 {

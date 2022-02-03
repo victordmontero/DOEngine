@@ -1,7 +1,4 @@
-#include "Texture.h"
-
-
-#include <SDL_image.h>
+#include "DOEngine.h"
 
 
 std::map<std::string, SDL_Texture*>Texture::textures;
@@ -47,11 +44,6 @@ void Texture::DrawImage(std::string id, int x, int y, int w, int h )
         SDL_RenderCopy(render, textures[id], NULL, &offset);
     }
 }
-
-#include <iostream>
-#include <Window/Window.h>
-#include <sstream>
-#include <string>
 bool saveScreenshotBMP(std::string filepath, Window *window)
 {
     SDL_Window* SDLWindow = window->getWindow();

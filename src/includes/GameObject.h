@@ -1,11 +1,11 @@
 #pragma once
-#include <string>
-#include "../Window/Window.h"
-#include "../Drawable/Geometric.h"
-#include "../Drawable/Sprite.h"
 
+#include "DOEngine.h"
+#include "Geometric.h"
+
+class Rect;
 class GameObject{
-   
+  
    protected:
      Window *window;
      bool   renderable;

@@ -1,8 +1,10 @@
 
-GCCPARAMS=
+GCCPARAMS= -I./includes
 
 
 WINPARAMS = -lwsock32 -lws2_32 -lMingw32 -lSDL2Main
+
+
 
 
 objects = obj/FPSManager.o \

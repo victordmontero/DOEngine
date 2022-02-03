@@ -1,6 +1,5 @@
 #pragma once
-#include <SDL.h>
-#include "../Window/Window.h"
+#include "DOEngine.h"
 
 //// One lone coder Vector2
 

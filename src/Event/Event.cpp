@@ -1,5 +1,5 @@
-#include <SDL.h>
-#include "Event.h"
+
+#include "DOEngine.h"
 
 std::vector<KeyDownEvent*>       Event::keydown;
 std::vector<KeyUpEvent*>         Event::keyup;

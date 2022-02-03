@@ -2,7 +2,7 @@
 
 #include <map>
 #include <string>
-#include "../Window/Window.h"
+#include "Window.h"
 #include "GameState.h"
 
 class Window;

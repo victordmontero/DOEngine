@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Tile.h"
-#include "../Window/Window.h"
+#include "Window.h"
 
 
 class TileMap
