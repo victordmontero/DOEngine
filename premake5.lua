@@ -6,8 +6,6 @@ workspace "DOEngine"
 
 project "DOEngine"
    kind "ConsoleApp"
-   --kind "StaticLib"
-   -- kind "DynamicLibrary"
    language "C++"
    targetdir "bin/%{cfg.buildcfg}"
    objdir "obj"
@@ -40,19 +38,21 @@ project "DOEngine"
 
 	includedirs({
 		"include",
-		"thirdparty/SDL2-2.0.12-VC/include",
-		"thirdparty/SDL2_image-VC/include",
-		"thirdparty/SDL2_mixer-VC/include",
-		"thirdparty/SDL2_ttf-VC/include"
+		"src/includes",
+		"thirdparty/VC/include",
 	})
 	
 	libdirs {
-		"thirdparty/SDL2-2.0.12-VC/lib/x86",
-		"thirdparty/SDL2_image-VC/lib/x86",
-		"thirdparty/SDL2_mixer-VC/lib/x86",
-		"thirdparty/SDL2_ttf-VC/lib/x86"
+		"thirdparty/VC/lib/x86",
 	}
-
+	links {
+		-- "Mingw32",
+		"SDL2Main",
+		"SDL2",
+		"SDL2_ttf",
+		"SDL2_image",
+		"SDL2_mixer"
+	   }
   filter  "platforms:Win64"
     defines{"WIN64"}
     system "windows"
@@ -60,29 +60,25 @@ project "DOEngine"
 
 	includedirs({
 		"include",
-		"thirdparty/SDL2-2.0.12-VC/include",
-		"thirdparty/SDL2_image-VC/include",
-		"thirdparty/SDL2_mixer-VC/include",
-		"thirdparty/SDL2_ttf-VC/include"
+		"src/includes",
+		"thirdparty/VC/include",
 	})
 	
-		
 	libdirs {
-		"thirdparty/SDL2-2.0.12-VC/lib/x64",
-		"thirdparty/SDL2_image-VC/lib/x64",
-		"thirdparty/SDL2_mixer-VC/lib/x64",
-		"thirdparty/SDL2_ttf-VC/lib/x64"
+		"thirdparty/VC/lib/x64",
 	}
 
 	links {
       -- "Mingw32",
 	  "SDL2Main",
       "SDL2",
-      "wsock32",
 	  "SDL2_ttf",
 	  "SDL2_image",
 	  "SDL2_mixer"
      }
+
+
+
  --filter  "platforms:Linux"
     -- defines{"LINUX"}
     -- system "linux"
