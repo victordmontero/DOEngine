@@ -21,10 +21,10 @@ void Window::_CreateNeededInstance()
 {
       fps_handler = new FpsManager();
 ///   game_state_manager = new GameStateManager(this);
-      TTFText::get()->setFont("C:\\aneury\\DOEngine-master\\bin\\Debug\\NirmalaB.ttf", 34);
+   ////   TTFText::get()->setFont("C:\\aneury\\DOEngine-master\\bin\\Debug\\NirmalaB.ttf", 34);
 ////  game_state_manager->AddState(1, new ConwayState(this));
 ///  game_state_manager->SetState(1);
-      Texture::LoadTexture("C:\\aneury\\DOEngine-master\\bin\\Debug\\DominoRD1024x576.png","logo1");
+     ///// Texture::LoadTexture("C:\\aneury\\DOEngine-master\\bin\\Debug\\DominoRD1024x576.png","logo1");
 
 
 }
@@ -104,6 +104,28 @@ void Window::Render()
          Color color{ 255,255,0,255 };
          DrawPoint(point, color, this);
      }
+
+
+     for (int i = 1; i < points.size();i++)
+     {
+         Point prev{
+             points[i - 1].x,
+             points[i-1].y
+         };
+         Point current{
+             points[i].x,
+             points[i].y
+         };
+         Color cl{ 255,0,0,255 };
+         DrawLine(
+             prev,
+             current,
+             cl,
+             this
+             );
+
+     }
+
      
      Texture::DrawImage("logo1", 0, 0, getW(), getH());
      

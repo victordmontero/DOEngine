@@ -71,4 +71,12 @@
     </ClCompile>
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DrawableMatrix.h">
+      <Filter>Drawable</Filter>
+    </ClInclude>
+  </ItemGroup>
 </Project>
