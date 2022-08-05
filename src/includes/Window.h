@@ -31,10 +31,10 @@ class Window
     inline bool IsRunning(){ return run;}
     SDL_Renderer *getRender(){return render;}
     SDL_Window   *getWindow(){return window;}
-    void PollEvent();
-    void Update();
-    void Render();
-    void Quit(){run =false;}
+    Window* PollEvent();
+    Window* Update();
+     Window*  Render();
+     Window*  Quit(){run =false;}
 
     int getH(){
         return window_rect.h;

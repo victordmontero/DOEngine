@@ -67,7 +67,7 @@ Window::~Window()
     SDL_DestroyWindow(window);
 }
 
-void Window::PollEvent()
+ Window*  Window::PollEvent()
 {
    
     fps_handler->Start();
@@ -87,11 +87,13 @@ void Window::PollEvent()
         SDL_Log("Keydown");
     }
 
+  return this;
 }
-void Window::Update(){
+ Window*  Window::Update(){
  ///   game_state_manager->Update(fps_handler->getElapsedTime());
+  return this;
 }
-void Window::Render()
+ Window*  Window::Render()
 {
      SDL_SetRenderDrawColor(render, 0,0,0,255);
      SDL_RenderClear(render);
@@ -132,5 +134,5 @@ void Window::Render()
      
      SDL_RenderPresent(render);
      fps_handler->Handle();
-    
+    return this;
 }
