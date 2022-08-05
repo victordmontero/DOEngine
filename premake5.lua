@@ -19,49 +19,30 @@ project "DOEngine"
 	}
 
    files {
-	"src/**.h",
-	"src/**.cpp",
-	"src/**.c",
-	"*.lua"
+      "src/**.h*",
+      "src/**.c*",
+      "*.lua"
 	}
-
-	-- removefiles {"src/old_state/**"}
 
    defines({"SQLITE_THREADSAFE=1"})
 
    --postbuildcommands{"{COPY} assets %{cfg.buildtarget.directory}"}
 
+   libdirs {
+		"thirdparty/SDL/build"
+	}
+
+   links {
+      "SDL2"
+   }
+
   filter "configurations:Debug"
     defines { "DEBUG" }
     symbols "On"
-	
-	libdirs {
-		"thirdparty/SDL/build/Debug"
-	}
-	
-	links {
-      -- "Mingw32",
-      "SDL2Maind",
-      "SDL2d",
-      "wsock32",
-	  "SDL2_ttf"
-     }
 
   filter "configurations:Release"
     defines { "NDEBUG" }
     optimize "On"
-	
-	libdirs {
-		"thirdparty/SDL/build/Release"
-	}
-	
-	links {
-      -- "Mingw32",
-      "SDL2Main",
-      "SDL2",
-      "wsock32",
-	  "SDL2_ttf"
-     }
 
   filter  "platforms:Win32" 
     defines{"WIN32"}
@@ -69,9 +50,7 @@ project "DOEngine"
     architecture "x32"
  
      libdirs{
-      -- "thirdparty/SDL2-2.0.10/lib/x86/",
-	  -- "thirdparty/SDL/build/Debug",
-	  "thirdparty/SDL2_ttf/lib/x86"
+         "thirdparty/SDL2_ttf/lib/x86"
      }
 
   filter  "platforms:Linux" 
@@ -86,8 +65,7 @@ project "SDL2Lib"
    objdir()
    
    cleancommands {
-	"{ECHO} Cleaning SDL2",
-	"{RMDIR} thirdparty/SDL/build/"
+	   "{RMDIR} thirdparty/SDL/build/"
    }
    
    filter "configurations:Debug"
@@ -95,16 +73,14 @@ project "SDL2Lib"
 		targetname "SDL2d.dll"
    
    buildcommands {
-	"{ECHO} Building SDL2",
-	"cmake thirdparty/SDL/ -A Win32 -B thirdparty/SDL/build/",
-	"cmake --build thirdparty/SDL/build/"
+      "cmake thirdparty/SDL/ -B thirdparty/SDL/build/",
+	   "cmake --build thirdparty/SDL/build/"
    }
    
    rebuildcommands {
-	"{ECHO} Re Building SDL2",
-	"{RMDIR} thirdparty/SDL/build/",
-	"cmake thirdparty/SDL/ -A Win32 -B thirdparty/SDL/build/",
-	"cmake --build thirdparty/SDL/build/"
+	   "{RMDIR} thirdparty/SDL/build/",
+	   "cmake thirdparty/SDL/ -B thirdparty/SDL/build/",
+	   "cmake --build thirdparty/SDL/build/"
    }
    
    filter "configurations:Release"
@@ -112,16 +88,14 @@ project "SDL2Lib"
 		targetname "SDL2.dll"
    
    buildcommands {
-	"{ECHO} Building SDL2",
-	"cmake -DCMAKE_BUILD_TYPE=Release thirdparty/SDL/ -A Win32 -B thirdparty/SDL/build/",
-	"cmake --build thirdparty/SDL/build/ --config Release"
+	   "cmake -DCMAKE_BUILD_TYPE=Release thirdparty/SDL/ -B thirdparty/SDL/build/",
+	   "cmake --build thirdparty/SDL/build/ --config Release"
    }
    
    rebuildcommands {
-	"{ECHO} Re Building SDL2",
-	"{RMDIR} thirdparty/SDL/build/",
-	"cmake -DCMAKE_BUILD_TYPE=Release thirdparty/SDL/ -A Win32 -B thirdparty/SDL/build/",
-	"cmake --build thirdparty/SDL/build/ --config Release"
+	   "{RMDIR} thirdparty/SDL/build/",
+	   "cmake -DCMAKE_BUILD_TYPE=Release thirdparty/SDL/ -B thirdparty/SDL/build/",
+	   "cmake --build thirdparty/SDL/build/ --config Release"
    }
    
 		
