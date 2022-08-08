@@ -1,12 +1,14 @@
 -- premake5.lua
 workspace "DOEngine"
    configurations { "Debug", "Release" }
-   platforms { "Win32", "Linux" }
+   platforms { "Win32", "Win64", "Linux" }
+   -- location "proj_%{_ACTION}"
 
 project "DOEngine"
-   kind "WindowedApp"
+   kind "ConsoleApp"
    language "C++"
    targetdir "bin/%{cfg.buildcfg}"
+
    objdir "obj/%{cfg.buildcfg}"
    -- targetname("DOEngine")
    location("proj%{_ACTION}")
@@ -100,6 +102,7 @@ project "SDL2lib"
 	   "cmake -DCMAKE_BUILD_TYPE=Release thirdparty/SDL/ -B thirdparty/SDL/build/",
 	   "cmake --build thirdparty/SDL/build/ --config Release"
    }
+<<<<<<< HEAD
 
 project "SDL2_ttflib"
    kind "Makefile"
@@ -144,3 +147,5 @@ project "SDL2_ttflib"
    cleancommands {
 	   "{RMDIR} %{cfg.targetdir}"
    }
+=======
+>>>>>>> master

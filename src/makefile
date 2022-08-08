@@ -1,8 +1,10 @@
 
-GCCPARAMS=
+GCCPARAMS= -I./includes
 
 
 WINPARAMS = -lwsock32 -lws2_32 -lMingw32 -lSDL2Main
+
+
 
 
 objects = obj/FPSManager.o \
@@ -20,6 +22,7 @@ objects = obj/FPSManager.o \
 		  obj/Hanoi.o \
 		  obj/AsteroidState.o \
 		  obj/ConwayState.o \
+		  obj/tetrisState1.o \
 		  obj/main.o
 
 all: $(objects)

@@ -25,7 +25,7 @@ void FpsManager::Handle()
     float ticks = 1000/fps;
     if(ticks > elapsed - start)
     {
-        wait = ticks - (elapsed - start);
+        wait = (long)ticks - (elapsed - start);
         SDL_Log("FPS %ld", wait);
         if(wait>0)
            SDL_Delay(wait);

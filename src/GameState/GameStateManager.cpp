@@ -1,4 +1,4 @@
-#include "../Font/TTFText.h"
+#include "TTFText.h"
 #include "GameStateManager.h"
 
 
