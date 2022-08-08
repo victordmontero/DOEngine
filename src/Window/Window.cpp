@@ -1,25 +1,32 @@
 
-#include<SDL.h>
+#include <vector>
+#include <sstream>
+
+extern "C" {
+#include <SDL.h>
+#include <SDL_image.h>
 #include <SDL_ttf.h>
-#include "Window.h"
-#include <Texture/Texture.h>
-#include <Font/TTFText.h>
-#include <Event/Event.h>
+}
 
+#include "DOEngine.h"
 
-#include <GameState/Bejweeled.h>
-#include <GameState/Hanoi.h>
-#include <GameState/AsteroidState.h>
-#include <GameState/ConwayState.h> 
+namespace {
 
+    std::vector<SDL_Point> points;
+    Texture* texture;
+
+};
 
 void Window::_CreateNeededInstance()
 {
-  fps_handler = new FpsManager();
-  game_state_manager = new GameStateManager(this);
-  TTFText::get()->setFont("./NirmalaB.ttf", 34);
-  game_state_manager->AddState(1, new ConwayState(this));
-  game_state_manager->SetState(1);
+      fps_handler = new FpsManager();
+///   game_state_manager = new GameStateManager(this);
+      TTFText::get()->setFont("C:\\aneury\\DOEngine-master\\bin\\Debug\\NirmalaB.ttf", 34);
+////  game_state_manager->AddState(1, new ConwayState(this));
+///  game_state_manager->SetState(1);
+      Texture::LoadTexture("C:\\aneury\\DOEngine-master\\bin\\Debug\\DominoRD1024x576.png","logo1");
+
+
 }
 
 
@@ -28,11 +35,18 @@ Window::Window(int w, int h)
 {
     SDL_Init(SDL_INIT_EVERYTHING);
     TTF_Init();
+    int flags = IMG_INIT_PNG | IMG_INIT_JPG | IMG_INIT_TIF | IMG_INIT_WEBP;
+    int res = IMG_Init(flags);
+    SDL_Log("sdl_img_flags= %x, IMG_Init result set =%x", flags, res);
+    flags = 0x00;
+    SDL_DisplayMode mode;
+    SDL_GetCurrentDisplayMode(1, &mode);
     window = SDL_CreateWindow("", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, w,h,SDL_WINDOW_SHOWN|SDL_WINDOW_BORDERLESS);
     render = SDL_CreateRenderer(window, -1, SDL_RENDERER_PRESENTVSYNC|SDL_RENDERER_ACCELERATED);
     run = render != NULL;
     window_rect.w = w;
     window_rect.h = h;
+    Texture::setRender(render);
     _CreateNeededInstance();
 }
 Window::Window()
@@ -55,31 +69,46 @@ Window::~Window()
 
 void Window::PollEvent()
 {
-  // SDL_Event event;
-   fps_handler->Start();
-  /* while(SDL_PollEvent(&event))
-   {
-       if(event.type==SDL_KEYDOWN)
-        {
-            if(event.key.keysym.sym==SDLK_q)
-               run= false;
-        }
-   }
-   */
+   
+    fps_handler->Start();
 
-   Event::PollEvent(this);
+    Event::PollEvent(this);
 
+    if (Event::mousePressed)
+    {
+        SDL_Log("Mousd Pressend");
+        SDL_Point point;
+        SDL_GetMouseState(&point.x, &point.y);
+        points.emplace_back(point);
+    }
+
+    if (Event::keyDown)
+    {
+        SDL_Log("Keydown");
+    }
 
 }
 void Window::Update(){
-    game_state_manager->Update(fps_handler->getElapsedTime());
+ ///   game_state_manager->Update(fps_handler->getElapsedTime());
 }
 void Window::Render()
 {
      SDL_SetRenderDrawColor(render, 0,0,0,255);
      SDL_RenderClear(render);
-     game_state_manager->Render();
+  ///   game_state_manager->Render();
+     ///TTFText::get()->DrawText("Victor this works as is",100,100, render);
+     
+     for (auto it : points)
+     {
+         Point point{ it.x, it.y };
+         Color color{ 255,255,0,255 };
+         DrawPoint(point, color, this);
+     }
+     
+     Texture::DrawImage("logo1", 0, 0, getW(), getH());
+     
+     
      SDL_RenderPresent(render);
-////       fps_handler->Handle();
+     fps_handler->Handle();
     
 }
