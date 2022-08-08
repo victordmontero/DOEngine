@@ -2,8 +2,6 @@
 
 #include "DOEngine.h"
 
-
-
 class TTFText
 {
 
