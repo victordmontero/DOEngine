@@ -45,6 +45,9 @@
     <ClCompile Include="src\Font\TTFText.cpp">
       <Filter>Font</Filter>
     </ClCompile>
+    <ClCompile Include="src\GameObject\Camera.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
     <ClCompile Include="src\GameObject\GameObject.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
