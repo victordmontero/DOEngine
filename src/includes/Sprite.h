@@ -12,7 +12,6 @@ enum class DefaultSpritePosition{
 	runningRight,
 	runningUp,
 	runningDown,
-	
 };
 
 
@@ -21,7 +20,9 @@ class Sprite{
    protected:
    
    std::vector<DefaultSpritePosition> position;
+  
    DefaultSpritePosition current_position;
+  
    int current_number;
    
    public:

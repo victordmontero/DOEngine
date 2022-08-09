@@ -8,7 +8,7 @@ bool Event::mousePressed    = false;
 bool Event::mouseReleased   = false;
 bool Event::keyDown         = false;
 bool Event::keyUp           = false;
-
+float Event::timeElapsed    = 0.0f;
 
 void Event::PollEvent(Window *window)
 {

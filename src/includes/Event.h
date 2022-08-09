@@ -4,6 +4,7 @@
 
 struct Event{
     
+    static float timeElapsed;
     static std::vector<KeyDownEvent*> keydown;
     static std::vector<KeyUpEvent*> keyup;
     static std::vector<MouseMovementEvent*> mouse;

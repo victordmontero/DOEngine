@@ -22,12 +22,6 @@ int Texture::LoadTexture(std::string path, std::string id ){
 
         if(surface!=NULL)
         {
-               /*
-                  WHITE IS TRANSPARENT.
-                  @todo please optimize this, and add SDL_Img
-               
-               */
-            ////SDL_SetColorKey(surface,SDL_TRUE ,SDL_MapRGB(surface->format, 255,255,255));
             textures[id]= SDL_CreateTextureFromSurface(render, surface);
         }
     }
