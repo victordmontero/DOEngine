@@ -8,7 +8,7 @@ bool Event::mousePressed    = false;
 bool Event::mouseReleased   = false;
 bool Event::keyDown         = false;
 bool Event::keyUp           = false;
-
+float Event::timeElapsed    = 0.0f;
 
 void Event::PollEvent(Window *window)
 {
@@ -96,4 +96,19 @@ void Event::PollEvent(Window *window)
      }
 
    }
+}
+
+
+void Event::AddKeydownEventListener(KeyDownEvent* ev)
+{
+    Event::keydown.emplace_back(ev);
+}
+
+void Event::RemoveKeydownEventListener(KeyDownEvent* ev)
+{
+    for (auto it : Event::keydown)
+    {
+        if (it == ev)
+            Event::keydown.erase(it);
+    }
 }

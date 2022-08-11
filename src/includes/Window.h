@@ -1,7 +1,7 @@
 #pragma once 
 
 #include <SDL.h>
-
+#include <memory>
 
 #include "FPSManager.h"
 #include "GameStateManager.h"
@@ -15,13 +15,10 @@ class Window
     SDL_Window   *window;
     SDL_Renderer *render;
     SDL_Rect      window_rect;
-    FpsManager   *fps_handler;
-    GameStateManager *game_state_manager;
+    std::shared_ptr<FpsManager> fps_handler;
+    std::shared_ptr<GameStateManager> gsm;
     bool run;
-
-
     void _CreateNeededInstance();
-
     public:
 
     Window(int w, int h);

@@ -4,9 +4,13 @@
 #include <iostream>
 #include <Vector.h>
 
+
+#include <map>
+#include <string>
+
 int  main(int argc, char *argv[])
 { 
-   Window *window = new Window(400,600); 
+   Window *window = new Window(600,600); 
     while(window->IsRunning())
     {
         window->PollEvent();

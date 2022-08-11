@@ -3,5 +3,4 @@
 struct Tile{
     int x, y;
     int type;
-
 };
