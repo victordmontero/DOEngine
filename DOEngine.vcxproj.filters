@@ -54,6 +54,9 @@
     <ClCompile Include="src\GameState\GameStateManager.cpp">
       <Filter>GameState</Filter>
     </ClCompile>
+    <ClCompile Include="src\GameState\TestState.cpp">
+      <Filter>GameState</Filter>
+    </ClCompile>
     <ClCompile Include="src\Network\UDPPacket.cpp">
       <Filter>Network</Filter>
     </ClCompile>

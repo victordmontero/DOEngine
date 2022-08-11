@@ -11,9 +11,6 @@ class GameObject{
      bool   renderable;
      bool   solid;
      int    layer;
-
-     Vector<float> position;
-     Vector<float> velocity;
  
      std::string sprite_id;
      std::string texture_id;

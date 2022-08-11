@@ -9,13 +9,14 @@ extern "C" {
 }
 
 #include "DOEngine.h"
-
-;
+#include <TestState.h>
 
 void Window::_CreateNeededInstance()
 {
       fps_handler.reset(new FpsManager());
       gsm.reset(new GameStateManager(this));
+      gsm.get()->AddState(1, new TestState(this));
+      gsm.get()->SetState(1);
 }
 
 

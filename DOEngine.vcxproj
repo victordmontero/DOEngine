@@ -268,6 +268,7 @@
     <ClCompile Include="src\GameObject\Camera.cpp" />
     <ClCompile Include="src\GameObject\GameObject.cpp" />
     <ClCompile Include="src\GameState\GameStateManager.cpp" />
+    <ClCompile Include="src\GameState\TestState.cpp" />
     <ClCompile Include="src\Network\UDPPacket.cpp" />
     <ClCompile Include="src\Texture\Texture.cpp" />
     <ClCompile Include="src\Tilemap\Tilemap.cpp" />
