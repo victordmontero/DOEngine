@@ -39,4 +39,7 @@ class Window
     int getW(){
         return window_rect.w;
     }
+
+    Window* clearWindow(SDL_Color color);
+    Window* setColor(SDL_Color color);
 };

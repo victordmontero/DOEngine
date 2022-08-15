@@ -108,7 +108,7 @@ void Event::RemoveKeydownEventListener(KeyDownEvent* ev)
 {
     for (auto it : Event::keydown)
     {
-        if (it == ev)
-            Event::keydown.erase(it);
+       //// if (it == ev)
+        ///    Event::keydown.erase(it);
     }
 }

@@ -65,10 +65,22 @@ void Window::PollEvent()
 void Window::Update(){
     gsm.get()->Update(Event::timeElapsed);
 }
+
+Window* Window::clearWindow(SDL_Color color) {
+    SDL_SetRenderDrawColor(render,color.r, color.g, color.b, color.a);
+    SDL_RenderClear(render);
+    return this;
+}
+Window* Window::setColor(SDL_Color color) {
+    SDL_SetRenderDrawColor(render, color.r, color.g, color.b, color.a);
+  
+    return this;
+}
+
+
 void Window::Render()
 {
-     SDL_SetRenderDrawColor(render, 0,0,0,255);
-     SDL_RenderClear(render);
+     Window::clearWindow({ 255, 155, 255, 255 });
      gsm.get()->Render();
      SDL_RenderPresent(render);
      fps_handler->Handle();
