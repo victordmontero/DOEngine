@@ -69,40 +69,41 @@ project "SDL2lib"
    kind "Makefile"
    objdir()
    
+   location("thirdparty/SDL/")
+   includedirs{"./include"}
+   targetname "SDL2"
+
    cleancommands {
-	   "{RMDIR} thirdparty/SDL/build/"
+	   "{RMDIR} %{prj.location}/build/"
    }
    
    filter "configurations:Debug"
-		targetdir "thirdparty/SDL/build/Debug"
-		targetname "SDL2d.dll"
+		targetdir "%{prj.location}/build/Debug"
    
    buildcommands {
-      "cmake thirdparty/SDL/ -B thirdparty/SDL/build/",
-	   "cmake --build thirdparty/SDL/build/"
+      "cmake %{prj.location} -B %{cfg.targetdir}",
+	   "cmake --build %{cfg.targetdir}"
    }
    
    rebuildcommands {
-	   "{RMDIR} thirdparty/SDL/build/",
-	   "cmake thirdparty/SDL/ -B thirdparty/SDL/build/",
-	   "cmake --build thirdparty/SDL/build/"
+	   "{RMDIR} %{prj.location}/build/",
+	   "cmake %{prj.location} -B %{cfg.targetdir}",
+	   "cmake --build %{cfg.targetdir}"
    }
    
    filter "configurations:Release"
 		targetdir "thirdparty/SDL/build/Release"
-		targetname "SDL2.dll"
    
    buildcommands {
-	   "cmake -DCMAKE_BUILD_TYPE=Release thirdparty/SDL/ -B thirdparty/SDL/build/",
-	   "cmake --build thirdparty/SDL/build/ --config Release"
+	   "cmake -DCMAKE_BUILD_TYPE=Release %{prj.location} -B %{cfg.targetdir}",
+	   "cmake --build %{cfg.targetdir} --config Release"
    }
    
    rebuildcommands {
-	   "{RMDIR} thirdparty/SDL/build/",
-	   "cmake -DCMAKE_BUILD_TYPE=Release thirdparty/SDL/ -B thirdparty/SDL/build/",
-	   "cmake --build thirdparty/SDL/build/ --config Release"
+	   "{RMDIR} %{prj.location}/build/",
+	   "cmake -DCMAKE_BUILD_TYPE=Release %{prj.location} -B %{cfg.targetdir}",
+	   "cmake --build %{cfg.targetdir} --config Release"
    }
-<<<<<<< HEAD
 
 project "SDL2_ttflib"
    kind "Makefile"
@@ -113,7 +114,7 @@ project "SDL2_ttflib"
    targetname "SDL2_ttf"
    
    filter "configurations:Debug"
-		targetdir "%{prj.location}/build"
+		targetdir "%{prj.location}/build/Debug"
    
    buildcommands {
       "cmake %{prj.location} -DSDL2TTF_VENDORED=ON -DBUILD_SHARED_LIBS=OFF -B %{cfg.targetdir}",
@@ -131,7 +132,7 @@ project "SDL2_ttflib"
    }
    
    filter "configurations:Release"
-		targetdir "%{prj.location}/build"
+		targetdir "%{prj.location}/build/Release"
    
    buildcommands {
 	   "cmake -DCMAKE_BUILD_TYPE=Release %{prj.location} -DSDL2TTF_VENDORED=ON -DBUILD_SHARED_LIBS=OFF -B %{cfg.targetdir}",
@@ -147,5 +148,3 @@ project "SDL2_ttflib"
    cleancommands {
 	   "{RMDIR} %{cfg.targetdir}"
    }
-=======
->>>>>>> master
