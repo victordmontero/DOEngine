@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DOEngine", "DOEngine.vcxproj", "{6E585DA7-5A25-B8B2-833E-A65A6F6AED40}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Linux = Debug|Linux
+		Debug|Win32 = Debug|Win32
+		Debug|Win64 = Debug|Win64
+		Release|Linux = Release|Linux
+		Release|Win32 = Release|Win32
+		Release|Win64 = Release|Win64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6E585DA7-5A25-B8B2-833E-A65A6F6AED40}.Debug|Linux.ActiveCfg = Debug Linux|Win32
+		{6E585DA7-5A25-B8B2-833E-A65A6F6AED40}.Debug|Linux.Build.0 = Debug Linux|Win32
+		{6E585DA7-5A25-B8B2-833E-A65A6F6AED40}.Debug|Win32.ActiveCfg = Debug|Win32
+		{6E585DA7-5A25-B8B2-833E-A65A6F6AED40}.Debug|Win32.Build.0 = Debug|Win32
+		{6E585DA7-5A25-B8B2-833E-A65A6F6AED40}.Debug|Win64.ActiveCfg = Debug Win64|x64
+		{6E585DA7-5A25-B8B2-833E-A65A6F6AED40}.Debug|Win64.Build.0 = Debug Win64|x64
+		{6E585DA7-5A25-B8B2-833E-A65A6F6AED40}.Release|Linux.ActiveCfg = Release Linux|Win32
+		{6E585DA7-5A25-B8B2-833E-A65A6F6AED40}.Release|Linux.Build.0 = Release Linux|Win32
+		{6E585DA7-5A25-B8B2-833E-A65A6F6AED40}.Release|Win32.ActiveCfg = Release|Win32
+		{6E585DA7-5A25-B8B2-833E-A65A6F6AED40}.Release|Win32.Build.0 = Release|Win32
+		{6E585DA7-5A25-B8B2-833E-A65A6F6AED40}.Release|Win64.ActiveCfg = Release Win64|x64
+		{6E585DA7-5A25-B8B2-833E-A65A6F6AED40}.Release|Win64.Build.0 = Release Win64|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

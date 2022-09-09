@@ -1,14 +1,16 @@
-#include <Window/Window.h>
-#include <Texture/Texture.h>
-#include <Drawable/Grids.h>
+#include <Window.h>
+#include <Texture.h>
+#include <Grids.h>
 #include <iostream>
-#include <Physics/Vector.h>
+#include <Vector.h>
+
+
+#include <map>
+#include <string>
 
 int  main(int argc, char *argv[])
 { 
-#if 0
-	Vector<int> fl;
-   Window *window = new Window(400,600); 
+   Window *window = new Window(600,600); 
     while(window->IsRunning())
     {
         window->PollEvent();
@@ -17,6 +19,5 @@ int  main(int argc, char *argv[])
     }
    delete window;
    window = nullptr;  
-#endif
    return 0;
 }

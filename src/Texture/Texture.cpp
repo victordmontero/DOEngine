@@ -1,7 +1,4 @@
-#include "Texture.h"
-
-
-#include <SDL_image.h>
+#include "DOEngine.h"
 
 
 std::map<std::string, SDL_Texture*>Texture::textures;
@@ -25,12 +22,6 @@ int Texture::LoadTexture(std::string path, std::string id ){
 
         if(surface!=NULL)
         {
-               /*
-                  WHITE IS TRANSPARENT.
-                  @todo please optimize this, and add SDL_Img
-               
-               */
-            ////SDL_SetColorKey(surface,SDL_TRUE ,SDL_MapRGB(surface->format, 255,255,255));
             textures[id]= SDL_CreateTextureFromSurface(render, surface);
         }
     }
@@ -47,11 +38,6 @@ void Texture::DrawImage(std::string id, int x, int y, int w, int h )
         SDL_RenderCopy(render, textures[id], NULL, &offset);
     }
 }
-
-#include <iostream>
-#include <Window/Window.h>
-#include <sstream>
-#include <string>
 bool saveScreenshotBMP(std::string filepath, Window *window)
 {
     SDL_Window* SDLWindow = window->getWindow();

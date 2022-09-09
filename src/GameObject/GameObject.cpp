@@ -2,6 +2,7 @@
 
 
 
-GameObject::GameObject(Window *window){
+GameObject::GameObject(Window *window)
+{
     this->window = window;
 }

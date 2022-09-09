@@ -3,35 +3,20 @@
 #include <sstream>
 
 extern "C" {
-#include<SDL.h>
+#include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
 }
 
-#include "Window.h"
-#include <Texture/Texture.h>
-#include <Font/TTFText.h>
-#include <Event/Event.h>
-#include <Drawable/Geometric.h>
-
-
-namespace {
-
-    std::vector<SDL_Point> points;
-    Texture* texture;
-
-};
+#include "DOEngine.h"
+#include <TestState.h>
 
 void Window::_CreateNeededInstance()
 {
-      fps_handler = new FpsManager();
-///   game_state_manager = new GameStateManager(this);
-      TTFText::get()->setFont("C:\\aneury\\DOEngine-master\\bin\\Debug\\NirmalaB.ttf", 34);
-////  game_state_manager->AddState(1, new ConwayState(this));
-///  game_state_manager->SetState(1);
-      Texture::LoadTexture("C:\\aneury\\DOEngine-master\\bin\\Debug\\DominoRD1024x576.png","logo1");
-
-
+      fps_handler.reset(new FpsManager());
+      gsm.reset(new GameStateManager(this));
+      gsm.get()->AddState(1, new TestState(this));
+      gsm.get()->SetState(1);
 }
 
 
@@ -74,46 +59,17 @@ Window::~Window()
 
 void Window::PollEvent()
 {
-   
     fps_handler->Start();
-
     Event::PollEvent(this);
-
-    if (Event::mousePressed)
-    {
-        SDL_Log("Mousd Pressend");
-        SDL_Point point;
-        SDL_GetMouseState(&point.x, &point.y);
-        points.emplace_back(point);
-    }
-
-    if (Event::keyDown)
-    {
-        SDL_Log("Keydown");
-    }
-
 }
 void Window::Update(){
- ///   game_state_manager->Update(fps_handler->getElapsedTime());
+    gsm.get()->Update(Event::timeElapsed);
 }
 void Window::Render()
 {
      SDL_SetRenderDrawColor(render, 0,0,0,255);
      SDL_RenderClear(render);
-  ///   game_state_manager->Render();
-     ///TTFText::get()->DrawText("Victor this works as is",100,100, render);
-     
-     for (auto it : points)
-     {
-         Point point{ it.x, it.y };
-         Color color{ 255,255,0,255 };
-         DrawPoint(point, color, this);
-     }
-     
-     Texture::DrawImage("logo1", 0, 0, getW(), getH());
-     
-     
+     gsm.get()->Render();
      SDL_RenderPresent(render);
      fps_handler->Handle();
-    
 }
