@@ -1,6 +1,6 @@
 #pragma once 
 
-#include <SDL.h>
+#include<SDL2/SDL.h>
 #include <memory>
 
 #include "FPSManager.h"
@@ -31,7 +31,7 @@ class Window
     void PollEvent();
     void Update();
     void Render();
-    void Quit(){run =false;}
+    void Quit(){this->run =false;}
 
     int getH(){
         return window_rect.h;

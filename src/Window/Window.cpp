@@ -3,9 +3,9 @@
 #include <sstream>
 
 extern "C" {
-#include <SDL.h>
-#include <SDL_image.h>
-#include <SDL_ttf.h>
+#include<SDL2/SDL.h>
+#include<SDL2/SDL_image.h>
+#include<SDL2/SDL_ttf.h>
 }
 
 #include "DOEngine.h"
@@ -63,13 +63,13 @@ void Window::PollEvent()
     Event::PollEvent(this);
 }
 void Window::Update(){
-    gsm.get()->Update(Event::timeElapsed);
+   /// gsm.get()->Update(Event::timeElapsed);
 }
 void Window::Render()
 {
-     SDL_SetRenderDrawColor(render, 0,0,0,255);
+     SDL_SetRenderDrawColor(render, 255,255,0,255);
      SDL_RenderClear(render);
-     gsm.get()->Render();
+   ////  gsm.get()->Render();
      SDL_RenderPresent(render);
      fps_handler->Handle();
 }

@@ -1,10 +1,10 @@
 
 GCCPARAMS= -I./includes
 
+WINPARAMS = 
+# WINPARAMS = -lwsock32 -lws2_32 -lMingw32 -lSDL2Main
 
-WINPARAMS = -lwsock32 -lws2_32 -lMingw32 -lSDL2Main
-
-
+LIBS=-lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer
 
 
 objects = obj/FPSManager.o \
@@ -18,15 +18,11 @@ objects = obj/FPSManager.o \
 		  obj/GameObject.o \
 		  obj/BackgroundObject.o \
 		  obj/GameStateManager.o \
-		  obj/Bejweeled.o \
-		  obj/Hanoi.o \
-		  obj/AsteroidState.o \
-		  obj/ConwayState.o \
-		  obj/tetrisState1.o \
+		  obj/TestState.o \
 		  obj/main.o
 
 all: $(objects)
-	g++ $(objects) -ogm1 $(WINPARAMS) -lSDL2 -lSDL2_ttf 
+	g++ $(objects) -ogm1 $(WINPARAMS) $(LIBS)
 
 obj/%.o: Network/%.cpp
 	g++ $(GCCPARAMS) -c -o $@ $<
@@ -42,8 +38,10 @@ obj/%.o: Font/%.cpp
 	g++ $(GCCPARAMS) -c -o $@ $<
 obj/%.o: Event/%.cpp
 	g++ $(GCCPARAMS) -c -o $@ $<
+
 obj/%.o: Timer/%.cpp
 	g++ $(GCCPARAMS) -c -o $@ $<
+
 obj/%.o: Window/%.cpp
 	g++ $(GCCPARAMS) -c -o $@ $<
 obj/%.o: Texture/%.cpp
