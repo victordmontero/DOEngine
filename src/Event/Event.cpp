@@ -26,7 +26,7 @@ void Event::PollEvent(Window *window)
            case SDL_KEYDOWN:
            {
                 SDL_Log("Window quit");
-                ////window->Quit();
+                window->Quit();
                 mousePressed = false;
                 mouseReleased= false;
                 keyDown= true;
@@ -82,7 +82,7 @@ void Event::PollEvent(Window *window)
             keyUp= false;break;
        }
 
-     if(keyDown==true && keydown.size()>0)
+     /*if(keyDown==true && keydown.size()>0)
      {
         for(auto it : keydown)
            it->OnKeydown(event.key.keysym.sym);
@@ -93,7 +93,7 @@ void Event::PollEvent(Window *window)
         for(auto it : keyup)
            it->OnKeyup(event.key.keysym.sym);
         keyUp = false;
-     }
+     }*/
 
    }
 }

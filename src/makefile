@@ -50,4 +50,4 @@ obj/%.o: %.cpp
 	g++ $(GCCPARAMS) -c -o $@ $<
 
 clean:
-	del $(objects)
+	rm $(objects)

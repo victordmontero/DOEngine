@@ -15,6 +15,7 @@ class Window
     SDL_Window   *window;
     SDL_Renderer *render;
     SDL_Rect      window_rect;
+    SDL_DisplayMode mode;
     std::shared_ptr<FpsManager> fps_handler;
     std::shared_ptr<GameStateManager> gsm;
     bool run;
@@ -25,13 +26,13 @@ class Window
     Window();
     ~Window();
  
-    inline bool IsRunning(){ return run;}
+    const bool IsRunning()const;
     SDL_Renderer *getRender(){return render;}
     SDL_Window   *getWindow(){return window;}
     void PollEvent();
     void Update();
     void Render();
-    void Quit(){this->run =false;}
+    void Quit();
 
     int getH(){
         return window_rect.h;
@@ -39,4 +40,10 @@ class Window
     int getW(){
         return window_rect.w;
     }
+
+    typedef unsigned char ColorT;
+    Window *SetWindowPencilColor(ColorT r, ColorT g, ColorT b, ColorT a);
+
+    private:
+    void destroy();
 };

@@ -1,6 +1,6 @@
-#include <Window.h>
-#include <Texture.h>
-#include <Grids.h>
+#include "Window.h"
+#include "Texture.h"
+#include "Grids.h"
 #include <iostream>
 #include <Vector.h>
 #include <map>
@@ -15,6 +15,7 @@ int  main(int argc, char *argv[])
         window->PollEvent();
         window->Update();
         window->Render();
+        
     } 
    return 0;
 }
