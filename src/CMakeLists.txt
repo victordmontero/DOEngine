@@ -13,13 +13,14 @@ add_executable(${PROJECT_NAME}
                GameState/TestState.cpp
                GameState/PlatformState.cpp
                GameObject/GameObject.cpp
-
+             
                GameObject/Camera.cpp
                GameObject/BackgroundObject.cpp
                Font/TTFText.cpp
                Event/Event.cpp
                Drawable/Geometric.cpp
                Drawable/PrimitiveGraphics.cpp
+               Drawable/Canvas.cpp
                algorithm/sort.cpp
                includes/defines.h
                includes/Camera.h

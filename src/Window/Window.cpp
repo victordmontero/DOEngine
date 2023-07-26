@@ -15,6 +15,7 @@ void Window::_CreateNeededInstance()
 {
       fps_handler.reset(new FpsManager());
       gsm.reset(new GameStateManager(this));
+      setClear();
       gsm.get()->AddState(1, new TestState(this));
       gsm.get()->AddState(2, new PlatformState(this));
       gsm.get()->SetState(2);
@@ -92,7 +93,7 @@ void Window::Quit()
 }
 
 const bool Window::IsRunning()const{
-    SDL_Log("is Running %ld", run);
+    SDL_Log("is Running %ld", (long int)run);
    
     return this->run;
 }

@@ -19,6 +19,7 @@ class Window
     std::shared_ptr<FpsManager> fps_handler;
     std::shared_ptr<GameStateManager> gsm;
     bool run;
+    bool dirty;
     void _CreateNeededInstance();
     public:
 
@@ -44,6 +45,8 @@ class Window
     typedef unsigned char ColorT;
     Window *SetWindowPencilColor(ColorT r, ColorT g, ColorT b, ColorT a);
 
+    void dontClear(){dirty=false;}
+    void setClear(){dirty=true;}
     private:
     void destroy();
 };

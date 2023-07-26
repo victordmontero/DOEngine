@@ -46,8 +46,8 @@ void FillCircle(int x, int y, int radius, const Color& color, Window *window)
 
 
 void DrawTriangle(int x1, int y1, int x2, int y2, int x3, int y3, const Color& p, Window *window)
-	{
+{
 		DrawLine({x1, y1}, {x2, y2}, p, window);
 		DrawLine({x2, y2}, {x3, y3}, p, window);
 		DrawLine({x3, y3}, {x1, y1}, p, window);
-	}
+}
