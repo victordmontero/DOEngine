@@ -4,6 +4,7 @@
 std::vector<KeyDownEvent*>       Event::keydown;
 std::vector<KeyUpEvent*>         Event::keyup;
 std::vector<MouseMovementEvent*> Event::mouse;
+std::vector<MouseEvent*>         Event::mouseEvent;
 bool Event::mousePressed    = false;
 bool Event::mouseReleased   = false;
 bool Event::keyDown         = false;
@@ -51,7 +52,16 @@ void Event::PollEvent(Window *window)
                 }break;              /**< Keyboard text input */
             case SDL_MOUSEMOTION :
                 {
-                   /// SDL_Log("SDL_MOUSEMOTION");
+                  
+                   SDL_Point mouse;
+                   SDL_GetMouseState(&mouse.x, &mouse.y);
+                    ///SDL_Log("SDL_MOUSEMOTION x: %ld,  y:%ld", mouse.x, mouse.y);
+                   SDL_Log("Mouse Count = %ld", Event::mouseEvent.size());
+                   for(auto itMouse : Event::mouseEvent){
+                      
+                      itMouse->MouseMove(mouse.x, mouse.y);
+                   }
+
                 }break; 
             case  SDL_MOUSEBUTTONDOWN:
              {
@@ -111,4 +121,9 @@ void Event::RemoveKeydownEventListener(KeyDownEvent* ev)
        // if (it == ev)
        //     Event::keydown.erase(*it);
     }
+}
+
+void Event::AddMouseEvent(MouseEvent *event){
+   Event::mouseEvent.push_back(event);
+   SDL_Log("Adding EVent Handler %02x", event);
 }

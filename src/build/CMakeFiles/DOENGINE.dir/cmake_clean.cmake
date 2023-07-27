@@ -1,0 +1,43 @@
+file(REMOVE_RECURSE
+  "CMakeFiles/DOENGINE.dir/Drawable/Canvas.cpp.o"
+  "CMakeFiles/DOENGINE.dir/Drawable/Canvas.cpp.o.d"
+  "CMakeFiles/DOENGINE.dir/Drawable/Geometric.cpp.o"
+  "CMakeFiles/DOENGINE.dir/Drawable/Geometric.cpp.o.d"
+  "CMakeFiles/DOENGINE.dir/Drawable/PrimitiveGraphics.cpp.o"
+  "CMakeFiles/DOENGINE.dir/Drawable/PrimitiveGraphics.cpp.o.d"
+  "CMakeFiles/DOENGINE.dir/Event/Event.cpp.o"
+  "CMakeFiles/DOENGINE.dir/Event/Event.cpp.o.d"
+  "CMakeFiles/DOENGINE.dir/Font/TTFText.cpp.o"
+  "CMakeFiles/DOENGINE.dir/Font/TTFText.cpp.o.d"
+  "CMakeFiles/DOENGINE.dir/GameObject/BackgroundObject.cpp.o"
+  "CMakeFiles/DOENGINE.dir/GameObject/BackgroundObject.cpp.o.d"
+  "CMakeFiles/DOENGINE.dir/GameObject/Camera.cpp.o"
+  "CMakeFiles/DOENGINE.dir/GameObject/Camera.cpp.o.d"
+  "CMakeFiles/DOENGINE.dir/GameObject/GameObject.cpp.o"
+  "CMakeFiles/DOENGINE.dir/GameObject/GameObject.cpp.o.d"
+  "CMakeFiles/DOENGINE.dir/GameState/GameStateManager.cpp.o"
+  "CMakeFiles/DOENGINE.dir/GameState/GameStateManager.cpp.o.d"
+  "CMakeFiles/DOENGINE.dir/GameState/PlatformState.cpp.o"
+  "CMakeFiles/DOENGINE.dir/GameState/PlatformState.cpp.o.d"
+  "CMakeFiles/DOENGINE.dir/GameState/TestState.cpp.o"
+  "CMakeFiles/DOENGINE.dir/GameState/TestState.cpp.o.d"
+  "CMakeFiles/DOENGINE.dir/Texture/Texture.cpp.o"
+  "CMakeFiles/DOENGINE.dir/Texture/Texture.cpp.o.d"
+  "CMakeFiles/DOENGINE.dir/Tilemap/Tilemap.cpp.o"
+  "CMakeFiles/DOENGINE.dir/Tilemap/Tilemap.cpp.o.d"
+  "CMakeFiles/DOENGINE.dir/Timer/FPSManager.cpp.o"
+  "CMakeFiles/DOENGINE.dir/Timer/FPSManager.cpp.o.d"
+  "CMakeFiles/DOENGINE.dir/Window/Window.cpp.o"
+  "CMakeFiles/DOENGINE.dir/Window/Window.cpp.o.d"
+  "CMakeFiles/DOENGINE.dir/algorithm/sort.cpp.o"
+  "CMakeFiles/DOENGINE.dir/algorithm/sort.cpp.o.d"
+  "CMakeFiles/DOENGINE.dir/main.cpp.o"
+  "CMakeFiles/DOENGINE.dir/main.cpp.o.d"
+  "DOENGINE"
+  "DOENGINE.pdb"
+)
+
+# Per-language clean rules from dependency scanning.
+foreach(lang CXX)
+  include(CMakeFiles/DOENGINE.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()

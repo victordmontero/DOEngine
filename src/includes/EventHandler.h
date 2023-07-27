@@ -78,3 +78,18 @@ class OnMessageQueue{
     virtual void HandleByDescriptor(int fd, void *buffer) = 0;
 
 };
+
+
+
+struct MouseEvent{
+ 
+  
+   virtual ~MouseEvent(){}
+
+   virtual void MouseMove(int x, int y) = 0;
+
+   virtual void MouseButtonDown(int which) = 0;
+   
+   virtual void MouseButtonUp(int which) = 0;
+
+};

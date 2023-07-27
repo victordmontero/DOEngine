@@ -19,6 +19,7 @@ void Window::_CreateNeededInstance()
       gsm.get()->AddState(1, new TestState(this));
       gsm.get()->AddState(2, new PlatformState(this));
       gsm.get()->SetState(2);
+      dirty = true;
 }
 
 
@@ -33,7 +34,7 @@ Window::Window(int w, int h)
     flags = 0x00;
     
     SDL_GetCurrentDisplayMode(1, &mode);
-    window = SDL_CreateWindow("", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, w,h,SDL_WINDOW_SHOWN|SDL_WINDOW_BORDERLESS);
+    window = SDL_CreateWindow("", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, mode.w,mode.h,SDL_WINDOW_SHOWN|SDL_WINDOW_BORDERLESS);
     render = SDL_CreateRenderer(window, -1, SDL_RENDERER_PRESENTVSYNC|SDL_RENDERER_ACCELERATED);
     run = render != NULL;
     window_rect.w = w;
@@ -45,7 +46,7 @@ Window::Window()
 {
     SDL_Init(SDL_INIT_EVERYTHING);
     SDL_GetCurrentDisplayMode(0, &mode);
-    window = SDL_CreateWindow("", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, mode.w,mode.h,SDL_WINDOW_SHOWN|SDL_WINDOW_BORDERLESS);
+    window = SDL_CreateWindow("", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, mode.w,mode.h,SDL_WINDOW_SHOWN|SDL_WINDOW_BORDERLESS|SDL_WINDOW_FULLSCREEN);
     render = SDL_CreateRenderer(window, -1, SDL_RENDERER_PRESENTVSYNC|SDL_RENDERER_ACCELERATED);
     run = render != NULL;
     window_rect.w = mode.w;
@@ -75,8 +76,12 @@ void Window::Update(){
 }
 void Window::Render()
 {
-     SDL_SetRenderDrawColor(render, 255,255,0,255);
-     SDL_RenderClear(render);
+     if(this->dirty){
+        SDL_SetRenderDrawColor(render, 0,0,0,255);
+        SDL_RenderClear(render);
+        dirty = false;
+     }
+    
      gsm.get()->Render();
      SDL_RenderPresent(render);
      fps_handler->Handle();
@@ -85,7 +90,7 @@ void Window::Render()
 
 void Window::Quit()
 {
-  SDL_Log("running will be toggle to false");
+  ///SDL_Log("running will be toggle to false");
 
   ///destroy();
 
@@ -93,7 +98,7 @@ void Window::Quit()
 }
 
 const bool Window::IsRunning()const{
-    SDL_Log("is Running %ld", (long int)run);
+   //// SDL_Log("is Running %ld", (long int)run);
    
     return this->run;
 }
