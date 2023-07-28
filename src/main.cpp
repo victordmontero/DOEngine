@@ -1,3 +1,4 @@
+ 
 #include "Window.h"
 #include "Texture.h"
 #include "Grids.h"
@@ -15,7 +16,6 @@ int  main(int argc, char *argv[])
         window->PollEvent();
         window->Update();
         window->Render();
-        
     } 
    return 0;
 }

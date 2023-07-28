@@ -69,7 +69,7 @@ bool saveScreenshotBMP(std::string filepath, Window *window)
                 }
                 std::stringstream ss;
                 ss << filepath << "-" << SDL_GetTicks() << ".bmp";
-                SDL_Log("%s", saveSurface, ss.str().c_str());
+               /// SDL_Log("%s", saveSurface, ss.str().c_str());
                 SDL_SaveBMP(saveSurface, ss.str().c_str());
                 SDL_FreeSurface(saveSurface);
                 saveSurface = NULL;

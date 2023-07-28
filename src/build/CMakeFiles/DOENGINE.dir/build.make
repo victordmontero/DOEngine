@@ -153,38 +153,10 @@ CMakeFiles/DOENGINE.dir/GameState/GameStateManager.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DOENGINE.dir/GameState/GameStateManager.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/afl/Documents/DOEngine/src/GameState/GameStateManager.cpp -o CMakeFiles/DOENGINE.dir/GameState/GameStateManager.cpp.s
 
-CMakeFiles/DOENGINE.dir/GameState/TestState.cpp.o: CMakeFiles/DOENGINE.dir/flags.make
-CMakeFiles/DOENGINE.dir/GameState/TestState.cpp.o: ../GameState/TestState.cpp
-CMakeFiles/DOENGINE.dir/GameState/TestState.cpp.o: CMakeFiles/DOENGINE.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/afl/Documents/DOEngine/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/DOENGINE.dir/GameState/TestState.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/DOENGINE.dir/GameState/TestState.cpp.o -MF CMakeFiles/DOENGINE.dir/GameState/TestState.cpp.o.d -o CMakeFiles/DOENGINE.dir/GameState/TestState.cpp.o -c /home/afl/Documents/DOEngine/src/GameState/TestState.cpp
-
-CMakeFiles/DOENGINE.dir/GameState/TestState.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DOENGINE.dir/GameState/TestState.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/afl/Documents/DOEngine/src/GameState/TestState.cpp > CMakeFiles/DOENGINE.dir/GameState/TestState.cpp.i
-
-CMakeFiles/DOENGINE.dir/GameState/TestState.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DOENGINE.dir/GameState/TestState.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/afl/Documents/DOEngine/src/GameState/TestState.cpp -o CMakeFiles/DOENGINE.dir/GameState/TestState.cpp.s
-
-CMakeFiles/DOENGINE.dir/GameState/PlatformState.cpp.o: CMakeFiles/DOENGINE.dir/flags.make
-CMakeFiles/DOENGINE.dir/GameState/PlatformState.cpp.o: ../GameState/PlatformState.cpp
-CMakeFiles/DOENGINE.dir/GameState/PlatformState.cpp.o: CMakeFiles/DOENGINE.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/afl/Documents/DOEngine/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/DOENGINE.dir/GameState/PlatformState.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/DOENGINE.dir/GameState/PlatformState.cpp.o -MF CMakeFiles/DOENGINE.dir/GameState/PlatformState.cpp.o.d -o CMakeFiles/DOENGINE.dir/GameState/PlatformState.cpp.o -c /home/afl/Documents/DOEngine/src/GameState/PlatformState.cpp
-
-CMakeFiles/DOENGINE.dir/GameState/PlatformState.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DOENGINE.dir/GameState/PlatformState.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/afl/Documents/DOEngine/src/GameState/PlatformState.cpp > CMakeFiles/DOENGINE.dir/GameState/PlatformState.cpp.i
-
-CMakeFiles/DOENGINE.dir/GameState/PlatformState.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DOENGINE.dir/GameState/PlatformState.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/afl/Documents/DOEngine/src/GameState/PlatformState.cpp -o CMakeFiles/DOENGINE.dir/GameState/PlatformState.cpp.s
-
 CMakeFiles/DOENGINE.dir/GameObject/GameObject.cpp.o: CMakeFiles/DOENGINE.dir/flags.make
 CMakeFiles/DOENGINE.dir/GameObject/GameObject.cpp.o: ../GameObject/GameObject.cpp
 CMakeFiles/DOENGINE.dir/GameObject/GameObject.cpp.o: CMakeFiles/DOENGINE.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/afl/Documents/DOEngine/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/DOENGINE.dir/GameObject/GameObject.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/afl/Documents/DOEngine/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/DOENGINE.dir/GameObject/GameObject.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/DOENGINE.dir/GameObject/GameObject.cpp.o -MF CMakeFiles/DOENGINE.dir/GameObject/GameObject.cpp.o.d -o CMakeFiles/DOENGINE.dir/GameObject/GameObject.cpp.o -c /home/afl/Documents/DOEngine/src/GameObject/GameObject.cpp
 
 CMakeFiles/DOENGINE.dir/GameObject/GameObject.cpp.i: cmake_force
@@ -195,38 +167,10 @@ CMakeFiles/DOENGINE.dir/GameObject/GameObject.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DOENGINE.dir/GameObject/GameObject.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/afl/Documents/DOEngine/src/GameObject/GameObject.cpp -o CMakeFiles/DOENGINE.dir/GameObject/GameObject.cpp.s
 
-CMakeFiles/DOENGINE.dir/GameObject/Camera.cpp.o: CMakeFiles/DOENGINE.dir/flags.make
-CMakeFiles/DOENGINE.dir/GameObject/Camera.cpp.o: ../GameObject/Camera.cpp
-CMakeFiles/DOENGINE.dir/GameObject/Camera.cpp.o: CMakeFiles/DOENGINE.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/afl/Documents/DOEngine/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/DOENGINE.dir/GameObject/Camera.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/DOENGINE.dir/GameObject/Camera.cpp.o -MF CMakeFiles/DOENGINE.dir/GameObject/Camera.cpp.o.d -o CMakeFiles/DOENGINE.dir/GameObject/Camera.cpp.o -c /home/afl/Documents/DOEngine/src/GameObject/Camera.cpp
-
-CMakeFiles/DOENGINE.dir/GameObject/Camera.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DOENGINE.dir/GameObject/Camera.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/afl/Documents/DOEngine/src/GameObject/Camera.cpp > CMakeFiles/DOENGINE.dir/GameObject/Camera.cpp.i
-
-CMakeFiles/DOENGINE.dir/GameObject/Camera.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DOENGINE.dir/GameObject/Camera.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/afl/Documents/DOEngine/src/GameObject/Camera.cpp -o CMakeFiles/DOENGINE.dir/GameObject/Camera.cpp.s
-
-CMakeFiles/DOENGINE.dir/GameObject/BackgroundObject.cpp.o: CMakeFiles/DOENGINE.dir/flags.make
-CMakeFiles/DOENGINE.dir/GameObject/BackgroundObject.cpp.o: ../GameObject/BackgroundObject.cpp
-CMakeFiles/DOENGINE.dir/GameObject/BackgroundObject.cpp.o: CMakeFiles/DOENGINE.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/afl/Documents/DOEngine/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/DOENGINE.dir/GameObject/BackgroundObject.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/DOENGINE.dir/GameObject/BackgroundObject.cpp.o -MF CMakeFiles/DOENGINE.dir/GameObject/BackgroundObject.cpp.o.d -o CMakeFiles/DOENGINE.dir/GameObject/BackgroundObject.cpp.o -c /home/afl/Documents/DOEngine/src/GameObject/BackgroundObject.cpp
-
-CMakeFiles/DOENGINE.dir/GameObject/BackgroundObject.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DOENGINE.dir/GameObject/BackgroundObject.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/afl/Documents/DOEngine/src/GameObject/BackgroundObject.cpp > CMakeFiles/DOENGINE.dir/GameObject/BackgroundObject.cpp.i
-
-CMakeFiles/DOENGINE.dir/GameObject/BackgroundObject.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DOENGINE.dir/GameObject/BackgroundObject.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/afl/Documents/DOEngine/src/GameObject/BackgroundObject.cpp -o CMakeFiles/DOENGINE.dir/GameObject/BackgroundObject.cpp.s
-
 CMakeFiles/DOENGINE.dir/Font/TTFText.cpp.o: CMakeFiles/DOENGINE.dir/flags.make
 CMakeFiles/DOENGINE.dir/Font/TTFText.cpp.o: ../Font/TTFText.cpp
 CMakeFiles/DOENGINE.dir/Font/TTFText.cpp.o: CMakeFiles/DOENGINE.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/afl/Documents/DOEngine/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/DOENGINE.dir/Font/TTFText.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/afl/Documents/DOEngine/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/DOENGINE.dir/Font/TTFText.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/DOENGINE.dir/Font/TTFText.cpp.o -MF CMakeFiles/DOENGINE.dir/Font/TTFText.cpp.o.d -o CMakeFiles/DOENGINE.dir/Font/TTFText.cpp.o -c /home/afl/Documents/DOEngine/src/Font/TTFText.cpp
 
 CMakeFiles/DOENGINE.dir/Font/TTFText.cpp.i: cmake_force
@@ -240,7 +184,7 @@ CMakeFiles/DOENGINE.dir/Font/TTFText.cpp.s: cmake_force
 CMakeFiles/DOENGINE.dir/Event/Event.cpp.o: CMakeFiles/DOENGINE.dir/flags.make
 CMakeFiles/DOENGINE.dir/Event/Event.cpp.o: ../Event/Event.cpp
 CMakeFiles/DOENGINE.dir/Event/Event.cpp.o: CMakeFiles/DOENGINE.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/afl/Documents/DOEngine/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/DOENGINE.dir/Event/Event.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/afl/Documents/DOEngine/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/DOENGINE.dir/Event/Event.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/DOENGINE.dir/Event/Event.cpp.o -MF CMakeFiles/DOENGINE.dir/Event/Event.cpp.o.d -o CMakeFiles/DOENGINE.dir/Event/Event.cpp.o -c /home/afl/Documents/DOEngine/src/Event/Event.cpp
 
 CMakeFiles/DOENGINE.dir/Event/Event.cpp.i: cmake_force
@@ -251,38 +195,10 @@ CMakeFiles/DOENGINE.dir/Event/Event.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DOENGINE.dir/Event/Event.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/afl/Documents/DOEngine/src/Event/Event.cpp -o CMakeFiles/DOENGINE.dir/Event/Event.cpp.s
 
-CMakeFiles/DOENGINE.dir/Drawable/Geometric.cpp.o: CMakeFiles/DOENGINE.dir/flags.make
-CMakeFiles/DOENGINE.dir/Drawable/Geometric.cpp.o: ../Drawable/Geometric.cpp
-CMakeFiles/DOENGINE.dir/Drawable/Geometric.cpp.o: CMakeFiles/DOENGINE.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/afl/Documents/DOEngine/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/DOENGINE.dir/Drawable/Geometric.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/DOENGINE.dir/Drawable/Geometric.cpp.o -MF CMakeFiles/DOENGINE.dir/Drawable/Geometric.cpp.o.d -o CMakeFiles/DOENGINE.dir/Drawable/Geometric.cpp.o -c /home/afl/Documents/DOEngine/src/Drawable/Geometric.cpp
-
-CMakeFiles/DOENGINE.dir/Drawable/Geometric.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DOENGINE.dir/Drawable/Geometric.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/afl/Documents/DOEngine/src/Drawable/Geometric.cpp > CMakeFiles/DOENGINE.dir/Drawable/Geometric.cpp.i
-
-CMakeFiles/DOENGINE.dir/Drawable/Geometric.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DOENGINE.dir/Drawable/Geometric.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/afl/Documents/DOEngine/src/Drawable/Geometric.cpp -o CMakeFiles/DOENGINE.dir/Drawable/Geometric.cpp.s
-
-CMakeFiles/DOENGINE.dir/Drawable/PrimitiveGraphics.cpp.o: CMakeFiles/DOENGINE.dir/flags.make
-CMakeFiles/DOENGINE.dir/Drawable/PrimitiveGraphics.cpp.o: ../Drawable/PrimitiveGraphics.cpp
-CMakeFiles/DOENGINE.dir/Drawable/PrimitiveGraphics.cpp.o: CMakeFiles/DOENGINE.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/afl/Documents/DOEngine/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/DOENGINE.dir/Drawable/PrimitiveGraphics.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/DOENGINE.dir/Drawable/PrimitiveGraphics.cpp.o -MF CMakeFiles/DOENGINE.dir/Drawable/PrimitiveGraphics.cpp.o.d -o CMakeFiles/DOENGINE.dir/Drawable/PrimitiveGraphics.cpp.o -c /home/afl/Documents/DOEngine/src/Drawable/PrimitiveGraphics.cpp
-
-CMakeFiles/DOENGINE.dir/Drawable/PrimitiveGraphics.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DOENGINE.dir/Drawable/PrimitiveGraphics.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/afl/Documents/DOEngine/src/Drawable/PrimitiveGraphics.cpp > CMakeFiles/DOENGINE.dir/Drawable/PrimitiveGraphics.cpp.i
-
-CMakeFiles/DOENGINE.dir/Drawable/PrimitiveGraphics.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DOENGINE.dir/Drawable/PrimitiveGraphics.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/afl/Documents/DOEngine/src/Drawable/PrimitiveGraphics.cpp -o CMakeFiles/DOENGINE.dir/Drawable/PrimitiveGraphics.cpp.s
-
 CMakeFiles/DOENGINE.dir/Drawable/Canvas.cpp.o: CMakeFiles/DOENGINE.dir/flags.make
 CMakeFiles/DOENGINE.dir/Drawable/Canvas.cpp.o: ../Drawable/Canvas.cpp
 CMakeFiles/DOENGINE.dir/Drawable/Canvas.cpp.o: CMakeFiles/DOENGINE.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/afl/Documents/DOEngine/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/DOENGINE.dir/Drawable/Canvas.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/afl/Documents/DOEngine/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/DOENGINE.dir/Drawable/Canvas.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/DOENGINE.dir/Drawable/Canvas.cpp.o -MF CMakeFiles/DOENGINE.dir/Drawable/Canvas.cpp.o.d -o CMakeFiles/DOENGINE.dir/Drawable/Canvas.cpp.o -c /home/afl/Documents/DOEngine/src/Drawable/Canvas.cpp
 
 CMakeFiles/DOENGINE.dir/Drawable/Canvas.cpp.i: cmake_force
@@ -293,20 +209,6 @@ CMakeFiles/DOENGINE.dir/Drawable/Canvas.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DOENGINE.dir/Drawable/Canvas.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/afl/Documents/DOEngine/src/Drawable/Canvas.cpp -o CMakeFiles/DOENGINE.dir/Drawable/Canvas.cpp.s
 
-CMakeFiles/DOENGINE.dir/algorithm/sort.cpp.o: CMakeFiles/DOENGINE.dir/flags.make
-CMakeFiles/DOENGINE.dir/algorithm/sort.cpp.o: ../algorithm/sort.cpp
-CMakeFiles/DOENGINE.dir/algorithm/sort.cpp.o: CMakeFiles/DOENGINE.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/afl/Documents/DOEngine/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/DOENGINE.dir/algorithm/sort.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/DOENGINE.dir/algorithm/sort.cpp.o -MF CMakeFiles/DOENGINE.dir/algorithm/sort.cpp.o.d -o CMakeFiles/DOENGINE.dir/algorithm/sort.cpp.o -c /home/afl/Documents/DOEngine/src/algorithm/sort.cpp
-
-CMakeFiles/DOENGINE.dir/algorithm/sort.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DOENGINE.dir/algorithm/sort.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/afl/Documents/DOEngine/src/algorithm/sort.cpp > CMakeFiles/DOENGINE.dir/algorithm/sort.cpp.i
-
-CMakeFiles/DOENGINE.dir/algorithm/sort.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DOENGINE.dir/algorithm/sort.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/afl/Documents/DOEngine/src/algorithm/sort.cpp -o CMakeFiles/DOENGINE.dir/algorithm/sort.cpp.s
-
 # Object files for target DOENGINE
 DOENGINE_OBJECTS = \
 "CMakeFiles/DOENGINE.dir/main.cpp.o" \
@@ -315,17 +217,10 @@ DOENGINE_OBJECTS = \
 "CMakeFiles/DOENGINE.dir/Tilemap/Tilemap.cpp.o" \
 "CMakeFiles/DOENGINE.dir/Texture/Texture.cpp.o" \
 "CMakeFiles/DOENGINE.dir/GameState/GameStateManager.cpp.o" \
-"CMakeFiles/DOENGINE.dir/GameState/TestState.cpp.o" \
-"CMakeFiles/DOENGINE.dir/GameState/PlatformState.cpp.o" \
 "CMakeFiles/DOENGINE.dir/GameObject/GameObject.cpp.o" \
-"CMakeFiles/DOENGINE.dir/GameObject/Camera.cpp.o" \
-"CMakeFiles/DOENGINE.dir/GameObject/BackgroundObject.cpp.o" \
 "CMakeFiles/DOENGINE.dir/Font/TTFText.cpp.o" \
 "CMakeFiles/DOENGINE.dir/Event/Event.cpp.o" \
-"CMakeFiles/DOENGINE.dir/Drawable/Geometric.cpp.o" \
-"CMakeFiles/DOENGINE.dir/Drawable/PrimitiveGraphics.cpp.o" \
-"CMakeFiles/DOENGINE.dir/Drawable/Canvas.cpp.o" \
-"CMakeFiles/DOENGINE.dir/algorithm/sort.cpp.o"
+"CMakeFiles/DOENGINE.dir/Drawable/Canvas.cpp.o"
 
 # External object files for target DOENGINE
 DOENGINE_EXTERNAL_OBJECTS =
@@ -336,20 +231,13 @@ DOENGINE: CMakeFiles/DOENGINE.dir/Timer/FPSManager.cpp.o
 DOENGINE: CMakeFiles/DOENGINE.dir/Tilemap/Tilemap.cpp.o
 DOENGINE: CMakeFiles/DOENGINE.dir/Texture/Texture.cpp.o
 DOENGINE: CMakeFiles/DOENGINE.dir/GameState/GameStateManager.cpp.o
-DOENGINE: CMakeFiles/DOENGINE.dir/GameState/TestState.cpp.o
-DOENGINE: CMakeFiles/DOENGINE.dir/GameState/PlatformState.cpp.o
 DOENGINE: CMakeFiles/DOENGINE.dir/GameObject/GameObject.cpp.o
-DOENGINE: CMakeFiles/DOENGINE.dir/GameObject/Camera.cpp.o
-DOENGINE: CMakeFiles/DOENGINE.dir/GameObject/BackgroundObject.cpp.o
 DOENGINE: CMakeFiles/DOENGINE.dir/Font/TTFText.cpp.o
 DOENGINE: CMakeFiles/DOENGINE.dir/Event/Event.cpp.o
-DOENGINE: CMakeFiles/DOENGINE.dir/Drawable/Geometric.cpp.o
-DOENGINE: CMakeFiles/DOENGINE.dir/Drawable/PrimitiveGraphics.cpp.o
 DOENGINE: CMakeFiles/DOENGINE.dir/Drawable/Canvas.cpp.o
-DOENGINE: CMakeFiles/DOENGINE.dir/algorithm/sort.cpp.o
 DOENGINE: CMakeFiles/DOENGINE.dir/build.make
 DOENGINE: CMakeFiles/DOENGINE.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/afl/Documents/DOEngine/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Linking CXX executable DOENGINE"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/afl/Documents/DOEngine/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Linking CXX executable DOENGINE"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/DOENGINE.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

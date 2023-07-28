@@ -15,11 +15,23 @@ void Window::_CreateNeededInstance()
 {
       fps_handler.reset(new FpsManager());
       gsm.reset(new GameStateManager(this));
-      setClear();
-      gsm.get()->AddState(1, new TestState(this));
-      gsm.get()->AddState(2, new PlatformState(this));
+   
+ 
       gsm.get()->SetState(2);
       dirty = true;
+
+    canvas1 = new Canvas(this);
+    canvas2 = new Canvas(this);
+  
+    canvas1->setPosition({100,500, 100,100})
+           ->fillColor({0,0,255,255})
+           ->setCanvasBackgroundColor({255,255,0,255});
+ 
+
+    canvas2->setPosition({400,100, 200,300})
+            ->fillColor({0,0,255,255});
+ 
+
 }
 
 
@@ -66,23 +78,45 @@ Window::~Window()
   destroy();
 }
 
+void Window::setFullScreen()
+{
+   SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
+}
+
+void Window::setWindowMode()
+{
+   SDL_SetWindowFullscreen(window, 0);
+}
 void Window::PollEvent()
 {
     fps_handler->Start();
     Event::PollEvent(this);
 }
 void Window::Update(){
-   gsm.get()->Update(Event::timeElapsed);
+  /// gsm.get()->Update(Event::timeElapsed);
+
+
+   canvas1->fillColor({0,0,255,255});
+   canvas1->DrawRect(0,0,20,20);
+   canvas1->fillColor({0,255,255,255});
+   canvas1->DrawRect(30,30,20,20);
+
+   canvas2->fillColor({0,0,255,255});
+   canvas2->DrawRect(0,0,20,20);
+   canvas2->fillColor({0,255,255,255});
+   canvas2->DrawRect(30,30,20,20);
 }
 void Window::Render()
 {
-     if(this->dirty){
-        SDL_SetRenderDrawColor(render, 0,0,0,255);
-        SDL_RenderClear(render);
-        dirty = false;
-     }
+ 
+     SDL_SetRenderDrawColor(render, 0,0,0,255);
+     SDL_RenderClear(render);
     
-     gsm.get()->Render();
+     canvas1->update();
+
+     canvas2->update();
+
+
      SDL_RenderPresent(render);
      fps_handler->Handle();
 }

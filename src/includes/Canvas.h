@@ -1,16 +1,49 @@
+#pragma once
+
+
 #include <SDL2/SDL.h>
 #include "Window.h"
+#include <vector>
+
+struct CanvasCommand{
+    virtual void Draw(Window *window) = 0;
+};
+
+struct CanvasRectCommand : public CanvasCommand{
+     SDL_Rect offset;
+     SDL_Color color;
+     bool filled;
+     virtual void Draw(Window *window) override;
+};
+
+// struct CanvasCircleCommand : public CanvasCommand{
+
+// };
 
 
+class Canvas{
 
-namespace Canvas{
+   Window       *window;
+   SDL_Color     _bg;
+   SDL_Color     _filler;
+   SDL_Rect      _offset;
+   bool          clear=false;
 
-void begin(Window *window);
-void end(Window *window);
-void setCurrentCanvasPosition(int x, int y);
-void setCurrentCanvasSize(int w, int h);
-void fillStyle(SDL_Color color);
-void fillRect(Window *window, int x, int y, int w, int h);
-void DrawRect(Window *window, int x, int y, int w, int h);
-void arc(Window *window, int x, int y, int radius, double startAngle, double endAngle);
+   std::vector<CanvasCommand *> commands_to_draw;
+
+
+ 
+
+   public:
+   
+   
+   Canvas(Window *window);  
+
+   Canvas* fillColor(SDL_Color color);
+   Canvas* setPosition(SDL_Rect rect);
+
+   Canvas* DrawRect(int x, int y, int w, int h);
+
+   Canvas* setCanvasBackgroundColor(SDL_Color color);
+   Canvas* update(); 
 };

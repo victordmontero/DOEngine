@@ -7,6 +7,7 @@
 #include "GameStateManager.h"
 #include "Texture.h"
 
+#include "Canvas.h"
 
 class GameStateManager;
 
@@ -21,15 +22,26 @@ class Window
     bool run;
     bool dirty;
     void _CreateNeededInstance();
+
+
+    Canvas *canvas1;
+    Canvas *canvas2;
+
+
     public:
 
     Window(int w, int h);
     Window();
     ~Window();
  
-    const bool IsRunning()const;
+    const bool    IsRunning()const;
     SDL_Renderer *getRender(){return render;}
     SDL_Window   *getWindow(){return window;}
+   
+    
+    void setFullScreen();
+    void setWindowMode();
+   
     void PollEvent();
     void Update();
     void Render();
@@ -45,8 +57,6 @@ class Window
     typedef unsigned char ColorT;
     Window *SetWindowPencilColor(ColorT r, ColorT g, ColorT b, ColorT a);
 
-    void dontClear(){dirty=false;}
-    void setClear(){dirty=true;}
     private:
     void destroy();
 };

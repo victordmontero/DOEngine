@@ -198,54 +198,6 @@ Drawable/Canvas.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DOENGINE.dir/build.make CMakeFiles/DOENGINE.dir/Drawable/Canvas.cpp.s
 .PHONY : Drawable/Canvas.cpp.s
 
-Drawable/Geometric.o: Drawable/Geometric.cpp.o
-.PHONY : Drawable/Geometric.o
-
-# target to build an object file
-Drawable/Geometric.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DOENGINE.dir/build.make CMakeFiles/DOENGINE.dir/Drawable/Geometric.cpp.o
-.PHONY : Drawable/Geometric.cpp.o
-
-Drawable/Geometric.i: Drawable/Geometric.cpp.i
-.PHONY : Drawable/Geometric.i
-
-# target to preprocess a source file
-Drawable/Geometric.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DOENGINE.dir/build.make CMakeFiles/DOENGINE.dir/Drawable/Geometric.cpp.i
-.PHONY : Drawable/Geometric.cpp.i
-
-Drawable/Geometric.s: Drawable/Geometric.cpp.s
-.PHONY : Drawable/Geometric.s
-
-# target to generate assembly for a file
-Drawable/Geometric.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DOENGINE.dir/build.make CMakeFiles/DOENGINE.dir/Drawable/Geometric.cpp.s
-.PHONY : Drawable/Geometric.cpp.s
-
-Drawable/PrimitiveGraphics.o: Drawable/PrimitiveGraphics.cpp.o
-.PHONY : Drawable/PrimitiveGraphics.o
-
-# target to build an object file
-Drawable/PrimitiveGraphics.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DOENGINE.dir/build.make CMakeFiles/DOENGINE.dir/Drawable/PrimitiveGraphics.cpp.o
-.PHONY : Drawable/PrimitiveGraphics.cpp.o
-
-Drawable/PrimitiveGraphics.i: Drawable/PrimitiveGraphics.cpp.i
-.PHONY : Drawable/PrimitiveGraphics.i
-
-# target to preprocess a source file
-Drawable/PrimitiveGraphics.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DOENGINE.dir/build.make CMakeFiles/DOENGINE.dir/Drawable/PrimitiveGraphics.cpp.i
-.PHONY : Drawable/PrimitiveGraphics.cpp.i
-
-Drawable/PrimitiveGraphics.s: Drawable/PrimitiveGraphics.cpp.s
-.PHONY : Drawable/PrimitiveGraphics.s
-
-# target to generate assembly for a file
-Drawable/PrimitiveGraphics.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DOENGINE.dir/build.make CMakeFiles/DOENGINE.dir/Drawable/PrimitiveGraphics.cpp.s
-.PHONY : Drawable/PrimitiveGraphics.cpp.s
-
 Event/Event.o: Event/Event.cpp.o
 .PHONY : Event/Event.o
 
@@ -294,54 +246,6 @@ Font/TTFText.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DOENGINE.dir/build.make CMakeFiles/DOENGINE.dir/Font/TTFText.cpp.s
 .PHONY : Font/TTFText.cpp.s
 
-GameObject/BackgroundObject.o: GameObject/BackgroundObject.cpp.o
-.PHONY : GameObject/BackgroundObject.o
-
-# target to build an object file
-GameObject/BackgroundObject.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DOENGINE.dir/build.make CMakeFiles/DOENGINE.dir/GameObject/BackgroundObject.cpp.o
-.PHONY : GameObject/BackgroundObject.cpp.o
-
-GameObject/BackgroundObject.i: GameObject/BackgroundObject.cpp.i
-.PHONY : GameObject/BackgroundObject.i
-
-# target to preprocess a source file
-GameObject/BackgroundObject.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DOENGINE.dir/build.make CMakeFiles/DOENGINE.dir/GameObject/BackgroundObject.cpp.i
-.PHONY : GameObject/BackgroundObject.cpp.i
-
-GameObject/BackgroundObject.s: GameObject/BackgroundObject.cpp.s
-.PHONY : GameObject/BackgroundObject.s
-
-# target to generate assembly for a file
-GameObject/BackgroundObject.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DOENGINE.dir/build.make CMakeFiles/DOENGINE.dir/GameObject/BackgroundObject.cpp.s
-.PHONY : GameObject/BackgroundObject.cpp.s
-
-GameObject/Camera.o: GameObject/Camera.cpp.o
-.PHONY : GameObject/Camera.o
-
-# target to build an object file
-GameObject/Camera.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DOENGINE.dir/build.make CMakeFiles/DOENGINE.dir/GameObject/Camera.cpp.o
-.PHONY : GameObject/Camera.cpp.o
-
-GameObject/Camera.i: GameObject/Camera.cpp.i
-.PHONY : GameObject/Camera.i
-
-# target to preprocess a source file
-GameObject/Camera.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DOENGINE.dir/build.make CMakeFiles/DOENGINE.dir/GameObject/Camera.cpp.i
-.PHONY : GameObject/Camera.cpp.i
-
-GameObject/Camera.s: GameObject/Camera.cpp.s
-.PHONY : GameObject/Camera.s
-
-# target to generate assembly for a file
-GameObject/Camera.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DOENGINE.dir/build.make CMakeFiles/DOENGINE.dir/GameObject/Camera.cpp.s
-.PHONY : GameObject/Camera.cpp.s
-
 GameObject/GameObject.o: GameObject/GameObject.cpp.o
 .PHONY : GameObject/GameObject.o
 
@@ -389,54 +293,6 @@ GameState/GameStateManager.s: GameState/GameStateManager.cpp.s
 GameState/GameStateManager.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DOENGINE.dir/build.make CMakeFiles/DOENGINE.dir/GameState/GameStateManager.cpp.s
 .PHONY : GameState/GameStateManager.cpp.s
-
-GameState/PlatformState.o: GameState/PlatformState.cpp.o
-.PHONY : GameState/PlatformState.o
-
-# target to build an object file
-GameState/PlatformState.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DOENGINE.dir/build.make CMakeFiles/DOENGINE.dir/GameState/PlatformState.cpp.o
-.PHONY : GameState/PlatformState.cpp.o
-
-GameState/PlatformState.i: GameState/PlatformState.cpp.i
-.PHONY : GameState/PlatformState.i
-
-# target to preprocess a source file
-GameState/PlatformState.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DOENGINE.dir/build.make CMakeFiles/DOENGINE.dir/GameState/PlatformState.cpp.i
-.PHONY : GameState/PlatformState.cpp.i
-
-GameState/PlatformState.s: GameState/PlatformState.cpp.s
-.PHONY : GameState/PlatformState.s
-
-# target to generate assembly for a file
-GameState/PlatformState.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DOENGINE.dir/build.make CMakeFiles/DOENGINE.dir/GameState/PlatformState.cpp.s
-.PHONY : GameState/PlatformState.cpp.s
-
-GameState/TestState.o: GameState/TestState.cpp.o
-.PHONY : GameState/TestState.o
-
-# target to build an object file
-GameState/TestState.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DOENGINE.dir/build.make CMakeFiles/DOENGINE.dir/GameState/TestState.cpp.o
-.PHONY : GameState/TestState.cpp.o
-
-GameState/TestState.i: GameState/TestState.cpp.i
-.PHONY : GameState/TestState.i
-
-# target to preprocess a source file
-GameState/TestState.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DOENGINE.dir/build.make CMakeFiles/DOENGINE.dir/GameState/TestState.cpp.i
-.PHONY : GameState/TestState.cpp.i
-
-GameState/TestState.s: GameState/TestState.cpp.s
-.PHONY : GameState/TestState.s
-
-# target to generate assembly for a file
-GameState/TestState.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DOENGINE.dir/build.make CMakeFiles/DOENGINE.dir/GameState/TestState.cpp.s
-.PHONY : GameState/TestState.cpp.s
 
 Texture/Texture.o: Texture/Texture.cpp.o
 .PHONY : Texture/Texture.o
@@ -534,30 +390,6 @@ Window/Window.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DOENGINE.dir/build.make CMakeFiles/DOENGINE.dir/Window/Window.cpp.s
 .PHONY : Window/Window.cpp.s
 
-algorithm/sort.o: algorithm/sort.cpp.o
-.PHONY : algorithm/sort.o
-
-# target to build an object file
-algorithm/sort.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DOENGINE.dir/build.make CMakeFiles/DOENGINE.dir/algorithm/sort.cpp.o
-.PHONY : algorithm/sort.cpp.o
-
-algorithm/sort.i: algorithm/sort.cpp.i
-.PHONY : algorithm/sort.i
-
-# target to preprocess a source file
-algorithm/sort.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DOENGINE.dir/build.make CMakeFiles/DOENGINE.dir/algorithm/sort.cpp.i
-.PHONY : algorithm/sort.cpp.i
-
-algorithm/sort.s: algorithm/sort.cpp.s
-.PHONY : algorithm/sort.s
-
-# target to generate assembly for a file
-algorithm/sort.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DOENGINE.dir/build.make CMakeFiles/DOENGINE.dir/algorithm/sort.cpp.s
-.PHONY : algorithm/sort.cpp.s
-
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -598,36 +430,18 @@ help:
 	@echo "... Drawable/Canvas.o"
 	@echo "... Drawable/Canvas.i"
 	@echo "... Drawable/Canvas.s"
-	@echo "... Drawable/Geometric.o"
-	@echo "... Drawable/Geometric.i"
-	@echo "... Drawable/Geometric.s"
-	@echo "... Drawable/PrimitiveGraphics.o"
-	@echo "... Drawable/PrimitiveGraphics.i"
-	@echo "... Drawable/PrimitiveGraphics.s"
 	@echo "... Event/Event.o"
 	@echo "... Event/Event.i"
 	@echo "... Event/Event.s"
 	@echo "... Font/TTFText.o"
 	@echo "... Font/TTFText.i"
 	@echo "... Font/TTFText.s"
-	@echo "... GameObject/BackgroundObject.o"
-	@echo "... GameObject/BackgroundObject.i"
-	@echo "... GameObject/BackgroundObject.s"
-	@echo "... GameObject/Camera.o"
-	@echo "... GameObject/Camera.i"
-	@echo "... GameObject/Camera.s"
 	@echo "... GameObject/GameObject.o"
 	@echo "... GameObject/GameObject.i"
 	@echo "... GameObject/GameObject.s"
 	@echo "... GameState/GameStateManager.o"
 	@echo "... GameState/GameStateManager.i"
 	@echo "... GameState/GameStateManager.s"
-	@echo "... GameState/PlatformState.o"
-	@echo "... GameState/PlatformState.i"
-	@echo "... GameState/PlatformState.s"
-	@echo "... GameState/TestState.o"
-	@echo "... GameState/TestState.i"
-	@echo "... GameState/TestState.s"
 	@echo "... Texture/Texture.o"
 	@echo "... Texture/Texture.i"
 	@echo "... Texture/Texture.s"
@@ -640,9 +454,6 @@ help:
 	@echo "... Window/Window.o"
 	@echo "... Window/Window.i"
 	@echo "... Window/Window.s"
-	@echo "... algorithm/sort.o"
-	@echo "... algorithm/sort.i"
-	@echo "... algorithm/sort.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

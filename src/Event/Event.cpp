@@ -125,5 +125,5 @@ void Event::RemoveKeydownEventListener(KeyDownEvent* ev)
 
 void Event::AddMouseEvent(MouseEvent *event){
    Event::mouseEvent.push_back(event);
-   SDL_Log("Adding EVent Handler %02x", event);
+   ///SDL_Log("Adding EVent Handler %02x", event);
 }

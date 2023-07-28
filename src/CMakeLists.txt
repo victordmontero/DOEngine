@@ -10,18 +10,15 @@ add_executable(${PROJECT_NAME}
                Tilemap/Tilemap.cpp
                Texture/Texture.cpp
                GameState/GameStateManager.cpp
-               GameState/TestState.cpp
-               GameState/PlatformState.cpp
+          
+      
                GameObject/GameObject.cpp
              
-               GameObject/Camera.cpp
-               GameObject/BackgroundObject.cpp
+             
                Font/TTFText.cpp
                Event/Event.cpp
-               Drawable/Geometric.cpp
-               Drawable/PrimitiveGraphics.cpp
                Drawable/Canvas.cpp
-               algorithm/sort.cpp
+              
                includes/defines.h
                includes/Camera.h
                includes/Event.h
@@ -31,13 +28,12 @@ add_executable(${PROJECT_NAME}
                includes/GameObject.h
                includes/GameState.h
                includes/GameStateManager.h
-               includes/Geometric.h
                includes/Grids.h
                includes/LinkList.h
                includes/sort.h
                includes/Sprite.h
                includes/StandardFuncs.h
-               includes/TestState.h
+               
                includes/Texture.h
                includes/Tile.h
                includes/Tilemap.h

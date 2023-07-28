@@ -36,7 +36,7 @@
   }
   void GameStateManager::Render()
   {
-     TTFText::get()->DrawText("GameStateManager::Render",0,10, this->window->getRender());
+    /// TTFText::get()->DrawText("GameStateManager::Render",0,10, this->window->getRender());
      if(states[current_state])
         states[current_state]->Render();
       else

@@ -1,11 +1,8 @@
-
 #pragma once
-
 
 template<const unsigned int R, const unsigned int C, typename T>
 struct Grid2D
 {
-   
     T grid[R][C];
     void setValue(int r, int c, T value)
 	{

@@ -1,18 +1,18 @@
 #include "Geometric.h"
- 
 #include "Window.h"
 #include "Canvas.h"
 
-namespace Canvas{
+
+#if 0 
 namespace {
     SDL_Color _color={0,0,0,255};
     SDL_Rect  _offset={0,0,800,800};
 }
 void begin(Window *window){
-    window->dontClear();
+    
 }
 void end(Window *window){
-    window->setClear();
+    
 }
 
 void setCurrentCanvasPosition(int x, int y){
@@ -57,5 +57,155 @@ void arc(Window *window, int x, int y, int radius, double startAngle, double end
  
 }
 
+void DrawPoint(const Point &point, const Color& color, Window *window){
+   /// SDL_SetRenderDrawColor(window->getRender(), color.r, color.g, color.b, color.a);
+    SDL_RenderDrawPoint(window->getRender(), point.x, point.y);
+}
+void DrawLine(const Point& p1, const Point& p2, const Color &color, Window *window){
+    /// SDL_SetRenderDrawColor(window->getRender(), color.r, color.g, color.b, color.a);
+     SDL_RenderDrawLine(window->getRender(), p1.x, p1.y, p2.x, p2.y);
+}
 
-};
+void DrawRect(const Rect &rect, const Color& color, Window *window){
+ ///  SDL_SetRenderDrawColor(window->getRender(), color.r, color.g, color.b, color.a);
+   SDL_RenderDrawRect(window->getRender(), &rect);
+}
+void DrawFillRect(const Rect &rect, const Color& color, Window *window){
+  ///SDL_SetRenderDrawColor(window->getRender(), color.r, color.g, color.b, color.a);
+  SDL_RenderFillRect(window->getRender(), &rect);
+}
+
+
+void FillCircle(int x, int y, int radius, const Color& color, Window *window)
+	{
+		int x0 = 0;
+		int y0 = radius;
+		int d = 3 - 2 * radius;
+		if (!radius) return;
+
+		auto drawline = [&](int sx, int ex, int ny)
+		{
+			for (int i = sx; i <= ex; i++)
+				DrawPoint({i, ny}, color, window);
+		};
+
+		while (y0 >= x0)
+		{
+			// Modified to draw scan-lines instead of edges
+			drawline(x - x0, x + x0, y - y0);
+			drawline(x - y0, x + y0, y - x0);
+			drawline(x - x0, x + x0, y + y0);
+			drawline(x - y0, x + y0, y + x0);
+			if (d < 0) d += 4 * x0++ + 6;
+			else d += 4 * (x0++ - y0--) + 10;
+		}
+	}
+
+
+void DrawTriangle(int x1, int y1, int x2, int y2, int x3, int y3, const Color& p, Window *window)
+{
+		DrawLine({x1, y1}, {x2, y2}, p, window);
+		DrawLine({x2, y2}, {x3, y3}, p, window);
+		DrawLine({x3, y3}, {x1, y1}, p, window);
+}
+
+ 
+
+
+void DrawRect(SDL_Renderer *render, SDL_Rect rect){
+    SDL_RenderDrawRect(render, &rect);
+}
+
+void DrawRect(Window *window, SDL_Rect rect){
+    SDL_RenderDrawRect(window->getRender(), &rect);
+}
+#endif
+
+void DrawRect(const Rect &rect, const Color& color, Window *window){
+   SDL_SetRenderDrawColor(window->getRender(), color.r, color.g, color.b, color.a);
+   SDL_RenderDrawRect(window->getRender(), &rect);
+}
+void DrawFillRect(const Rect &rect, const Color& color, Window *window){
+  SDL_SetRenderDrawColor(window->getRender(), color.r, color.g, color.b, color.a);
+  SDL_RenderFillRect(window->getRender(), &rect);
+}
+
+void CanvasRectCommand::Draw(Window *window)
+{
+  // SDL_Log("Render Rect [%ld, %ld, %ld %ld](%02x %02x %02x %02x)", offset.x, offset.y, offset.w, offset.h, color.r, color.g, color.b, color.a);
+     SDL_Log("Canvas Draw[%ld, %ld, %ld, %ld]",  offset.x, offset.y,  offset.w, offset.h);
+ 
+   DrawFillRect(offset, color, window);
+}
+
+
+Canvas* Canvas::setCanvasBackgroundColor(SDL_Color color)
+{ 
+    _bg.r = color.r;
+    _bg.g = color.g;
+    _bg.b = color.b;
+    _bg.a = color.a;
+    return this;
+}
+
+Canvas::Canvas(Window *window)
+{
+    this->window = window;
+    setCanvasBackgroundColor({244,0,0,255});
+    fillColor({0,0,0,255});
+    setPosition({0,0,window->getW(), window->getH()});
+}  
+
+Canvas* Canvas::fillColor(SDL_Color color)
+{
+    _filler.r = color.r;
+    _filler.g = color.g;
+    _filler.b = color.b;
+    _filler.a = color.a;
+    return this;
+}
+   
+Canvas* Canvas::setPosition(SDL_Rect rect)
+{
+   _offset.x = rect.x;
+   _offset.y = rect.y;
+   _offset.w = rect.w;
+   _offset.h = rect.h;
+   return this;
+}
+
+Canvas* Canvas::DrawRect(int x, int y, int w, int h)
+{
+    CanvasRectCommand* rect = new CanvasRectCommand();
+    rect->offset.x =  this->_offset.x + x;
+    rect->offset.y =  this->_offset.x + y;
+    rect->offset.w =  w;
+    rect->offset.h =  h;
+
+    
+    SDL_Log("Canvas Location[%ld, %ld], new Rect pos[%ld, %ld]", _offset.x, _offset.y, rect->offset.x, rect->offset.y);
+
+
+    rect->color.r = 0; //_filler.r;
+    rect->color.g = 255; //_filler.g;
+    rect->color.b = 0;//_filler.b;
+    rect->color.a = 255;//_filler.a;
+
+    this->commands_to_draw.push_back(rect);
+
+    return this;
+}
+
+ Canvas* Canvas::update()
+ {
+ 
+   setCanvasBackgroundColor({255,255,255,255});
+   ::DrawFillRect(_offset, _bg,  window);
+   
+    for(auto it : commands_to_draw)
+    {  
+         it->Draw(window);
+         break;
+    }
+   return this;
+ }
