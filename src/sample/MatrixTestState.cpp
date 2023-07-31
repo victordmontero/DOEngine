@@ -12,13 +12,19 @@ class Symbol{
    SDL_Point point;
    int fnt_size;
    Canvas* canvas;
+
+  
+   SDL_Color color;
+
+   int inty =0;
    public:
 
    Symbol(int fontsize, int x, int y, int canvasHeight)
    {
+       color = {0x0A,0xFF,0x0a,255};
        canvas_h = canvasHeight;
        point.x=x;
-       point.y=y;
+       point.y=inty=y;
        fnt_size = fontsize;
        
    }
@@ -26,11 +32,20 @@ class Symbol{
    void draw(Canvas *canvas){
        std::string str;
        str += charset[getRandomInt(0, 59)];
+       canvas->fillColor(color);
        canvas->FillText(str.c_str(), point.x * fnt_size, point.y * fnt_size);
        if(point.y  * fnt_size > canvas_h)
-         point.y = 0;
+         point.y = inty;
        else
          point.y += 1;
+
+    
+       if(point.y > 0){
+         color.g -=1;
+       }else{
+         color.g =  0xff;
+       }
+
    }
 
 };
@@ -52,8 +67,8 @@ class Effect{
          height = canvas->getCanvasSize().h;
          columns = width/fontsize;
      
-         for(int i=0;i<columns;i++){
-            symbols.push_back(new Symbol(fontsize, i, 0, height));
+         for(int i=0;i<columns-5;i++){
+            symbols.push_back(new Symbol(fontsize, i+4, 10, height));
          }
       }
 
@@ -82,7 +97,7 @@ void MatrixTestState::Update(float elapsed) {
  
 }
 void MatrixTestState::Render() {
-   canvas->clearCanvas();
+  //// canvas->clearCanvas();
    effect->Draw();
    canvas->update();
 } 

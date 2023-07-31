@@ -8,6 +8,8 @@
 #include <string>
 #include <memory>
  
+
+
 int  main(int argc, char *argv[])
 { 
    std::shared_ptr<Window> window(new Window(1200,900)); 
