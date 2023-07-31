@@ -414,6 +414,30 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DOENGINE.dir/build.make CMakeFiles/DOENGINE.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+sample/CanvasTestState.o: sample/CanvasTestState.cpp.o
+.PHONY : sample/CanvasTestState.o
+
+# target to build an object file
+sample/CanvasTestState.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DOENGINE.dir/build.make CMakeFiles/DOENGINE.dir/sample/CanvasTestState.cpp.o
+.PHONY : sample/CanvasTestState.cpp.o
+
+sample/CanvasTestState.i: sample/CanvasTestState.cpp.i
+.PHONY : sample/CanvasTestState.i
+
+# target to preprocess a source file
+sample/CanvasTestState.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DOENGINE.dir/build.make CMakeFiles/DOENGINE.dir/sample/CanvasTestState.cpp.i
+.PHONY : sample/CanvasTestState.cpp.i
+
+sample/CanvasTestState.s: sample/CanvasTestState.cpp.s
+.PHONY : sample/CanvasTestState.s
+
+# target to generate assembly for a file
+sample/CanvasTestState.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DOENGINE.dir/build.make CMakeFiles/DOENGINE.dir/sample/CanvasTestState.cpp.s
+.PHONY : sample/CanvasTestState.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -457,6 +481,9 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... sample/CanvasTestState.o"
+	@echo "... sample/CanvasTestState.i"
+	@echo "... sample/CanvasTestState.s"
 .PHONY : help
 
 

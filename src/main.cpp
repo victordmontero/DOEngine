@@ -7,7 +7,7 @@
 #include <map>
 #include <string>
 #include <memory>
-
+ 
 int  main(int argc, char *argv[])
 { 
    std::shared_ptr<Window> window(new Window(600,600)); 
@@ -19,3 +19,7 @@ int  main(int argc, char *argv[])
     } 
    return 0;
 }
+ 
+
+
+

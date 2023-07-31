@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/home/afl/Documents/DOEngine/src/includes
 
-CXX_FLAGS = 
+CXX_FLAGS = -g
 

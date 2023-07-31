@@ -10,6 +10,9 @@ struct Event{
     static std::vector<MouseMovementEvent*> mouse;
     static std::vector<MouseEvent*> mouseEvent;
 
+    
+    static void getMousePosition(int *x, int *);
+
     static void PollEvent(Window *window);
     static void AddKeydownEventListener(KeyDownEvent* ev);
     static void RemoveKeydownEventListener(KeyDownEvent* ev);

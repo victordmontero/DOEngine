@@ -120,8 +120,11 @@ void DrawRect(Window *window, SDL_Rect rect){
     SDL_RenderDrawRect(window->getRender(), &rect);
 }
 #endif
-
-void DrawRect(const Rect &rect, const Color& color, Window *window){
+void DrawSinglePoint(const Rect &rect, const Color& color, Window *window){
+   SDL_SetRenderDrawColor(window->getRender(), color.r, color.g, color.b, color.a); 
+   SDL_RenderDrawPoint(window->getRender(), rect.x, rect.y);
+}
+void DrawNotFillRect(const Rect &rect, const Color& color, Window *window){
    SDL_SetRenderDrawColor(window->getRender(), color.r, color.g, color.b, color.a);
    SDL_RenderDrawRect(window->getRender(), &rect);
 }
@@ -130,14 +133,51 @@ void DrawFillRect(const Rect &rect, const Color& color, Window *window){
   SDL_RenderFillRect(window->getRender(), &rect);
 }
 
+void FillCircle(int x, int y, int radius, const Color& color, Window *window)
+	{
+		int x0 = 0;
+		int y0 = radius;
+		int d = 3 - 2 * radius;
+		if (!radius) return;
+
+		auto drawline = [&](int sx, int ex, int ny)
+		{
+			for (int i = sx; i <= ex; i++)
+				DrawSinglePoint({i, ny}, color, window);
+		};
+
+		while (y0 >= x0)
+		{
+			// Modified to draw scan-lines instead of edges
+			drawline(x - x0, x + x0, y - y0);
+			drawline(x - y0, x + y0, y - x0);
+			drawline(x - x0, x + x0, y + y0);
+			drawline(x - y0, x + y0, y + x0);
+			if (d < 0) d += 4 * x0++ + 6;
+			else d += 4 * (x0++ - y0--) + 10;
+		}
+	}
+
+
+void CanvasCircleCommand::Draw(Window *window)
+{
+ FillCircle(where.x, where.y,  radius, color, window);
+}
+
+
 void CanvasRectCommand::Draw(Window *window)
 {
   // SDL_Log("Render Rect [%ld, %ld, %ld %ld](%02x %02x %02x %02x)", offset.x, offset.y, offset.w, offset.h, color.r, color.g, color.b, color.a);
      SDL_Log("Canvas Draw[%ld, %ld, %ld, %ld]",  offset.x, offset.y,  offset.w, offset.h);
  
-   DrawFillRect(offset, color, window);
+   DrawNotFillRect(offset, color, window);
 }
 
+
+void CanvasPointDrawCommand::Draw(Window *window)
+{
+   DrawSinglePoint(offset, color, window);
+}
 
 Canvas* Canvas::setCanvasBackgroundColor(SDL_Color color)
 { 
@@ -151,9 +191,9 @@ Canvas* Canvas::setCanvasBackgroundColor(SDL_Color color)
 Canvas::Canvas(Window *window)
 {
     this->window = window;
-    setCanvasBackgroundColor({244,0,0,255});
+    setCanvasBackgroundColor({255,255,255,255});
     fillColor({0,0,0,255});
-    setPosition({0,0,window->getW(), window->getH()});
+    setRect({0,0,window->getW(), window->getH()});
 }  
 
 Canvas* Canvas::fillColor(SDL_Color color)
@@ -165,7 +205,7 @@ Canvas* Canvas::fillColor(SDL_Color color)
     return this;
 }
    
-Canvas* Canvas::setPosition(SDL_Rect rect)
+Canvas* Canvas::setRect(SDL_Rect rect)
 {
    _offset.x = rect.x;
    _offset.y = rect.y;
@@ -173,23 +213,43 @@ Canvas* Canvas::setPosition(SDL_Rect rect)
    _offset.h = rect.h;
    return this;
 }
+Canvas* Canvas::DrawPoint(int x, int y)
+{
+    CanvasPointDrawCommand* rect = new CanvasPointDrawCommand();
+    rect->offset.x =  this->_offset.x + x;
+    rect->offset.y =  this->_offset.y + y;
+    rect->offset.w =  1;
+    rect->offset.h =  1; 
+    rect->color.r =   _filler.r;
+    rect->color.g =   _filler.g;
+    rect->color.b =  _filler.b;
+    rect->color.a =  _filler.a;
+
+    this->commands_to_draw.push_back(rect);
+}
+
+ Canvas* Canvas::FillCircle(int x, int y, double rsize)
+ {
+    CanvasCircleCommand *cmd = new CanvasCircleCommand();
+    cmd->color = _filler;
+    cmd->radius = rsize;
+    cmd->where.x = x;
+    cmd->where.y = y;
+        this->commands_to_draw.push_back(cmd);
+    return this;
+ }
 
 Canvas* Canvas::DrawRect(int x, int y, int w, int h)
 {
     CanvasRectCommand* rect = new CanvasRectCommand();
     rect->offset.x =  this->_offset.x + x;
-    rect->offset.y =  this->_offset.x + y;
+    rect->offset.y =  this->_offset.y + y;
     rect->offset.w =  w;
     rect->offset.h =  h;
-
-    
-    SDL_Log("Canvas Location[%ld, %ld], new Rect pos[%ld, %ld]", _offset.x, _offset.y, rect->offset.x, rect->offset.y);
-
-
-    rect->color.r = 0; //_filler.r;
-    rect->color.g = 255; //_filler.g;
-    rect->color.b = 0;//_filler.b;
-    rect->color.a = 255;//_filler.a;
+    rect->color.r =   _filler.r;
+    rect->color.g =   _filler.g;
+    rect->color.b =  _filler.b;
+    rect->color.a =  _filler.a;
 
     this->commands_to_draw.push_back(rect);
 
@@ -199,13 +259,20 @@ Canvas* Canvas::DrawRect(int x, int y, int w, int h)
  Canvas* Canvas::update()
  {
  
-   setCanvasBackgroundColor({255,255,255,255});
-   ::DrawFillRect(_offset, _bg,  window);
+    setCanvasBackgroundColor(_bg);
+ 
+    ::DrawFillRect(_offset, _bg,  window);
    
     for(auto it : commands_to_draw)
     {  
          it->Draw(window);
-         break;
     }
    return this;
  }
+
+Canvas* Canvas::clearCanvas(){
+    ///for(auto it : commands_to_draw)
+    commands_to_draw.erase(commands_to_draw.begin(), commands_to_draw.end());
+    commands_to_draw.clear();
+    return this;
+}

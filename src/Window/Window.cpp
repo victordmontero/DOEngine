@@ -9,29 +9,40 @@ extern "C" {
 }
 
 #include "DOEngine.h"
-#include <TestState.h>
-#include <PlatformState.h>
+
+#include <CanvasTestState.h>
+
+
 void Window::_CreateNeededInstance()
 {
       fps_handler.reset(new FpsManager());
       gsm.reset(new GameStateManager(this));
-   
- 
-      gsm.get()->SetState(2);
+      fps_handler.get()->setFPS(30);
+      gsm.get()->AddState(1, new CanvasTestState(this));
+      gsm.get()->SetState(1);
       dirty = true;
 
-    canvas1 = new Canvas(this);
-    canvas2 = new Canvas(this);
+    //   canvas1 = new Canvas(this);
+    //   canvas2 = new Canvas(this);
   
-    canvas1->setPosition({100,500, 100,100})
-           ->fillColor({0,0,255,255})
-           ->setCanvasBackgroundColor({255,255,0,255});
+    // canvas1->setRect({30,30, 32, 32})
+    //         ->fillColor({255,0,255,255})
+    //         ->setCanvasBackgroundColor({255,255,0,255});
  
 
-    canvas2->setPosition({400,100, 200,300})
-            ->fillColor({0,0,255,255});
+    // canvas2->setRect({100,100, 32,32})
+    //           ->fillColor({255,0,255,255})
+    //           ->setCanvasBackgroundColor({255,0,255,255});
  
+    // canvas1->fillColor({0,0,255,255});
+    // canvas1->DrawRect(100,100,20,20);
+    // canvas1->fillColor({0,255,0,255});
+    // canvas1->DrawRect(210,310,20,20);
 
+  //  canvas2->fillColor({0,0,255,255});
+  //  canvas2->DrawRect(0,0,20,20);
+  //  canvas2->fillColor({0,255,255,255});
+  //  canvas2->DrawRect(30,30,20,20);
 }
 
 
@@ -46,7 +57,7 @@ Window::Window(int w, int h)
     flags = 0x00;
     
     SDL_GetCurrentDisplayMode(1, &mode);
-    window = SDL_CreateWindow("", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, mode.w,mode.h,SDL_WINDOW_SHOWN|SDL_WINDOW_BORDERLESS);
+    window = SDL_CreateWindow("", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, w,h,SDL_WINDOW_SHOWN|SDL_WINDOW_BORDERLESS);
     render = SDL_CreateRenderer(window, -1, SDL_RENDERER_PRESENTVSYNC|SDL_RENDERER_ACCELERATED);
     run = render != NULL;
     window_rect.w = w;
@@ -93,18 +104,7 @@ void Window::PollEvent()
     Event::PollEvent(this);
 }
 void Window::Update(){
-  /// gsm.get()->Update(Event::timeElapsed);
-
-
-   canvas1->fillColor({0,0,255,255});
-   canvas1->DrawRect(0,0,20,20);
-   canvas1->fillColor({0,255,255,255});
-   canvas1->DrawRect(30,30,20,20);
-
-   canvas2->fillColor({0,0,255,255});
-   canvas2->DrawRect(0,0,20,20);
-   canvas2->fillColor({0,255,255,255});
-   canvas2->DrawRect(30,30,20,20);
+  gsm.get()->Update(Event::timeElapsed);
 }
 void Window::Render()
 {
@@ -112,10 +112,7 @@ void Window::Render()
      SDL_SetRenderDrawColor(render, 0,0,0,255);
      SDL_RenderClear(render);
     
-     canvas1->update();
-
-     canvas2->update();
-
+     gsm.get()->Render();
 
      SDL_RenderPresent(render);
      fps_handler->Handle();

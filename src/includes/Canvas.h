@@ -16,9 +16,23 @@ struct CanvasRectCommand : public CanvasCommand{
      virtual void Draw(Window *window) override;
 };
 
-// struct CanvasCircleCommand : public CanvasCommand{
+struct CanvasPointDrawCommand : public CanvasCommand{
+     SDL_Rect offset;
+     SDL_Color color;
+    virtual void Draw(Window *window) override;
+};
 
-// };
+struct CanvasCircleCommand : public CanvasCommand{
+
+      double radius;
+      SDL_Point where;
+      SDL_Color color;
+
+      virtual void Draw(Window *window) override;
+
+
+
+};
 
 
 class Canvas{
@@ -40,10 +54,17 @@ class Canvas{
    Canvas(Window *window);  
 
    Canvas* fillColor(SDL_Color color);
-   Canvas* setPosition(SDL_Rect rect);
+   Canvas* setRect(SDL_Rect rect);
 
    Canvas* DrawRect(int x, int y, int w, int h);
+   Canvas* DrawPoint(int x, int y);
+   Canvas* FillCircle(int x, int y, double rsize=50);
 
    Canvas* setCanvasBackgroundColor(SDL_Color color);
    Canvas* update(); 
+   Canvas* clearCanvas();
+
+    const SDL_Rect getCanvasSize()const {
+    return _offset;
+   }
 };

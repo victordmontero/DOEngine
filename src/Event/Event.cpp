@@ -56,9 +56,9 @@ void Event::PollEvent(Window *window)
                    SDL_Point mouse;
                    SDL_GetMouseState(&mouse.x, &mouse.y);
                     ///SDL_Log("SDL_MOUSEMOTION x: %ld,  y:%ld", mouse.x, mouse.y);
-                   SDL_Log("Mouse Count = %ld", Event::mouseEvent.size());
+                
                    for(auto itMouse : Event::mouseEvent){
-                      
+                         SDL_Log("Mouse Count = %ld", Event::mouseEvent.size());
                       itMouse->MouseMove(mouse.x, mouse.y);
                    }
 
@@ -70,6 +70,8 @@ void Event::PollEvent(Window *window)
                 mouseReleased= false;
                 keyDown= false;
                 keyUp= false;
+                for(auto it : mouseEvent)
+                  it->MouseButtonDown(1);
               }break; 
             case SDL_MOUSEBUTTONUP:
             {
@@ -78,7 +80,8 @@ void Event::PollEvent(Window *window)
                 mouseReleased= true;
                 keyDown= false;
                 keyUp= false;
-
+                for(auto it : mouseEvent)
+                  it->MouseButtonUp(1);
 
             }break; 
            case SDL_MOUSEWHEEL:
@@ -106,6 +109,12 @@ void Event::PollEvent(Window *window)
      }*/
 
    }
+}
+
+void Event::getMousePosition(int *x, int *y)
+{
+   
+   SDL_GetMouseState(x,y);
 }
 
 

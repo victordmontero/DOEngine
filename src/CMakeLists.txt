@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.22.1)
 
 project(DOENGINE)
 
+set(CMAKE_BUILD_TYPE Debug)
+
 
 add_executable(${PROJECT_NAME} 
                main.cpp 
@@ -40,6 +42,10 @@ add_executable(${PROJECT_NAME}
                includes/UDPPacket.h
                includes/Vector.h
                includes/Window.h
+
+# Sample APP
+               sample/CanvasTestState.cpp
+
                )
 
 include_directories(${CMAKE_SOURCE_DIR}/includes)
