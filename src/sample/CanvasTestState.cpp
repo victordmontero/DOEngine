@@ -90,6 +90,8 @@ void CanvasTestState::Update(float elapsed) {
             it->update();
          }
 
+ 
+
 }
 void CanvasTestState::Render() {
     for(auto it : particles)
@@ -98,6 +100,11 @@ void CanvasTestState::Render() {
         {
             SDL_Log("thIS SHOULD BE REMOVED");
             ///particles.erase(*it);
+            ///std::remove(particles.begin(), particles.end(), it);
+           // particles.erase();
+          /// auto it = std::find(v.begin(), v.end(), 5);
+         // if(it != v.end())
+          //  v.erase(it);
         }
         else
         {

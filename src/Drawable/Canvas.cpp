@@ -1,9 +1,169 @@
 #include "Geometric.h"
 #include "Window.h"
 #include "Canvas.h"
-
+#include "TTFText.h"
 
 #if 0 
+
+void log(const std::string_view message,
+         const std::source_location location =
+               std::source_location::current())
+{
+    std::clog << "file: "
+              << location.file_name() << '('
+              << location.line() << ':'
+              << location.column() << ") `"
+              << location.function_name() << "`: "
+              << message << '\n';
+}
+ 
+
+
+
+void drawPixel(SDL_Renderer* renderer, int x, int y) {
+    SDL_RenderDrawPoint(renderer, x, y);
+}
+
+void drawFilledOval(SDL_Renderer* renderer, int x, int y, int radiusX, int radiusY) {
+    int a = radiusX;
+    int b = radiusY;
+
+    int x0 = 0;
+    int y0 = b;
+    int d = b * b - a * a * b + a * a / 4;
+
+    while (b * b * (x0 + 1) < a * a * (y0 - 0.5)) {
+        if (d < 0) {
+            d += b * b * (2 * x0 + 3);
+        } else {
+            d += b * b * (2 * x0 + 3) + a * a * (-2 * y0 + 2);
+            y0--;
+        }
+        x0++;
+        SDL_RenderDrawLine(renderer, x + x0, y + y0, x - x0, y + y0);
+        SDL_RenderDrawLine(renderer, x + x0, y - y0, x - x0, y - y0);
+    }
+
+    d = b * b * (x0 + 0.5) * (x0 + 0.5) + a * a * (y0 - 1) * (y0 - 1) - a * a * b * b;
+
+    while (y0 >= 0) {
+        if (d < 0) {
+            d += b * b * (2 * x0 + 2) + a * a * (-2 * y0 + 3);
+            x0++;
+        } else {
+            d += a * a * (-2 * y0 + 3);
+        }
+        y0--;
+        SDL_RenderDrawLine(renderer, x + x0, y + y0, x - x0, y + y0);
+        SDL_RenderDrawLine(renderer, x + x0, y - y0, x - x0, y - y0);
+    }
+}
+
+void drawRoundedRectangle(SDL_Renderer* renderer, int x, int y, int w, int h, int radius) {
+    
+}
+void drawOval(SDL_Renderer* renderer, int x, int y, int radiusX, int radiusY) {
+     int a = radiusX;
+    int b = radiusY;
+
+    int x0 = 0;
+    int y0 = b;
+    int d = b * b - a * a * b + a * a / 4;
+
+    while (b * b * (x0 + 1) < a * a * (y0 - 0.5)) {
+        if (d < 0) {
+            d += b * b * (2 * x0 + 3);
+        } else {
+            d += b * b * (2 * x0 + 3) + a * a * (-2 * y0 + 2);
+            y0--;
+        }
+        x0++;
+        SDL_RenderDrawPoint(renderer, x + x0, y + y0);
+        SDL_RenderDrawPoint(renderer, x - x0, y + y0);
+        SDL_RenderDrawPoint(renderer, x + x0, y - y0);
+        SDL_RenderDrawPoint(renderer, x - x0, y - y0);
+    }
+
+    d = b * b * (x0 + 0.5) * (x0 + 0.5) + a * a * (y0 - 1) * (y0 - 1) - a * a * b * b;
+
+    while (y0 >= 0) {
+        if (d < 0) {
+            d += b * b * (2 * x0 + 2) + a * a * (-2 * y0 + 3);
+            x0++;
+        } else {
+            d += a * a * (-2 * y0 + 3);
+        }
+        y0--;
+        SDL_RenderDrawPoint(renderer, x + x0, y + y0);
+        SDL_RenderDrawPoint(renderer, x - x0, y + y0);
+        SDL_RenderDrawPoint(renderer, x + x0, y - y0);
+        SDL_RenderDrawPoint(renderer, x - x0, y - y0);
+    }
+  
+  #if 0 
+    int a = radiusX;
+    int b = radiusY;
+    int a2 = a * a;
+    int b2 = b * b;
+    int twoA2 = 2 * a2;
+    int twoB2 = 2 * b2;
+    int x = 0;
+    int y = b;
+    int changeX = b2 * (1 - 2 * b);
+    int changeY = a2;
+    int ellipseError = 0;
+    int stoppingX = b2 / sqrt(b2 + a2);
+    int stoppingY = 0;
+
+    while (stoppingX >= stoppingY) {
+        // Draw points in all octants
+        drawPixel(renderer, x0 + x, y0 + y);
+        drawPixel(renderer, x0 - x, y0 + y);
+        drawPixel(renderer, x0 + x, y0 - y);
+        drawPixel(renderer, x0 - x, y0 - y);
+
+        stoppingY++;
+        y--;
+        ellipseError += changeY;
+        changeY += twoA2;
+
+        if (2 * ellipseError + changeX > 0) {
+            x++;
+            ellipseError += changeX;
+            changeX += twoB2;
+        }
+    }
+
+    x = a;
+    y = 0;
+    changeX = b2;
+    changeY = a2 * (1 - 2 * a);
+    ellipseError = 0;
+    stoppingX = 0;
+    stoppingY = a2 / sqrt(b2 + a2);
+
+    while (stoppingX <= stoppingY) {
+        // Draw points in all octants
+        drawPixel(renderer, x0 + x, y0 + y);
+        drawPixel(renderer, x0 - x, y0 + y);
+        drawPixel(renderer, x0 + x, y0 - y);
+        drawPixel(renderer, x0 - x, y0 - y);
+
+        stoppingX++;
+        x--;
+        ellipseError += changeX;
+        changeX += twoB2;
+
+        if (2 * ellipseError + changeY > 0) {
+            y++;
+            ellipseError += changeY;
+            changeY += twoA2;
+        }
+    }
+    #endif
+}
+
+
 namespace {
     SDL_Color _color={0,0,0,255};
     SDL_Rect  _offset={0,0,800,800};
@@ -168,7 +328,7 @@ void CanvasCircleCommand::Draw(Window *window)
 void CanvasRectCommand::Draw(Window *window)
 {
   // SDL_Log("Render Rect [%ld, %ld, %ld %ld](%02x %02x %02x %02x)", offset.x, offset.y, offset.w, offset.h, color.r, color.g, color.b, color.a);
-     SDL_Log("Canvas Draw[%ld, %ld, %ld, %ld]",  offset.x, offset.y,  offset.w, offset.h);
+   ////  SDL_Log("Canvas Draw[%ld, %ld, %ld, %ld]",  offset.x, offset.y,  offset.w, offset.h);
  
    DrawNotFillRect(offset, color, window);
 }
@@ -178,6 +338,15 @@ void CanvasPointDrawCommand::Draw(Window *window)
 {
    DrawSinglePoint(offset, color, window);
 }
+
+
+void CanvasTextDrawerCommand::Draw(Window *window){
+   SDL_Log("TExt to draw");
+   SDL_SetRenderDrawColor(window->getRender(), color.r, color.g, color.b, color.a);
+   TTFText::get()->setColor(color);
+   TTFText::get()->DrawText(this->text.c_str(), where.x, where.y, window->getRender());  
+}
+
 
 Canvas* Canvas::setCanvasBackgroundColor(SDL_Color color)
 { 
@@ -189,7 +358,7 @@ Canvas* Canvas::setCanvasBackgroundColor(SDL_Color color)
 }
 
 Canvas::Canvas(Window *window)
-{
+{ 
     this->window = window;
     setCanvasBackgroundColor({255,255,255,255});
     fillColor({0,0,0,255});
@@ -226,6 +395,7 @@ Canvas* Canvas::DrawPoint(int x, int y)
     rect->color.a =  _filler.a;
 
     this->commands_to_draw.push_back(rect);
+    return this;
 }
 
  Canvas* Canvas::FillCircle(int x, int y, double rsize)
@@ -255,6 +425,25 @@ Canvas* Canvas::DrawRect(int x, int y, int w, int h)
 
     return this;
 }
+
+
+Canvas* Canvas::FillText(const char *str, int x, int y)
+{
+    CanvasTextDrawerCommand *scanvas = new CanvasTextDrawerCommand();
+    scanvas->where.x = x;
+    scanvas->where.y = y;
+    scanvas->color.r = _filler.r;
+    scanvas->color.g = _filler.g;
+    scanvas->color.b = _filler.b;
+    scanvas->color.a = _filler.a;
+    scanvas->text = str;
+    this->commands_to_draw.push_back(scanvas);
+    
+    return this;
+}
+
+
+
 
  Canvas* Canvas::update()
  {

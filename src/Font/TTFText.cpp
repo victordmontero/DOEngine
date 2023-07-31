@@ -40,4 +40,6 @@ void TTFText::DrawText(const char *text, int x, int y, SDL_Renderer *render){
     SDL_Texture *text_draw = this->createText(text, render);
     if(text_draw)
         SDL_RenderCopy(render, text_draw, nullptr, &offset);
+    SDL_DestroyTexture(text_draw);
+    text_draw = nullptr;
 }

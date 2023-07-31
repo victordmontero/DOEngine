@@ -1,6 +1,6 @@
 #pragma once
 
-
+#include <string>
 #include <SDL2/SDL.h>
 #include "Window.h"
 #include <vector>
@@ -29,10 +29,19 @@ struct CanvasCircleCommand : public CanvasCommand{
       SDL_Color color;
 
       virtual void Draw(Window *window) override;
+};
 
 
+struct CanvasTextDrawerCommand : public CanvasCommand{
+
+    SDL_Point where;
+    SDL_Color color;
+    std::string text;
+    virtual void Draw(Window *window) override;
 
 };
+
+
 
 
 class Canvas{
@@ -59,10 +68,17 @@ class Canvas{
    Canvas* DrawRect(int x, int y, int w, int h);
    Canvas* DrawPoint(int x, int y);
    Canvas* FillCircle(int x, int y, double rsize=50);
+   Canvas* FillText(const char *str, int x, int y);
 
    Canvas* setCanvasBackgroundColor(SDL_Color color);
    Canvas* update(); 
    Canvas* clearCanvas();
+
+
+    SDL_Color getColor(SDL_Color *color){
+        color = &_filler;
+    }
+
 
     const SDL_Rect getCanvasSize()const {
     return _offset;

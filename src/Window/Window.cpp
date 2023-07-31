@@ -9,8 +9,17 @@ extern "C" {
 }
 
 #include "DOEngine.h"
+#include <TTFText.h>
+
 
 #include <CanvasTestState.h>
+#include <MatrixTestState.h>
+
+#include <iostream>
+#include <source_location>
+#include <string_view>
+ 
+
 
 
 void Window::_CreateNeededInstance()
@@ -19,30 +28,13 @@ void Window::_CreateNeededInstance()
       gsm.reset(new GameStateManager(this));
       fps_handler.get()->setFPS(30);
       gsm.get()->AddState(1, new CanvasTestState(this));
-      gsm.get()->SetState(1);
+      gsm.get()->AddState(2, new MatrixTestState(this));
+      gsm.get()->SetState(2);
       dirty = true;
+    
+      TTFText::get()->setFont("/home/afl/Desktop/doengine/Carlito-Bold.ttf", 25);
 
-    //   canvas1 = new Canvas(this);
-    //   canvas2 = new Canvas(this);
-  
-    // canvas1->setRect({30,30, 32, 32})
-    //         ->fillColor({255,0,255,255})
-    //         ->setCanvasBackgroundColor({255,255,0,255});
  
-
-    // canvas2->setRect({100,100, 32,32})
-    //           ->fillColor({255,0,255,255})
-    //           ->setCanvasBackgroundColor({255,0,255,255});
- 
-    // canvas1->fillColor({0,0,255,255});
-    // canvas1->DrawRect(100,100,20,20);
-    // canvas1->fillColor({0,255,0,255});
-    // canvas1->DrawRect(210,310,20,20);
-
-  //  canvas2->fillColor({0,0,255,255});
-  //  canvas2->DrawRect(0,0,20,20);
-  //  canvas2->fillColor({0,255,255,255});
-  //  canvas2->DrawRect(30,30,20,20);
 }
 
 
@@ -117,7 +109,8 @@ Window*  Window::Render()
      SDL_RenderClear(render);
     
      gsm.get()->Render();
-
+ 
+ 
      SDL_RenderPresent(render);
      fps_handler->Handle();
      return this;

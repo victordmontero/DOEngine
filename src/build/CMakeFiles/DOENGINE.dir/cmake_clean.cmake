@@ -21,6 +21,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/DOENGINE.dir/main.cpp.o.d"
   "CMakeFiles/DOENGINE.dir/sample/CanvasTestState.cpp.o"
   "CMakeFiles/DOENGINE.dir/sample/CanvasTestState.cpp.o.d"
+  "CMakeFiles/DOENGINE.dir/sample/MatrixTestState.cpp.o"
+  "CMakeFiles/DOENGINE.dir/sample/MatrixTestState.cpp.o.d"
   "DOENGINE"
   "DOENGINE.pdb"
 )

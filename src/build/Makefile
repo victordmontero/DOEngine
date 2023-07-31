@@ -438,6 +438,30 @@ sample/CanvasTestState.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DOENGINE.dir/build.make CMakeFiles/DOENGINE.dir/sample/CanvasTestState.cpp.s
 .PHONY : sample/CanvasTestState.cpp.s
 
+sample/MatrixTestState.o: sample/MatrixTestState.cpp.o
+.PHONY : sample/MatrixTestState.o
+
+# target to build an object file
+sample/MatrixTestState.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DOENGINE.dir/build.make CMakeFiles/DOENGINE.dir/sample/MatrixTestState.cpp.o
+.PHONY : sample/MatrixTestState.cpp.o
+
+sample/MatrixTestState.i: sample/MatrixTestState.cpp.i
+.PHONY : sample/MatrixTestState.i
+
+# target to preprocess a source file
+sample/MatrixTestState.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DOENGINE.dir/build.make CMakeFiles/DOENGINE.dir/sample/MatrixTestState.cpp.i
+.PHONY : sample/MatrixTestState.cpp.i
+
+sample/MatrixTestState.s: sample/MatrixTestState.cpp.s
+.PHONY : sample/MatrixTestState.s
+
+# target to generate assembly for a file
+sample/MatrixTestState.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DOENGINE.dir/build.make CMakeFiles/DOENGINE.dir/sample/MatrixTestState.cpp.s
+.PHONY : sample/MatrixTestState.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -484,6 +508,9 @@ help:
 	@echo "... sample/CanvasTestState.o"
 	@echo "... sample/CanvasTestState.i"
 	@echo "... sample/CanvasTestState.s"
+	@echo "... sample/MatrixTestState.o"
+	@echo "... sample/MatrixTestState.i"
+	@echo "... sample/MatrixTestState.s"
 .PHONY : help
 
 
