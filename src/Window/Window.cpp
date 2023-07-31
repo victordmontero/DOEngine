@@ -89,24 +89,28 @@ Window::~Window()
   destroy();
 }
 
-void Window::setFullScreen()
+Window*  Window::setFullScreen()
 {
    SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
+   return this;
 }
 
-void Window::setWindowMode()
+Window*  Window::setWindowMode()
 {
    SDL_SetWindowFullscreen(window, 0);
+   return this;
 }
-void Window::PollEvent()
+Window* Window::PollEvent()
 {
     fps_handler->Start();
     Event::PollEvent(this);
+    return this;
 }
-void Window::Update(){
+Window*  Window::Update(){
   gsm.get()->Update(Event::timeElapsed);
+  return this;
 }
-void Window::Render()
+Window*  Window::Render()
 {
  
      SDL_SetRenderDrawColor(render, 0,0,0,255);
@@ -116,16 +120,18 @@ void Window::Render()
 
      SDL_RenderPresent(render);
      fps_handler->Handle();
+     return this;
 }
 
 
-void Window::Quit()
+Window*  Window::Quit()
 {
   ///SDL_Log("running will be toggle to false");
 
   ///destroy();
 
   this->run = false;
+  return this;
 }
 
 const bool Window::IsRunning()const{

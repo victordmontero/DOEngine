@@ -39,13 +39,13 @@ class Window
     SDL_Window   *getWindow(){return window;}
    
     
-    void setFullScreen();
-    void setWindowMode();
+    Window*  setFullScreen();
+    Window*  setWindowMode();
    
-    void PollEvent();
-    void Update();
-    void Render();
-    void Quit();
+    Window*  PollEvent();
+    Window*  Update();
+    Window*  Render();
+    Window*  Quit();
 
     int getH(){
         return window_rect.h;

@@ -10,12 +10,12 @@
  
 int  main(int argc, char *argv[])
 { 
-   std::shared_ptr<Window> window(new Window(600,600)); 
+   std::shared_ptr<Window> window(new Window(1200,900)); 
     while(window->IsRunning()==true)
     {
-        window->PollEvent();
-        window->Update();
-        window->Render();
+        window->PollEvent()
+              ->Update()
+              ->Render();
     } 
    return 0;
 }
