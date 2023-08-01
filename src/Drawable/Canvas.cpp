@@ -377,7 +377,10 @@ void CanvasRectCommand::Draw(Window *window)
   // SDL_Log("Render Rect [%ld, %ld, %ld %ld](%02x %02x %02x %02x)", offset.x, offset.y, offset.w, offset.h, color.r, color.g, color.b, color.a);
    ////  SDL_Log("Canvas Draw[%ld, %ld, %ld, %ld]",  offset.x, offset.y,  offset.w, offset.h);
  
-   DrawNotFillRect(offset, color, window);
+   if(filled)
+       DrawFillRect(offset, color, window);
+    else
+       DrawNotFillRect(offset, color, window);
 }
 
 
@@ -403,6 +406,8 @@ Canvas* Canvas::setCanvasBackgroundColor(SDL_Color color)
     _bg.a = color.a;
     return this;
 }
+
+const SDL_Color Canvas::black={0,0,0,255};
 
 Canvas::Canvas(Window *window)
 { 
@@ -456,7 +461,7 @@ Canvas* Canvas::DrawPoint(int x, int y)
     return this;
  }
 
-Canvas* Canvas::DrawRect(int x, int y, int w, int h)
+Canvas* Canvas::DrawRect(int x, int y, int w, int h, bool filled)
 {
     CanvasRectCommand* rect = new CanvasRectCommand();
     rect->offset.x =  this->_offset.x + x;
@@ -467,6 +472,7 @@ Canvas* Canvas::DrawRect(int x, int y, int w, int h)
     rect->color.g =   _filler.g;
     rect->color.b =  _filler.b;
     rect->color.a =  _filler.a;
+    rect->filled = filled;
 
     this->commands_to_draw.push_back(rect);
 

@@ -4,6 +4,7 @@
         "map": "cpp",
         "random": "cpp",
         "source_location": "cpp",
-        "string": "cpp"
+        "string": "cpp",
+        "cmath": "cpp"
     }
 }

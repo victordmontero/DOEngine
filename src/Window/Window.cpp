@@ -14,6 +14,7 @@ extern "C" {
 
 #include <CanvasTestState.h>
 #include <MatrixTestState.h>
+#include <SortedState.h>
 
 #include <iostream>
 #include <source_location>
@@ -71,7 +72,10 @@ void Window::_CreateNeededInstance()
       fps_handler.get()->setFPS(30);
       gsm.get()->AddState(1, new CanvasTestState(this));
       gsm.get()->AddState(2, new MatrixTestState(this));
-      gsm.get()->SetState(2);
+      gsm.get()->AddState(3, new SortedState(this));
+      
+      
+      gsm.get()->SetState(3);
       dirty = true;
     
       TTFText::get()->setFont("/home/afl/Desktop/doengine/Carlito-Bold.ttf", 25);
@@ -144,16 +148,20 @@ Window*  Window::Update(){
   gsm.get()->Update(Event::timeElapsed);
   return this;
 }
+int size = 1;
 Window*  Window::Render()
 {
  
      SDL_SetRenderDrawColor(render, 0,0,0,255);
      SDL_RenderClear(render);
     
-   ///  gsm.get()->Render();
-       DrawGradientRect(render, 100, 100, 200,48, {0,0,255,255}, {0,0,100,255});
-     DrawGradientCircle(render, 400, 400, 32, {0,0,255,255}, {0,0,100,255});
-     SDL_RenderPresent(render);
+       gsm.get()->Render();
+    //    DrawGradientRect(render, 100, 100, 200,48, {0,0,255,255}, {0,0,100,255});
+    //  DrawGradientCircle(render, 400, 400,   ::size, {0,0,255,255}, {100,132,12,255});
+    
+    
+    
+      SDL_RenderPresent(render);
      fps_handler->Handle();
      return this;
 }

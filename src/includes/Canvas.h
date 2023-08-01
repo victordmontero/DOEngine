@@ -59,13 +59,15 @@ class Canvas{
 
    public:
    
+
+   const static SDL_Color black; 
    
    Canvas(Window *window);  
 
    Canvas* fillColor(SDL_Color color);
    Canvas* setRect(SDL_Rect rect);
 
-   Canvas* DrawRect(int x, int y, int w, int h);
+   Canvas* DrawRect(int x, int y, int w, int h, bool filled);
    Canvas* DrawPoint(int x, int y);
    Canvas* FillCircle(int x, int y, double rsize=50);
    Canvas* FillText(const char *str, int x, int y);
@@ -75,7 +77,7 @@ class Canvas{
    Canvas* clearCanvas();
 
 
-    SDL_Color getColor(SDL_Color *color){
+    void getColor(SDL_Color *color){
         color = &_filler;
     }
 
