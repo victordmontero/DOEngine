@@ -438,6 +438,30 @@ sample/CanvasTestState.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DOENGINE.dir/build.make CMakeFiles/DOENGINE.dir/sample/CanvasTestState.cpp.s
 .PHONY : sample/CanvasTestState.cpp.s
 
+sample/MainMenuState.o: sample/MainMenuState.cpp.o
+.PHONY : sample/MainMenuState.o
+
+# target to build an object file
+sample/MainMenuState.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DOENGINE.dir/build.make CMakeFiles/DOENGINE.dir/sample/MainMenuState.cpp.o
+.PHONY : sample/MainMenuState.cpp.o
+
+sample/MainMenuState.i: sample/MainMenuState.cpp.i
+.PHONY : sample/MainMenuState.i
+
+# target to preprocess a source file
+sample/MainMenuState.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DOENGINE.dir/build.make CMakeFiles/DOENGINE.dir/sample/MainMenuState.cpp.i
+.PHONY : sample/MainMenuState.cpp.i
+
+sample/MainMenuState.s: sample/MainMenuState.cpp.s
+.PHONY : sample/MainMenuState.s
+
+# target to generate assembly for a file
+sample/MainMenuState.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DOENGINE.dir/build.make CMakeFiles/DOENGINE.dir/sample/MainMenuState.cpp.s
+.PHONY : sample/MainMenuState.cpp.s
+
 sample/MatrixTestState.o: sample/MatrixTestState.cpp.o
 .PHONY : sample/MatrixTestState.o
 
@@ -486,6 +510,30 @@ sample/SortedState.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DOENGINE.dir/build.make CMakeFiles/DOENGINE.dir/sample/SortedState.cpp.s
 .PHONY : sample/SortedState.cpp.s
 
+sample/TileMapTestState.o: sample/TileMapTestState.cpp.o
+.PHONY : sample/TileMapTestState.o
+
+# target to build an object file
+sample/TileMapTestState.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DOENGINE.dir/build.make CMakeFiles/DOENGINE.dir/sample/TileMapTestState.cpp.o
+.PHONY : sample/TileMapTestState.cpp.o
+
+sample/TileMapTestState.i: sample/TileMapTestState.cpp.i
+.PHONY : sample/TileMapTestState.i
+
+# target to preprocess a source file
+sample/TileMapTestState.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DOENGINE.dir/build.make CMakeFiles/DOENGINE.dir/sample/TileMapTestState.cpp.i
+.PHONY : sample/TileMapTestState.cpp.i
+
+sample/TileMapTestState.s: sample/TileMapTestState.cpp.s
+.PHONY : sample/TileMapTestState.s
+
+# target to generate assembly for a file
+sample/TileMapTestState.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DOENGINE.dir/build.make CMakeFiles/DOENGINE.dir/sample/TileMapTestState.cpp.s
+.PHONY : sample/TileMapTestState.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -532,12 +580,18 @@ help:
 	@echo "... sample/CanvasTestState.o"
 	@echo "... sample/CanvasTestState.i"
 	@echo "... sample/CanvasTestState.s"
+	@echo "... sample/MainMenuState.o"
+	@echo "... sample/MainMenuState.i"
+	@echo "... sample/MainMenuState.s"
 	@echo "... sample/MatrixTestState.o"
 	@echo "... sample/MatrixTestState.i"
 	@echo "... sample/MatrixTestState.s"
 	@echo "... sample/SortedState.o"
 	@echo "... sample/SortedState.i"
 	@echo "... sample/SortedState.s"
+	@echo "... sample/TileMapTestState.o"
+	@echo "... sample/TileMapTestState.i"
+	@echo "... sample/TileMapTestState.s"
 .PHONY : help
 
 

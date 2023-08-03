@@ -15,6 +15,7 @@ extern "C" {
 #include <CanvasTestState.h>
 #include <MatrixTestState.h>
 #include <SortedState.h>
+#include <TileMapTestState.h>
 
 #include <iostream>
 #include <source_location>
@@ -73,12 +74,14 @@ void Window::_CreateNeededInstance()
       gsm.get()->AddState(1, new CanvasTestState(this));
       gsm.get()->AddState(2, new MatrixTestState(this));
       gsm.get()->AddState(3, new SortedState(this));
+      gsm.get()->AddState(4, new TileMapTestState(this));
       
-      
-      gsm.get()->SetState(3);
+      gsm.get()->SetState(1);
       dirty = true;
-    
-      TTFText::get()->setFont("/home/afl/Desktop/doengine/Carlito-Bold.ttf", 25);
+      const char *font_name_path = "/home/afl/Desktop/doengine/Carlito-Bold.ttf";
+      SDL_Log("remember change font path");
+      
+      TTFText::get()->setFont(font_name_path, 25);
 
  
 }

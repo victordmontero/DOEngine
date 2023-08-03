@@ -2,7 +2,8 @@
 #include <GameState.h>
 #include <Canvas.h>
 #include <vector>
-class SortedState : public GameState{
+#include <EventHandler.h>
+class SortedState : public GameState, KeyDownEvent{
 
    struct ColumnEntry{
        SDL_Rect offset;
@@ -18,10 +19,14 @@ class SortedState : public GameState{
 
    Canvas *ctx;
 
+
+   int current_index = 0;
+   bool next = false;
+
    public:
 
 
-
+   void OnKeydown(int code)override;
    SortedState(Window *w):GameState(w){}
    
    virtual void OnEnter()override;

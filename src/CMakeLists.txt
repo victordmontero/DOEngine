@@ -47,6 +47,8 @@ add_executable(${PROJECT_NAME}
                sample/CanvasTestState.cpp
                sample/MatrixTestState.cpp
                sample/SortedState.cpp
+               sample/TileMapTestState.cpp
+               sample/MainMenuState.cpp
                )
 
 include_directories(${CMAKE_SOURCE_DIR}/includes)

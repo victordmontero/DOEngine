@@ -26,13 +26,17 @@ void Event::PollEvent(Window *window)
            }
            case SDL_KEYDOWN:
            {
-                SDL_Log("Window quit");
-                window->Quit();
+               // SDL_Log("Window quit");
+               // window->Quit();
                 mousePressed = false;
                 mouseReleased= false;
                 keyDown= true;
                 keyUp= false;
                //SDL_Log("SDL_KEYDOWN");
+
+               for(auto it : Event::keydown)
+                   it->OnKeydown(event.key.keysym.sym);
+
            }break;
            case SDL_KEYUP:
                 {
