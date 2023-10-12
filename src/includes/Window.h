@@ -1,7 +1,13 @@
 #pragma once 
 
-#include<SDL2/SDL.h>
 #include <memory>
+extern "C" {
+#include<SDL.h>
+#include<SDL_image.h>
+#include<SDL_ttf.h>
+}
+
+#include "abstract/AbstractWindow.h"
 
 #include "FPSManager.h"
 #include "GameStateManager.h"
@@ -11,10 +17,10 @@
 
 class GameStateManager;
 
-class Window
+class Window : public doengine::AbstractWindow
 {
     SDL_Window   *window;
-    SDL_Renderer *render;
+    doengine::gfx::Renderer* render;
     SDL_Rect      window_rect;
     SDL_DisplayMode mode;
     std::shared_ptr<FpsManager> fps_handler;
@@ -23,10 +29,8 @@ class Window
     bool dirty;
     void _CreateNeededInstance();
 
-
     Canvas *canvas1;
     Canvas *canvas2;
-
 
     public:
 
@@ -34,28 +38,28 @@ class Window
     Window();
     ~Window();
  
-    const bool    IsRunning()const;
-    SDL_Renderer *getRender(){return render;}
-    SDL_Window   *getWindow(){return window;}
+    const bool    IsRunning() const override;
+    doengine::gfx::Renderer* getRender() const override {return render;}
+    SDL_Window   *getWindow() {return window;}
    
     
-    Window*  setFullScreen();
-    Window*  setWindowMode();
+    doengine::AbstractWindow*  setFullScreen() override;
+    doengine::AbstractWindow*  setWindowMode() override;
    
-    Window*  PollEvent();
-    Window*  Update();
-    Window*  Render();
-    Window*  Quit();
+    doengine::AbstractWindow*  PollEvent() override;
+    doengine::AbstractWindow*  Update() override;
+    doengine::AbstractWindow*  Render() override;
+    doengine::AbstractWindow*  Quit() override;
 
-    int getH(){
+    int getH() override {
         return window_rect.h;
     }
-    int getW(){
+    int getW() override {
         return window_rect.w;
     }
 
     typedef unsigned char ColorT;
-    Window *SetWindowPencilColor(ColorT r, ColorT g, ColorT b, ColorT a);
+    doengine::AbstractWindow *SetWindowPencilColor(doengine::Color color) override;
 
     private:
     void destroy();

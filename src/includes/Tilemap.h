@@ -1,27 +1,23 @@
 #pragma once
 
-#include <vector>
 #include <string>
+#include <vector>
 
 #include "Tile.h"
-#include "Window.h"
+#include "abstract/AbstractWindow.h"
 
-
- 
-
+using doengine::AbstractWindow;
 
 class TileMap
 {
-    Window*  window;
+    AbstractWindow* window;
     typedef std::vector<Tile> TilesetLayer;
     std::vector<TilesetLayer> layers;
     int w;
     int h;
-    public:
 
-    TileMap(Window* window);
+  public:
+    TileMap(AbstractWindow* window);
 
     void LoadMapFromArray(std::string strMap, int w, int h);
-   
-
 };

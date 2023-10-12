@@ -1,3 +1,3 @@
 #!/usr/bin/bash
 
-cd build ; cmake -S .. -B .
+cmake -S .. -B build

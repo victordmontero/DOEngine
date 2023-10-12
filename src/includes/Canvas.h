@@ -1,88 +1,84 @@
 #pragma once
 
-#include <string>
+#include "abstract/AbstractWindow.h"
 #include <SDL2/SDL.h>
-#include "Window.h"
+#include <string>
 #include <vector>
 
-struct CanvasCommand{
-    virtual void Draw(Window *window) = 0;
+struct CanvasCommand
+{
+    virtual void Draw(doengine::AbstractWindow* window) = 0;
 };
 
-struct CanvasRectCommand : public CanvasCommand{
-     SDL_Rect offset;
-     SDL_Color color;
-     bool filled;
-     virtual void Draw(Window *window) override;
+struct CanvasRectCommand : public CanvasCommand
+{
+    SDL_Rect offset;
+    SDL_Color color;
+    bool filled;
+    virtual void Draw(doengine::AbstractWindow* window) override;
 };
 
-struct CanvasPointDrawCommand : public CanvasCommand{
-     SDL_Rect offset;
-     SDL_Color color;
-    virtual void Draw(Window *window) override;
+struct CanvasPointDrawCommand : public CanvasCommand
+{
+    SDL_Rect offset;
+    SDL_Color color;
+    virtual void Draw(doengine::AbstractWindow* window) override;
 };
 
-struct CanvasCircleCommand : public CanvasCommand{
+struct CanvasCircleCommand : public CanvasCommand
+{
 
-      double radius;
-      SDL_Point where;
-      SDL_Color color;
+    double radius;
+    SDL_Point where;
+    SDL_Color color;
 
-      virtual void Draw(Window *window) override;
+    virtual void Draw(doengine::AbstractWindow* window) override;
 };
 
-
-struct CanvasTextDrawerCommand : public CanvasCommand{
+struct CanvasTextDrawerCommand : public CanvasCommand
+{
 
     SDL_Point where;
     SDL_Color color;
     std::string text;
-    virtual void Draw(Window *window) override;
-
+    virtual void Draw(doengine::AbstractWindow* window) override;
 };
 
+class Canvas
+{
 
+    doengine::AbstractWindow* window;
+    SDL_Color _bg;
+    SDL_Color _filler;
+    SDL_Rect _offset;
+    bool clear = false;
 
+    std::vector<CanvasCommand*> commands_to_draw;
 
-class Canvas{
+  public:
+    const static SDL_Color black;
 
-   Window       *window;
-   SDL_Color     _bg;
-   SDL_Color     _filler;
-   SDL_Rect      _offset;
-   bool          clear=false;
+    Canvas(doengine::AbstractWindow* window);
 
-   std::vector<CanvasCommand *> commands_to_draw;
+    Canvas* fillColor(SDL_Color color);
+    Canvas* setRect(SDL_Rect rect);
 
+    Canvas* DrawRect(int x, int y, int w, int h, bool filled);
+    Canvas* DrawPoint(int x, int y);
+    Canvas* FillCircle(int x, int y, double rsize = 50);
+    Canvas* FillText(const char* str, int x, int y);
 
- 
+    Canvas* setCanvasBackgroundColor(SDL_Color color);
+    Canvas* update();
+    Canvas* clearCanvas();
 
-   public:
-   
-
-   const static SDL_Color black; 
-   
-   Canvas(Window *window);  
-
-   Canvas* fillColor(SDL_Color color);
-   Canvas* setRect(SDL_Rect rect);
-
-   Canvas* DrawRect(int x, int y, int w, int h, bool filled);
-   Canvas* DrawPoint(int x, int y);
-   Canvas* FillCircle(int x, int y, double rsize=50);
-   Canvas* FillText(const char *str, int x, int y);
-
-   Canvas* setCanvasBackgroundColor(SDL_Color color);
-   Canvas* update(); 
-   Canvas* clearCanvas();
-
-
-    void getColor(SDL_Color *color){
+    void getColor(SDL_Color* color)
+    {
         color = &_filler;
     }
 
-
-    const SDL_Rect getCanvasSize()const {
-    return _offset;
-   }
+    const SDL_Rect getCanvasSize() const
+    {
+        return _offset;
+    }
 };
