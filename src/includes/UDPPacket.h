@@ -1,14 +1,9 @@
 #pragma once
 
-#define NETWORK 
-
-
-
-
+#define NETWORK
 
 class UDPPacket
 {
- 
   public:
    
    typedef unsigned char packet;

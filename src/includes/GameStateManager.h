@@ -2,24 +2,32 @@
 
 #include <map>
 #include <string>
-#include "Window.h"
+// #include "Window.h"
 #include "GameState.h"
+#include "abstract/AbstractWindow.h"
 
-class Window;
-class GameState;
-class GameStateManager{
+using doengine::AbstractWindow;
+// class GameState;
 
-  Window *window;
-  std::map<int, GameState *>states;
-  int current_state;
+class GameStateManager
+{
+    AbstractWindow* window;
+    std::map<int, GameState*> states;
+    int current_state;
 
   public:
+    GameStateManager(AbstractWindow* window) : window(window)
+    {
+    }
 
-  GameStateManager(Window *window);
-  void AddState(int state_id, GameState *object);
-  void RemoveState(int state_id);
-  void SetState(int state_id);
+    virtual ~GameStateManager()
+    {
+    }
 
-  void Update(float elapsed);
-  void Render();
+    virtual void AddState(int state_id, GameState* object);
+    virtual void RemoveState(int state_id);
+    virtual void SetState(int state_id);
+
+    virtual void Update(float elapsed);
+    virtual void Render();
 };

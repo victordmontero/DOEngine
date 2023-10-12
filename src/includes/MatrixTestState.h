@@ -1,8 +1,10 @@
+#include "Window.h"
 #include "GameState.h"
 #include "GameObject.h"
 #include "Canvas.h"
-#include "EventHandler.h"
+#include "abstract/EventHandler.h"
 #include "Canvas.h"
+
 class MatrixTestState : public GameState 
 {
    Canvas *canvas;
@@ -10,13 +12,14 @@ class MatrixTestState : public GameState
    Canvas *pencil1;
 
 public:
-   MatrixTestState(Window *w):GameState(w){
+   MatrixTestState(doengine::AbstractWindow *w):window(w){
    }
    virtual void OnEnter()override;
    virtual void OnExit()override;
    virtual void Update(float elapsed) override;
    virtual void Render() override;
 
+private:
+   doengine::AbstractWindow* window;
 
-  
 };

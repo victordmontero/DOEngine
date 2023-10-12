@@ -1,45 +1,37 @@
 #pragma once
 
 #include <string>
-#include <iostream>
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_mixer.h>
-#include "Window.h"
 
+namespace doengine
+{
 
+class MusicHandler
+{
 
-class MusicHandler{
+    //   AbstractWindow *window;
 
-    Window *window;
+  public:
+    //   MusicHandler(AbstractWindow *window);
 
-    public:
+    virtual void addToList(std::string src) = 0;
+    virtual void playFirst() = 0;
+    virtual void playLast() = 0;
+    virtual void PlayIndex(int index) = 0;
+    virtual void removeIndex(int index) = 0;
+    virtual std::string getPlayMusicName() = 0;
+    virtual void pause() = 0;
+    virtual void stop() = 0;
 
-    MusicHandler(Window *window);
-    
-    void addToList(std::string src);
-
-    void playFirst();
-
-    void playLast();
-
-    void PlayIndex(int index);
-
-    void removeIndex(int index);
-
-    void getPlayMusicName();
-
-    void pause();
-
-    void stop();
-
-    enum class Repeat{
+    enum class Repeat
+    {
         OnlyThis,
         All,
         None,
     };
 
-    void setRepeat(Repeat repeat);
+    virtual void setRepeat(Repeat repeat) = 0;
 };
+} // namespace doengine
 
 #if 0
 

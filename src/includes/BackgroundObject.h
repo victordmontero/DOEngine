@@ -16,10 +16,6 @@ class Background : public GameObject{
 
 class ParallaxBackground: public Background
 {
-
-
-
-
    public:
     ParallaxBackground(Window *window, const char *assets, int width, int h);
     virtual ~ParallaxBackground();
