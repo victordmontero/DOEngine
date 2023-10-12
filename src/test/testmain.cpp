@@ -1,13 +1,34 @@
+#include "FPSManager.h"
+#include "mocks/AbstractWindowMock.h"
+#include "mocks/CameraMock.h"
+#include "mocks/EventHandlerMock.h"
+#include "mocks/FontMock.h"
+#include "mocks/GameObjectMock.h"
+#include "mocks/GameStateManagerMock.h"
+#include "mocks/MusicHandlerMock.h"
+#include "mocks/ParticleMock.h"
+#include "mocks/RendererMock.h"
+#include <gmock/gmock-actions.h>
+#include <gmock/gmock-nice-strict.h>
+#include <gmock/gmock-spec-builders.h>
 #include <gtest/gtest.h>
 
-TEST(a1, ts){
-    ASSERT_EQ(1,1);
-}
+using namespace doengine::mocks;
+using namespace testing;
 
-
-int main(int argc, char *argv[])
+TEST(mocks_test, get_music_from_mars_test)
 {
-    ::testing::InitGoogleTest(&argc, argv);
+    NiceMock<CameraMock> cameraMock;
+    NiceMock<MusicHandlerMock> musicHandlerMock;
+    NiceMock<ParticleMock> particleMock;
+    NiceMock<RendererMock> rendererMock;
+    NiceMock<FontMock> fontMock;
+    NiceMock<KeyDownEventMock> keyDownEventMock;
+    NiceMock<KeyUpEventMock> keyUpEventMock;
+    NiceMock<AbstractWindowMock> abstractWindowMock;
+    NiceMock<GameObjectMock> gameObjectMock;
 
-    return RUN_ALL_TESTS();
+    ON_CALL(musicHandlerMock, getPlayMusicName()).WillByDefault(Return("Mars"));
+    ASSERT_EQ(1, 1);
+    EXPECT_EQ(musicHandlerMock.getPlayMusicName(), "Mars");
 }
