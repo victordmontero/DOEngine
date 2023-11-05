@@ -1,5 +1,5 @@
 #include "GameStateManager.h"
-#include "TTFText.h"
+// #include "TTFText.h"
 
 void GameStateManager::AddState(int state_id, GameState* object)
 {
@@ -34,9 +34,11 @@ void GameStateManager::Render()
     /// this->window->getRender());
     if (states[current_state])
         states[current_state]->Render();
-    else
+    /*else
+    {
         TTFText::get()->DrawText(
             "State Invalid", 0, 80,
             static_cast<SDL_Renderer*>(
                 this->window->getRender()->getNativeRenderer()));
+    }*/
 }

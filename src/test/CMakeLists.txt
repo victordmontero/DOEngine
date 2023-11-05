@@ -19,16 +19,11 @@ add_library(GTest::GTest INTERFACE IMPORTED)
 
 target_link_libraries(GTest::GTest INTERFACE gtest_main gmock_main)
 
-if(DOENGINE_COVERAGE)
-    message("Compiling with coverage flags")
-    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fprofile-arcs -ftest-coverage")
-    set(CMAKE_CXX_FLAGS " ${CMAKE_CXX_FLAGS} -fprofile-arcs -ftest-coverage")
-    set(CMAKE_EXE_LINKER_FLAGS "-fprofile-arcs -ftest-coverage")
-endif()
-
 add_executable(${PROJECT_NAME}
     units/utUtils.cpp
     units/utLinkList.cpp
+    units/utGameStateManager.cpp
+    units/utFPSManager.cpp
     mocks/GameStateMock.h
     mocks/FPSManagerMock.h
     mocks/CameraMock.h
@@ -40,13 +35,38 @@ add_executable(${PROJECT_NAME}
     mocks/GameObjectMock.h
     mocks/AbstractWindowMock.h
     mocks/GameStateManagerMock.h
+    mocks/UDPPacketMock.h
+    mocks/SDLMock.h
+    mocks/SDLMock.cpp
     testmain.cpp
+
+    ../GameState/GameStateManager.cpp
+    ../Network/UDPPacket.cpp
+    ../Timer/FPSManager.cpp
 )
+
+add_compile_definitions(TESTING)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE
     GTest::GTest
-    # Another library
 )
 
 add_test(NAME testapp_gtest
     COMMAND ${PROJECT_NAME})
+
+include(GoogleTest)
+gtest_discover_tests(${PROJECT_NAME})
+
+if(DOENGINE_COVERAGE)
+    message("Compiling with coverage flags")
+    # set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fprofile-arcs -ftest-coverage")
+    # set(CMAKE_CXX_FLAGS " ${CMAKE_CXX_FLAGS} -fprofile-arcs -ftest-coverage")
+    # set(CMAKE_EXE_LINKER_FLAGS "-fprofile-arcs -ftest-coverage")
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O0")
+    set(CMAKE_CXX_FLAGS " ${CMAKE_CXX_FLAGS} -O0")
+    append_coverage_compiler_flags()
+    setup_target_for_coverage_gcovr_html(NAME ${PROJECT_NAME}_cov
+        BASE_DIRECTORY ../
+        EXCLUDE "test/" "build/"
+    )
+endif()

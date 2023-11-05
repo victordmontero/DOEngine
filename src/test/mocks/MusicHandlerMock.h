@@ -18,7 +18,6 @@ class MusicHandlerMock : public MusicHandler
     MOCK_METHOD(std::string, getPlayMusicName, (), (override));
     MOCK_METHOD(void, pause, (), (override));
     MOCK_METHOD(void, stop, (), (override));
-
     MOCK_METHOD(void, setRepeat, (Repeat), (override));
 };
 } // namespace doengine::mocks

@@ -9,6 +9,14 @@ namespace doengine::mocks
 class FpsManagerMock : public FpsManager
 {
   public:
+    FpsManagerMock() : FpsManager()
+    {
+    }
+
+    ~FpsManagerMock()
+    {
+    }
+
     MOCK_METHOD(void, setFPS, (long fps), (override));
     MOCK_METHOD(void, Start, (), (override));
     MOCK_METHOD(void, Handle, (), (override));
