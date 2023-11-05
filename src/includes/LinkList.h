@@ -81,8 +81,7 @@ class LinkList
     const bool insertBefore(Node* node, T nodeValue)
     {
         return false;
-    } // TODO to be done
-      // later
+    } // TODO to be done later
 
     const bool insertAfter(Node* node, T nodeValue)
     {

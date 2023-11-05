@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.22.1)
 
 project(DOENGINE)
 
+include(cmake-module/CodeCoverage.cmake)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS true)
 
@@ -13,14 +14,10 @@ set(BUILD_SHARED_LIBS FALSE)
 set(SDL2_DISABLE_INSTALL OFF)
 set(SDL2TTF_VENDORED TRUE)
 
-option(DOENGINE_COVERAGE "Compile with coverage flags" FALSE)
+enable_testing()
+add_subdirectory(test)
 
-if(DOENGINE_COVERAGE)
-    message("Compiling with coverage flags")
-    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fprofile-arcs -ftest-coverage")
-    set(CMAKE_CXX_FLAGS " ${CMAKE_CXX_FLAGS} -fprofile-arcs -ftest-coverage")
-    set(CMAKE_EXE_LINKER_FLAGS "-fprofile-arcs -ftest-coverage")
-endif()
+option(DOENGINE_COVERAGE "Compile with coverage flags" FALSE)
 
 include(FetchContent)
 
