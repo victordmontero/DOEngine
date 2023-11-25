@@ -106,6 +106,6 @@ add_executable(${PROJECT_NAME}
 
 include_directories(${CMAKE_SOURCE_DIR}/includes)
 
-target_link_libraries(${PROJECT_NAME} PRIVATE SDL2::SDL2 SDL2_ttf SDL2_image SDL2_mixer)
+target_link_libraries(${PROJECT_NAME} PRIVATE SDL2::SDL2 SDL2::SDL2main SDL2_ttf SDL2_image SDL2_mixer)
 
 # install(TARGETS ${PROJECT_NAME} DESTINATION /home/afl/Desktop/doengine )
