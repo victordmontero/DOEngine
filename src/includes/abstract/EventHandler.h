@@ -24,6 +24,36 @@ class KeyUpEvent
     virtual void OnKeyup(int code) = 0;
 };
 
+class JoyButtonDownEvent
+{
+  public:
+    ~JoyButtonDownEvent()
+    {
+    }
+
+    virtual void OnButtonDown(int button) = 0;
+};
+
+class JoyButtonUpEvent
+{
+  public:
+    ~JoyButtonUpEvent()
+    {
+    }
+
+    virtual void OnButtonUp(int button) = 0;
+};
+
+class JoyButtonTriggerEvent
+{
+  public:
+    ~JoyButtonTriggerEvent()
+    {
+    }
+
+    virtual void OnButtonTriggered(int button, int bias) = 0;
+};
+
 class MouseMovementEvent
 {
 

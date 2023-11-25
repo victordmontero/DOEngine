@@ -16,6 +16,21 @@ class KeyUpEventMock : public KeyUpEvent
     MOCK_METHOD(void, OnKeyup, (int), (override));
 };
 
+class JoyButtonUpEventMock : public JoyButtonUpEvent
+{
+    MOCK_METHOD(void, OnButtonUp, (int), (override));
+};
+
+class JoyButtonDownEventMock : public JoyButtonDownEvent
+{
+    MOCK_METHOD(void, OnButtonDown, (int), (override));
+};
+
+class JoyButtonTriggerEventMock : public JoyButtonTriggerEvent
+{
+    MOCK_METHOD(void, OnButtonTriggered, (int, int), (override));
+};
+
 class MouseMovementEventMock : public MouseMovementEvent
 {
     MOCK_METHOD(void, OnMouseMovement, (int, int), (override));

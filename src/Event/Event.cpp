@@ -1,5 +1,8 @@
 
 #include "Event.h"
+#include "SDL_error.h"
+#include "SDL_joystick.h"
+#include "abstract/EventHandler.h"
 #include <SDL_events.h>
 #include <SDL_log.h>
 #include <vector>
@@ -8,6 +11,9 @@ std::vector<KeyDownEvent*> Event::keydown;
 std::vector<KeyUpEvent*> Event::keyup;
 std::vector<MouseMovementEvent*> Event::mouse;
 std::vector<MouseEvent*> Event::mouseEvent;
+std::vector<JoyButtonUpEvent*> Event::joyButtonUpList;
+std::vector<JoyButtonDownEvent*> Event::joyButtonDownList;
+std::vector<JoyButtonTriggerEvent*> Event::joyButtonTriggerList;
 bool Event::mousePressed = false;
 bool Event::mouseReleased = false;
 bool Event::keyDown = false;
@@ -89,6 +95,17 @@ void Event::PollEvent(AbstractWindow* window)
             ////    SDL_Log("SDL_MOUSEWHEEL");
         }
         break;
+        case SDL_JOYAXISMOTION:
+        case SDL_CONTROLLERAXISMOTION:
+            SDL_Log("SDL_CONTROLLERAXISMOTION Axis %d, Value %d",
+                    event.jaxis.axis, event.jaxis.value);
+            break;
+        case SDL_JOYBUTTONUP:
+            SDL_Log("SDL_JOYBUTTONUP  %d", event.jbutton.button);
+            break;
+        case SDL_JOYBUTTONDOWN:
+            SDL_Log("SDL_JOYBUTTONDOWN %d", event.jbutton.button);
+            break;
         default:
             mousePressed = false;
             mouseReleased = false;
