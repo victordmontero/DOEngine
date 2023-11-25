@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Color.h"
 #include "abstract/AbstractWindow.h"
 #include <SDL2/SDL.h>
 #include <string>
@@ -39,7 +40,7 @@ struct CanvasTextDrawerCommand : public CanvasCommand
 {
 
     SDL_Point where;
-    SDL_Color color;
+    doengine::Color color;
     std::string text;
     virtual void Draw(doengine::AbstractWindow* window) override;
 };
