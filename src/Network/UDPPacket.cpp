@@ -18,13 +18,13 @@ struct winsocket_initializer
 static winsocket_initializer init__in;
 #endif
 
-int UDPPacket::ReceivedPacket(const char* url, short port)
+int UDPPacket::ReceivedPacket(const std::string& url, short port)
 {
     return 0;
 }
 
-int UDPPacket::SendPacket(const char* buffer, int max_len, const char* url,
-                          short port)
+int UDPPacket::SendPacket(const unsigned char* buffer, size_t max_len,
+                          const std::string& url, short port)
 {
     return 0;
 }
