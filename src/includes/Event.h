@@ -14,6 +14,9 @@ struct Event
     static std::vector<KeyUpEvent*> keyup;
     static std::vector<MouseMovementEvent*> mouse;
     static std::vector<MouseEvent*> mouseEvent;
+    static std::vector<JoyButtonUpEvent*> joyButtonUpList;
+    static std::vector<JoyButtonDownEvent*> joyButtonDownList;
+    static std::vector<JoyButtonTriggerEvent*> joyButtonTriggerList;
 
     static void getMousePosition(int* x, int* y);
 
