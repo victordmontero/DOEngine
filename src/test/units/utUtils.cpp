@@ -11,7 +11,7 @@
 namespace doengine::ut
 {
 
-TEST(UtilsTests, DISABLED_GetPorcentage_Tests_Integer)
+TEST(UtilsTests, DISABLED_GetPorcentageTestsInteger)
 {
     int expected = 782U;
     EXPECT_EQ(expected, getPercentageFrom(78U, 1003U));
@@ -23,7 +23,7 @@ TEST(UtilsTests, DISABLED_GetPorcentage_Tests_Integer)
     EXPECT_EQ(expected, getPercentageFrom(150U, 7500U));
 }
 
-TEST(UtilsTests, GetRandomNumber_IsBeetweenRange_Integer)
+TEST(UtilsTests, GetRandomNumberIsBeetweenRangeInteger)
 {
     int startRange = 1;
     int endRange = 123;
@@ -58,7 +58,7 @@ TEST(UtilsTests, GetRandomNumber_IsBeetweenRange_Integer)
     ASSERT_GE(endRangeLong, resultLong);
 }
 
-TEST(UtilsTests, GetRandomNumber_IsBeetweenRange_Double)
+TEST(UtilsTests, GetRandomNumberIsBeetweenRangeDouble)
 {
     double startRange = 0.03;
     double endRange = 1.04;
@@ -101,7 +101,7 @@ TEST(UtilsTests, GetRandomNumber_IsBeetweenRange_Double)
     ASSERT_GE(endRangeFloat, resultFloat);
 }
 
-TEST(UtilsTests, Clamp_Tests)
+TEST(UtilsTests, ClampTests)
 {
     double val = 0.03;
     double min = -0.3;

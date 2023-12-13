@@ -28,14 +28,14 @@ class utFPSManager : public testing::Test
     testing::NiceMock<mocks::SDLMock> xsdlMock;
 };
 
-TEST_F(utFPSManager, doengine_getElapsedTime_Test)
+TEST_F(utFPSManager, doengineGetElapsedTimeTest)
 {
     ON_CALL(*sdlMock, SDL_GetTicks()).WillByDefault(Return(1500U));
     _sut.Handle();
     // testing::Mock::AllowLeak(&sdlMock);
 }
 
-TEST_F(utFPSManager, doengine_Start_Timer_And_GetElapseTime)
+TEST_F(utFPSManager, doengineStartTimerAndGetElapseTime)
 {
     EXPECT_CALL(xsdlMock, SDL_GetTicks())
         .WillOnce(Return(5U))
@@ -47,7 +47,7 @@ TEST_F(utFPSManager, doengine_Start_Timer_And_GetElapseTime)
     EXPECT_FLOAT_EQ(_sut.getElapsedTime(), 10U);
 }
 
-TEST_F(utFPSManager, doengine_Handle_Test)
+TEST_F(utFPSManager, doengineHandleTest)
 {
     EXPECT_CALL(xsdlMock, SDL_GetTicks())
         .WillOnce(Return(5U))

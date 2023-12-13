@@ -22,7 +22,7 @@ class utLinkedList : public ::testing::Test
     LinkList<int> _list;
 };
 
-TEST(LinkListTests, DISABLED_Insert_Test)
+TEST(LinkListTests, DISABLED_InsertTest)
 {
     const int nodeData = 0xCAFEBABE;
     LinkList<int> list;
@@ -32,7 +32,7 @@ TEST(LinkListTests, DISABLED_Insert_Test)
     EXPECT_EQ(list.getHead()->data, nodeData);
 }
 
-TEST_F(utLinkedList, DISABLED_Traverse_Test)
+TEST_F(utLinkedList, DISABLED_TraverseTest)
 {
     const int nodeData = 0xCAFEBABE;
     LinkList<int>::Node* tempNode = nullptr;
@@ -49,7 +49,7 @@ TEST_F(utLinkedList, DISABLED_Traverse_Test)
     EXPECT_EQ(_list.getLength(), 4);
 }
 
-TEST_F(utLinkedList, DISABLED_Remove_Test)
+TEST_F(utLinkedList, DISABLED_RemoveTest)
 {
     using Node = LinkList<int>::Node;
     const int nodeData = 0xCAFEBABE;
@@ -69,7 +69,7 @@ TEST_F(utLinkedList, DISABLED_Remove_Test)
     EXPECT_EQ(_list.getLength(), 3);
 }
 
-TEST_F(utLinkedList, Destroy_Test)
+TEST_F(utLinkedList, DestroyTest)
 {
 
     EXPECT_EQ(_list.getLength(), 4);
@@ -80,7 +80,7 @@ TEST_F(utLinkedList, Destroy_Test)
     EXPECT_EQ(_list.getLength(), 0);
 }
 
-TEST_F(utLinkedList, DISABLED_InsertBefore_Test)
+TEST_F(utLinkedList, DISABLED_InsertBeforeTest)
 {
 
     auto tempNode = _list.getHead()->next(); // The Dancing Queeeeen!
@@ -125,7 +125,7 @@ TEST_F(utLinkedList, DISABLED_InsertBefore_Test)
     EXPECT_EQ(_list.getLength(), 6);
 }
 
-TEST_F(utLinkedList, DISABLED_InsertAfter_Test)
+TEST_F(utLinkedList, DISABLED_InsertAfterTest)
 {
     auto tempNode = _list.getHead()->next();
 
@@ -152,7 +152,7 @@ TEST_F(utLinkedList, DISABLED_InsertAfter_Test)
     EXPECT_EQ(_list.getLength(), 5);
 }
 
-TEST_F(utLinkedList, DISABLED_Find_Test)
+TEST_F(utLinkedList, DISABLED_FindTest)
 {
     auto tempNode = _list.find(0xDEADBEEF);
 
