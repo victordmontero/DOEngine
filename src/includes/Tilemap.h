@@ -20,4 +20,5 @@ class TileMap
     TileMap(AbstractWindow* window);
 
     void LoadMapFromArray(std::string strMap, int w, int h);
+    void LoadMapFromArray(std::vector<unsigned> uMap, int w, int h);
 };
