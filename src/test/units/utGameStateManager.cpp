@@ -32,7 +32,7 @@ class utGameStateManager : public ::testing::Test
     const int _gsId;
 };
 
-TEST_F(utGameStateManager, doengine_SetState_Should_Not_Call_OnExit_FirstTime)
+TEST_F(utGameStateManager, doengineSetStateShouldNotCallOnExitFirstTime)
 {
     EXPECT_CALL(_gsMock, OnExit()).Times(0);
     EXPECT_CALL(_gsMock, OnEnter());
@@ -40,8 +40,7 @@ TEST_F(utGameStateManager, doengine_SetState_Should_Not_Call_OnExit_FirstTime)
     _sut.SetState(_gsId);
 }
 
-TEST_F(utGameStateManager,
-       doengine_SetState_Should_Call_OnEnter_OnExit_Same_State)
+TEST_F(utGameStateManager, doengineSetStateShouldCallOnEnterOnExitSameState)
 {
     EXPECT_CALL(_gsMock, OnExit());
     EXPECT_CALL(_gsMock, OnEnter()).Times(2);
@@ -50,8 +49,7 @@ TEST_F(utGameStateManager,
     _sut.SetState(_gsId);
 }
 
-TEST_F(utGameStateManager,
-       doengine_SetState_Should_Call_OnEnter_OnExit_Change_State)
+TEST_F(utGameStateManager, doengineSetStateShouldCallOnEnterOnExitChangeState)
 {
     const int gsId = 0xDEADBEEF;
     testing::NiceMock<GameStateMock> anotherGsMock;
@@ -67,7 +65,7 @@ TEST_F(utGameStateManager,
     _sut.SetState(gsId);
 }
 
-TEST_F(utGameStateManager, doengine_UpdateState_Should_Call_Update)
+TEST_F(utGameStateManager, doengineUpdateStateShouldCallUpdate)
 {
     float elapsed = 10234.0f;
     EXPECT_CALL(_gsMock, Update(elapsed));
@@ -76,7 +74,7 @@ TEST_F(utGameStateManager, doengine_UpdateState_Should_Call_Update)
     _sut.Update(elapsed);
 }
 
-TEST_F(utGameStateManager, DISABLED_doengine_RemoveState)
+TEST_F(utGameStateManager, DISABLED_doengineRemoveState)
 {
     const int gsId = 0xDEADBEEF;
 
@@ -87,7 +85,7 @@ TEST_F(utGameStateManager, DISABLED_doengine_RemoveState)
     _sut.RemoveState(gsId);
 }
 
-TEST_F(utGameStateManager, doengine_Render)
+TEST_F(utGameStateManager, doengineRender)
 {
     float elapsed = 10234.0f;
     EXPECT_CALL(_gsMock, Render());

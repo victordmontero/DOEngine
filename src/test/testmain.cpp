@@ -20,7 +20,7 @@
 using namespace doengine::mocks;
 using namespace testing;
 
-TEST(mocks_test, DISABLED_get_music_from_mars_test)
+TEST(mocks_test, DISABLED_getMusicFromMarsTest)
 {
     NiceMock<CameraMock> cameraMock;
     NiceMock<MusicHandlerMock> musicHandlerMock;
