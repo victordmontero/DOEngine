@@ -104,7 +104,11 @@ void Window::_CreateNeededInstance()
 
 Window::Window(int w, int h)
 {
-    const int rc = SDL_Init(SDL_INIT_VIDEO);
+    // const int rc =
+    //     SDL_Init(SDL_INIT_VIDEO | SDL_INIT_GAMECONTROLLER |
+    //     SDL_INIT_JOYSTICK);
+
+    const int rc = SDL_Init(SDL_INIT_EVERYTHING);
 
     if (rc != 0)
     {
@@ -128,7 +132,32 @@ Window::Window(int w, int h)
     window_rect.h = h;
     Texture::setRender(render);
     _CreateNeededInstance();
+
+    auto* joyStick = SDL_JoystickOpen(1);
+    auto* controller = SDL_GameControllerOpen(1);
+
+    if (joyStick != nullptr)
+    {
+        SDL_Log("joystick error = [%s]", SDL_GetError());
+    }
+    else
+    {
+        SDL_Log("joystick opened");
+    }
+
+    joyStick = SDL_JoystickOpen(0);
+    controller = SDL_GameControllerOpen(0);
+
+    if (joyStick != nullptr)
+    {
+        SDL_Log("joystick error = [%s]", SDL_GetError());
+    }
+    else
+    {
+        SDL_Log("joystick opened");
+    }
 }
+
 Window::Window()
 {
     const int rc = SDL_Init(SDL_INIT_EVERYTHING);

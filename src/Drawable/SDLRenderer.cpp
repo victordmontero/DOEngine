@@ -1,10 +1,8 @@
 #include "SDLRenderer.h"
 
-
 SDLRenderer::SDLRenderer(SDL_Renderer* nativeRenderer)
     : renderer(nativeRenderer)
 {
-
 }
 
 bool SDLRenderer::isRenderOk()
@@ -19,9 +17,24 @@ void* SDLRenderer::getNativeRenderer()
 
 void SDLRenderer::destroy()
 {
-    if(isRenderOk())
+    if (isRenderOk())
     {
         SDL_DestroyRenderer(renderer);
         renderer = nullptr;
     }
+}
+
+void SDLRenderer::clear()
+{
+    SDL_RenderClear(renderer);
+}
+
+void SDLRenderer::setDrawColor(doengine::Color color)
+{
+    SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
+}
+
+void SDLRenderer::present()
+{
+    SDL_RenderPresent(renderer);
 }

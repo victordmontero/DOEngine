@@ -1,4 +1,4 @@
 #!/usr/bin/bash
 
 # cd build ; make
-cmake --build build -j $(nproc --ignore=1)
+cmake --build build --parallel $(nproc --ignore=1)
