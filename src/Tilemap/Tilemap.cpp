@@ -1,6 +1,5 @@
 #include "Tilemap.h"
 #include "abstract/AbstractWindow.h"
-#include <SDL2/SDL.h>
 #include <fstream>
 #include <stdio.h>
 
@@ -12,5 +11,9 @@ TileMap::TileMap(doengine::AbstractWindow* window)
 }
 
 void TileMap::LoadMapFromArray(std::string strMap, int w, int h)
+{
+}
+
+void TileMap::LoadMapFromArray(std::vector<unsigned> uMap, int w, int h)
 {
 }
