@@ -7,12 +7,10 @@ class Vector
 	T y;
 };
 
-
 template< >
 class Vector<float>
 {
 public:
-
 	float x;
 	float y;
 };
@@ -21,7 +19,6 @@ template< >
 class Vector<int>
 {
 public:
-
 	int x;
 	int y;
 };

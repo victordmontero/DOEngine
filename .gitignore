@@ -23,9 +23,12 @@ bld/
 [Bb]in/
 [Oo]bj/
 [Ll]og/
+[Bb][Uu][Ii][Ll][Dd]/
+**/[Bb][Uu][Ii][Ll][Dd]/
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
+.vscode/
 # Uncomment if you have tasks that create the project's static files in wwwroot
 #wwwroot/
 
@@ -338,6 +341,7 @@ ASALocalRun/
 *.lo
 *.o
 *.obj
+*.gcov
 
 # Precompiled Headers
 *.gch
@@ -373,3 +377,6 @@ install_manifest.txt
 compile_commands.json
 CTestTestfile.cmake
 _deps
+
+#clangd
+.cache/
