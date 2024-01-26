@@ -37,9 +37,11 @@ class TTFText : public Font
 
     void init() override
     {
+        // TODO issue-19
     }
     void destroy() override
     {
+        // TODO issue-19
     }
 
     void setFont(const std::string& path, int fntsize = 23) override;
@@ -48,5 +50,6 @@ class TTFText : public Font
 
     void drawText(const std::string&, int, int) override
     {
+        // TODO issue-19
     }
 };

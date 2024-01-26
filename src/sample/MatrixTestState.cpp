@@ -2,7 +2,6 @@
 #include "Canvas.h"
 #include "TTFText.h"
 #include "Utils.h"
-#include "Window.h"
 
 const char* charset =
     "QWERTYUIOPASDFGHJKLZXCVBNM,./1234567890-=!@#$%^&*()_+*/.\"\'`";
