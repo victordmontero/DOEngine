@@ -83,6 +83,7 @@ add_library(${PROJECT_NAME}
     includes/abstract/Camera.h
     includes/Event.h
     includes/DOEngine.h
+    includes/DOEngine_SDL_includes.h
     includes/abstract/EventHandler.h
     includes/FPSManager.h
     includes/GameObject.h

@@ -20,10 +20,12 @@ add_library(GTest::GTest INTERFACE IMPORTED)
 target_link_libraries(GTest::GTest INTERFACE gtest_main gmock_main)
 
 add_executable(${PROJECT_NAME}
+    fixtures/DoEngineFixture.h
     units/utUtils.cpp
     units/utLinkList.cpp
     units/utGameStateManager.cpp
     units/utFPSManager.cpp
+    units/utEventHandler.cpp
     mocks/GameStateMock.h
     mocks/FPSManagerMock.h
     mocks/CameraMock.h
@@ -43,9 +45,10 @@ add_executable(${PROJECT_NAME}
     ../GameState/GameStateManager.cpp
     ../Network/UDPPacket.cpp
     ../Timer/FPSManager.cpp
+    ../Event/Event.cpp
 )
 
-add_compile_definitions(TESTING)
+add_compile_definitions(DOENGINE_TESTING)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE
     GTest::GTest

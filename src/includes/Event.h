@@ -21,9 +21,12 @@ struct Event
     static void getMousePosition(int* x, int* y);
 
     static void PollEvent(AbstractWindow* window);
-    static void AddKeydownEventListener(KeyDownEvent* ev);
-    static void RemoveKeydownEventListener(KeyDownEvent* ev);
+    static void AddKeyPressEventListener(KeyUpEvent* ev);
+    static void AddKeyPressEventListener(KeyDownEvent* ev);
+    static void RemoveKeyPressEventListener(KeyUpEvent* ev);
+    static void RemoveKeyPressEventListener(KeyDownEvent* ev);
     static void AddMouseEvent(MouseEvent* event);
+    static void RemovedMouseEvent(MouseEvent* event);
 
     static bool mousePressed;
     static bool mouseReleased;

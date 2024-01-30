@@ -1,10 +1,8 @@
 
 #include "Event.h"
-#include "SDL_error.h"
-#include "SDL_joystick.h"
+#include "DOEngine_SDL_includes.h"
 #include "abstract/EventHandler.h"
-#include <SDL_events.h>
-#include <SDL_log.h>
+#include "v2d_vector.h"
 #include <vector>
 
 std::vector<KeyDownEvent*> Event::keydown;
@@ -14,10 +12,7 @@ std::vector<MouseEvent*> Event::mouseEvent;
 std::vector<JoyButtonUpEvent*> Event::joyButtonUpList;
 std::vector<JoyButtonDownEvent*> Event::joyButtonDownList;
 std::vector<JoyButtonTriggerEvent*> Event::joyButtonTriggerList;
-bool Event::mousePressed = false;
-bool Event::mouseReleased = false;
-bool Event::keyDown = false;
-bool Event::keyUp = false;
+
 float Event::timeElapsed = 0.0f;
 
 void Event::PollEvent(AbstractWindow* window)
@@ -35,18 +30,10 @@ void Event::PollEvent(AbstractWindow* window)
         case SDL_KEYDOWN: {
             SDL_Log("Window quit");
             window->Quit();
-            mousePressed = false;
-            mouseReleased = false;
-            keyDown = true;
-            keyUp = false;
             // SDL_Log("SDL_KEYDOWN");
         }
         break;
         case SDL_KEYUP: {
-            mousePressed = false;
-            mouseReleased = false;
-            keyDown = false;
-            keyUp = true;
             ////    SDL_Log("SDL_KEYUP");
         }
         break; /**< Key released */
@@ -59,36 +46,32 @@ void Event::PollEvent(AbstractWindow* window)
         }
         break; /**< Keyboard text input */
         case SDL_MOUSEMOTION: {
-
-            SDL_Point mouse;
+            Point mouse;
             SDL_GetMouseState(&mouse.x, &mouse.y);
-            /// SDL_Log("SDL_MOUSEMOTION x: %ld,  y:%ld", mouse.x, mouse.y);
+
+            SDL_Log("SDL_MOUSEMOTION x: %ld,  y:%ld", mouse.x, mouse.y);
+            SDL_Log("Mouse Count = %ld", Event::mouseEvent.size());
 
             for (auto itMouse : Event::mouseEvent)
             {
-                SDL_Log("Mouse Count = %ld", Event::mouseEvent.size());
-                itMouse->MouseMove(mouse.x, mouse.y);
+                itMouse->MouseMove(event.motion.which, mouse.x, mouse.y);
             }
         }
         break;
         case SDL_MOUSEBUTTONDOWN: {
             ///     SDL_Log("SDL_MOUSEBUTTONDOWN");
-            mousePressed = true;
-            mouseReleased = false;
-            keyDown = false;
-            keyUp = false;
             for (auto it : mouseEvent)
-                it->MouseButtonDown(1);
+                it->MouseButtonDown(
+                    event.button.which,
+                    static_cast<MouseButton>(event.button.button));
         }
         break;
         case SDL_MOUSEBUTTONUP: {
             /// SDL_Log("SDL_MOUSEBUTTONUP");
-            mousePressed = false;
-            mouseReleased = true;
-            keyDown = false;
-            keyUp = false;
+
             for (auto it : mouseEvent)
-                it->MouseButtonUp(1);
+                it->MouseButtonUp(event.button.which, static_cast<MouseButton>(
+                                                          event.button.button));
         }
         break;
         case SDL_MOUSEWHEEL: {
@@ -107,10 +90,6 @@ void Event::PollEvent(AbstractWindow* window)
             SDL_Log("SDL_JOYBUTTONDOWN %d", event.jbutton.button);
             break;
         default:
-            mousePressed = false;
-            mouseReleased = false;
-            keyDown = false;
-            keyUp = false;
             break;
         }
 
@@ -134,22 +113,53 @@ void Event::getMousePosition(int* x, int* y)
     SDL_GetMouseState(x, y);
 }
 
-void Event::AddKeydownEventListener(KeyDownEvent* ev)
+void Event::AddKeyPressEventListener(KeyUpEvent* ev)
+{
+    Event::keyup.emplace_back(ev);
+}
+
+void Event::AddKeyPressEventListener(KeyDownEvent* ev)
 {
     Event::keydown.emplace_back(ev);
 }
 
-void Event::RemoveKeydownEventListener(KeyDownEvent* ev)
+void Event::RemoveKeyPressEventListener(KeyUpEvent* ev)
 {
-    for (auto it : Event::keydown)
+    auto& evts = Event::keyup;
+    for (auto it = evts.begin(); it != evts.end(); ++it)
     {
-        // if (it == ev)
-        //     Event::keydown.erase(*it);
+        if (*it == ev)
+        {
+            evts.erase(it);
+        }
+    }
+}
+
+void Event::RemoveKeyPressEventListener(KeyDownEvent* ev)
+{
+    auto& evts = Event::keydown;
+    for (auto it = evts.begin(); it != evts.end(); ++it)
+    {
+        if (*it == ev)
+        {
+            evts.erase(it);
+        }
     }
 }
 
 void Event::AddMouseEvent(MouseEvent* event)
 {
     Event::mouseEvent.push_back(event);
+    /// SDL_Log("Adding EVent Handler %02x", event);
+}
+
+void Event::RemovedMouseEvent(MouseEvent* event)
+{
+    auto& evts = Event::mouseEvent;
+    for (auto it = evts.begin(); it != evts.end(); ++it)
+    {
+        if (*it == event)
+            evts.erase(it);
+    }
     /// SDL_Log("Adding EVent Handler %02x", event);
 }
