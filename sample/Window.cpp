@@ -241,7 +241,6 @@ doengine::AbstractWindow* Window::Quit()
     /// SDL_Log("running will be toggle to false");
 
     /// destroy();
-
     this->run = false;
     return this;
 }

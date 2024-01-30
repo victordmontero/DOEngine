@@ -1,27 +1,31 @@
 #pragma once
 
-// #include "DOEngine.h"
+#include "abstract/devices/Joypad.h"
+#include "abstract/devices/Keyboard.h"
+#include "abstract/devices/Mouse.h"
+
+using doengine::devices::Joypad;
+using doengine::devices::Keyboard;
+using doengine::devices::Mouse;
 
 class KeyDownEvent
 {
-
   public:
     ~KeyDownEvent()
     {
     }
 
-    virtual void OnKeydown(int code) = 0;
+    virtual void OnKeydown(const Keyboard&) = 0;
 };
 
 class KeyUpEvent
 {
-
   public:
     ~KeyUpEvent()
     {
     }
 
-    virtual void OnKeyup(int code) = 0;
+    virtual void OnKeyup(const Keyboard&) = 0;
 };
 
 class JoyButtonDownEvent
@@ -31,7 +35,7 @@ class JoyButtonDownEvent
     {
     }
 
-    virtual void OnButtonDown(int button) = 0;
+    virtual void OnButtonDown(const Joypad&) = 0;
 };
 
 class JoyButtonUpEvent
@@ -41,7 +45,7 @@ class JoyButtonUpEvent
     {
     }
 
-    virtual void OnButtonUp(int button) = 0;
+    virtual void OnButtonUp(const Joypad&) = 0;
 };
 
 class JoyButtonTriggerEvent
@@ -51,12 +55,11 @@ class JoyButtonTriggerEvent
     {
     }
 
-    virtual void OnButtonTriggered(int button, int bias) = 0;
+    virtual void OnButtonTriggered(const Joypad&) = 0;
 };
 
 class MouseMovementEvent
 {
-
   public:
     ~MouseMovementEvent()
     {
@@ -67,7 +70,6 @@ class MouseMovementEvent
 
 class MouseStopEvent
 {
-
   public:
     ~MouseStopEvent()
     {
@@ -78,7 +80,6 @@ class MouseStopEvent
 
 class TouchEventDown
 {
-
   public:
     ~TouchEventDown()
     {
@@ -89,7 +90,6 @@ class TouchEventDown
 
 class TouchUpDown
 {
-
   public:
     ~TouchUpDown()
     {
@@ -108,25 +108,13 @@ class OnMessageQueue
     virtual void HandleByDescriptor(int fd, void* buffer) = 0;
 };
 
-enum class MouseButton : unsigned char
-{
-    Left = 1,
-    Middle,
-    Right,
-    X1,
-    X2
-};
-
 struct MouseEvent
 {
-
     virtual ~MouseEvent()
     {
     }
 
-    virtual void MouseMove(unsigned int which, int x, int y) = 0;
-
-    virtual void MouseButtonDown(unsigned int which, MouseButton button) = 0;
-
-    virtual void MouseButtonUp(unsigned int which, MouseButton button) = 0;
+    virtual void MouseMove(const Mouse&) = 0;
+    virtual void MouseButtonDown(const Mouse&) = 0;
+    virtual void MouseButtonUp(const Mouse&) = 0;
 };

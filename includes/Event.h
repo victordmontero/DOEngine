@@ -1,24 +1,26 @@
 #pragma once
 
-// #include "DOEngine.h"
 #include "abstract/AbstractWindow.h"
 #include "abstract/EventHandler.h"
+#include "abstract/devices/Joypad.h"
+#include <map>
 #include <vector>
 
 using doengine::AbstractWindow;
+using doengine::devices::Joypad;
 
 struct Event
 {
     static float timeElapsed;
     static std::vector<KeyDownEvent*> keydown;
     static std::vector<KeyUpEvent*> keyup;
-    static std::vector<MouseMovementEvent*> mouse;
     static std::vector<MouseEvent*> mouseEvent;
     static std::vector<JoyButtonUpEvent*> joyButtonUpList;
     static std::vector<JoyButtonDownEvent*> joyButtonDownList;
     static std::vector<JoyButtonTriggerEvent*> joyButtonTriggerList;
+    static std::map<int, Joypad*> joypadsConnected;
 
-    static void getMousePosition(int* x, int* y);
+    static int getMousePosition(int* x, int* y);
 
     static void PollEvent(AbstractWindow* window);
     static void AddKeyPressEventListener(KeyUpEvent* ev);
@@ -27,9 +29,10 @@ struct Event
     static void RemoveKeyPressEventListener(KeyDownEvent* ev);
     static void AddMouseEvent(MouseEvent* event);
     static void RemovedMouseEvent(MouseEvent* event);
-
-    static bool mousePressed;
-    static bool mouseReleased;
-    static bool keyDown;
-    static bool keyUp;
+    static void AddJoypadEventListener(JoyButtonUpEvent* ev);
+    static void AddJoypadEventListener(JoyButtonDownEvent* ev);
+    static void AddJoypadEventListener(JoyButtonTriggerEvent* ev);
+    static void RemoveJoypadEventListener(JoyButtonUpEvent* ev);
+    static void RemoveJoypadEventListener(JoyButtonDownEvent* ev);
+    static void RemoveJoypadEventListener(JoyButtonTriggerEvent* ev);
 };
