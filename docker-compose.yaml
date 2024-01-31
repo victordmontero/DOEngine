@@ -1,0 +1,9 @@
+version: "24.0.7"
+services:
+  doengine:
+    build: .
+    user: "${UID:-1000}:${GID:-1000}"
+    stdin_open: true # makes sure that container keeps running
+    tty: true # makes sure that container keeps running
+    volumes:
+      - .:/home/doengine
