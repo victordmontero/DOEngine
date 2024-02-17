@@ -83,6 +83,7 @@ add_library(${PROJECT_NAME}
     includes/abstract/Camera.h
     includes/Event.h
     includes/DOEngine.h
+    includes/DOEngine_SDL_includes.h
     includes/abstract/EventHandler.h
     includes/FPSManager.h
     includes/GameObject.h
@@ -98,14 +99,6 @@ add_library(${PROJECT_NAME}
     includes/Tilemap.h
     includes/UDPPacket.h
     includes/Vector.h
-    # includes/Window.h
-
-    # Sample APP
-    # sample/CanvasTestState.cpp
-    # sample/MatrixTestState.cpp
-    # sample/SortedState.cpp
-
-    # main.cpp
 )
 
 target_link_options(${PROJECT_NAME} PRIVATE
@@ -117,37 +110,6 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
     SDL2_mixer)
 
 add_executable(${PROJECT_NAME}-sample
-    # Timer/FPSManager.cpp
-    # Tilemap/Tilemap.cpp
-    # Texture/Texture.cpp
-    # GameState/GameStateManager.cpp
-    # GameObject/GameObject.cpp
-    # Font/TTFText.cpp
-    # Event/Event.cpp
-    # Drawable/Canvas.cpp
-    # Drawable/SDLRenderer.cpp
-
-    # includes/defines.h
-    # includes/abstract/Camera.h
-    # includes/Event.h
-    # includes/DOEngine.h
-    # includes/abstract/EventHandler.h
-    # includes/FPSManager.h
-    # includes/GameObject.h
-    # includes/GameState.h
-    # includes/GameStateManager.h
-    # includes/Grids.h
-    # includes/LinkList.h
-    # includes/sort.h
-    # includes/Sprite.h
-    # includes/Utils.h
-    # includes/Texture.h
-    # includes/Tile.h
-    # includes/Tilemap.h
-    # includes/UDPPacket.h
-    # includes/Vector.h
-    # includes/Window.h
-
     # Sample APP
     sample/Window.h
     sample/Window.cpp

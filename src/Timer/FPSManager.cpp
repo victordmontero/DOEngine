@@ -1,9 +1,5 @@
 
-#ifdef TESTING
-#include "mocks/SDLMock.h"
-#else
-#include <SDL2/SDL.h>
-#endif
+#include "DOEngine_SDL_includes.h"
 
 #include "FPSManager.h"
 

@@ -1,11 +1,5 @@
 #include "Color.h"
 #include "Utils.h"
-#include "mocks/CameraMock.h"
-#include "mocks/MusicHandlerMock.h"
-#include "mocks/ParticleMock.h"
-#include "mocks/RendererMock.h"
-#include <gmock/gmock-nice-strict.h>
-#include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
 namespace doengine::ut

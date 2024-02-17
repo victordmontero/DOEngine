@@ -58,9 +58,9 @@ class OnMessageQueueMock : public OnMessageQueue
 
 struct MouseEventMock : public MouseEvent
 {
-    MOCK_METHOD(void, MouseMove, (int, int), (override));
-    MOCK_METHOD(void, MouseButtonDown, (int), (override));
-    MOCK_METHOD(void, MouseButtonUp, (int), (override));
+    MOCK_METHOD(void, MouseMove, (unsigned int, int, int), (override));
+    MOCK_METHOD(void, MouseButtonDown, (unsigned int, MouseButton), (override));
+    MOCK_METHOD(void, MouseButtonUp, (unsigned int, MouseButton), (override));
 };
 
 } // namespace doengine::mocks

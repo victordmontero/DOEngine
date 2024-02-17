@@ -1,10 +1,8 @@
 #include "GameState.h"
 #include "GameStateManager.h"
+#include "fixtures/DoEngineFixture.h"
 #include "mocks/GameStateMock.h"
-#include "gmock/gmock.h"
 #include <cstddef>
-#include <gmock/gmock.h>
-#include <gtest/gtest.h>
 
 namespace doengine::ut
 {
