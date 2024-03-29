@@ -26,6 +26,8 @@ endif()
 
 include(FetchContent)
 
+
+message("Fecthing SDL Source code")
 # SDL2
 # SET(SDL_SHARED FALSE)
 FetchContent_Declare(
@@ -66,18 +68,18 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(sdl_mixer)
 
 include_directories(${CMAKE_SOURCE_DIR}/includes)
-
+message("END Fecthing SDL Source code")
 add_library(${PROJECT_NAME}
     # Window/Window.cpp
-    Timer/FPSManager.cpp
-    Tilemap/Tilemap.cpp
-    Texture/Texture.cpp
-    GameState/GameStateManager.cpp
-    GameObject/GameObject.cpp
-    Font/TTFText.cpp
-    Event/Event.cpp
-    Drawable/Canvas.cpp
-    Drawable/SDLRenderer.cpp
+    src/Timer/FPSManager.cpp
+    src/Tilemap/Tilemap.cpp
+    src/Texture/Texture.cpp
+    src/GameState/GameStateManager.cpp
+    src/GameObject/GameObject.cpp
+    src/Font/TTFText.cpp
+    src/Event/Event.cpp
+    src/Drawable/Canvas.cpp
+    src/Drawable/SDLRenderer.cpp
 
     includes/defines.h
     includes/abstract/Camera.h
@@ -116,8 +118,7 @@ add_executable(${PROJECT_NAME}-sample
     sample/CanvasTestState.cpp
     sample/MatrixTestState.cpp
     sample/SortedState.cpp
-
-    main.cpp
+    sample/main.cpp
 )
 
 target_link_options(${PROJECT_NAME}-sample PRIVATE

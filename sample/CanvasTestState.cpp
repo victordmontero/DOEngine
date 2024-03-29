@@ -114,45 +114,4 @@ void CanvasTestState::Render()
     pencil1->update();
     pencil1->clearCanvas();
 }
-
-void CanvasTestState::MouseMove(int x, int y)
-{
-    /// int x= 0;
-    /// int y=0;
-    /// Event::getMousePosition(&x,&y);
-
-    for (int i = 0; i < 10; i++)
-    {
-        Particle* particle = new Particle(this->pencil1);
-        particle->size = getRandomInt(20, 30);
-        particle->rect.x = getRandomInt(x - 5, x + 5);
-        particle->rect.y = getRandomInt(y - 5, y + 5);
-        int sx = getRandomInt(1, 2) == 2 ? -1 : 1;
-        int sy = getRandomInt(1, 2) == 2 ? -1 : 1;
-        particle->sx *= sx;
-        particle->sy *= sy;
-
-        particles.emplace_back(particle);
-    }
-}
-void CanvasTestState::MouseButtonDown(int which)
-{
-    SDL_Log("Button down");
-    int x = 0;
-    int y = 0;
-    Event::getMousePosition(&x, &y);
-
-    for (int i = 0; i < 10; i++)
-    {
-        Particle* particle = new Particle(this->pencil1);
-        particle->size = getRandomInt(20, 30);
-        particle->rect.x = getRandomInt(x - 5, x + 5);
-        particle->rect.y = getRandomInt(y - 5, y + 5);
-        int sx = getRandomInt(1, 2) == 2 ? -1 : 1;
-        int sy = getRandomInt(1, 2) == 2 ? -1 : 1;
-        particle->sx *= sx;
-        particle->sy *= sy;
-
-        particles.emplace_back(particle);
-    }
-}
+ 

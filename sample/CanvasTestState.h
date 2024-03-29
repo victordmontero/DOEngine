@@ -21,11 +21,8 @@ class CanvasTestState : public GameState, MouseEvent
     virtual void Update(float elapsed) override;
     virtual void Render() override;
 
-    virtual void MouseMove(int x, int y) override;
-    virtual void MouseButtonDown(int which) override;
-    virtual void MouseButtonUp(int which) override
-    {
-    }
+ 
+   
 
   private:
     doengine::AbstractWindow* window;

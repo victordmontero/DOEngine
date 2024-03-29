@@ -91,8 +91,8 @@ void Window::_CreateNeededInstance()
     gsm.reset(new GameStateManager(this));
     fps_handler.get()->setFPS(30);
 
-    gsm.get()->AddState(1, new CanvasTestState(window));
-    gsm.get()->AddState(2, new MatrixTestState(window));
+    //gsm.get()->AddState(1, new CanvasTestState(window));
+    //gsm.get()->AddState(2, new MatrixTestState(window));
     gsm.get()->AddState(3, new SortedState(window));
 
     gsm.get()->SetState(3);
