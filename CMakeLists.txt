@@ -21,13 +21,14 @@ set(SDL2TTF_VENDORED TRUE)
 
 if(DOENGINE_TESTS)
     enable_testing()
-    add_subdirectory(test)
+    add_subdirectory(src/test)
 endif()
 
 include(FetchContent)
 
 
 message("Fecthing SDL Source code")
+
 # SDL2
 # SET(SDL_SHARED FALSE)
 FetchContent_Declare(
@@ -67,10 +68,12 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(sdl_mixer)
 
-include_directories(${CMAKE_SOURCE_DIR}/includes)
 message("END Fecthing SDL Source code")
+
+
+include_directories(${CMAKE_SOURCE_DIR}/includes)
+
 add_library(${PROJECT_NAME}
-    # Window/Window.cpp
     src/Timer/FPSManager.cpp
     src/Tilemap/Tilemap.cpp
     src/Texture/Texture.cpp
@@ -80,6 +83,9 @@ add_library(${PROJECT_NAME}
     src/Event/Event.cpp
     src/Drawable/Canvas.cpp
     src/Drawable/SDLRenderer.cpp
+    src/Event/SDLMouse.cpp
+    src/Event/SDLKeyboard.cpp
+    src/Event/SDLJoypad.cpp
 
     includes/defines.h
     includes/abstract/Camera.h
@@ -101,10 +107,11 @@ add_library(${PROJECT_NAME}
     includes/Tilemap.h
     includes/UDPPacket.h
     includes/Vector.h
+    includes/abstract/devices/Mouse.h
+    includes/abstract/devices/Keyboard.h
+    includes/abstract/devices/Joypad.h
 )
 
-target_link_options(${PROJECT_NAME} PRIVATE
-    "LINKER:-static" -static-libgcc -static-libstdc++)
 target_link_libraries(${PROJECT_NAME} PRIVATE
     SDL2::SDL2
     SDL2::SDL2main
@@ -121,8 +128,6 @@ add_executable(${PROJECT_NAME}-sample
     sample/main.cpp
 )
 
-target_link_options(${PROJECT_NAME}-sample PRIVATE
-    "LINKER:-static" -static-libgcc -static-libstdc++)
 target_link_libraries(${PROJECT_NAME}-sample PRIVATE
     ${PROJECT_NAME}
     SDL2::SDL2

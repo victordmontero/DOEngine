@@ -1,19 +1,13 @@
 #pragma once
-// #include "DOEngine.h"
-#include "abstract/AbstractWindow.h"
 
-extern "C"
-{
-#include <SDL.h>
-#include <SDL_image.h>
-#include <SDL_ttf.h>
-}
+#include "DOEngine_SDL_includes.h"
+#include "abstract/AbstractWindow.h"
+#include "v2d_vector.h"
 
 using doengine::AbstractWindow;
 
 typedef SDL_Rect Rect;
 typedef SDL_Color Color;
-typedef SDL_Point Point;
 
 void DrawPoint(const Point& point, const Color& color, AbstractWindow* window);
 void DrawLine(const Point& p1, const Point& p2, const Color& color,
