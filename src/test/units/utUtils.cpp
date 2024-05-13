@@ -5,16 +5,37 @@
 namespace doengine::ut
 {
 
-TEST(UtilsTests, DISABLED_GetPorcentageTestsInteger)
+TEST(UtilsTests, GetPorcentageTestsInteger)
 {
-    int expected = 782U;
-    EXPECT_EQ(expected, getPercentageFrom(78U, 1003U));
+    int expected = 7U;
+    EXPECT_EQ(expected, getPercentageFrom(10U, 70U));
 
-    expected = 224474U;
-    EXPECT_EQ(expected, getPercentageFrom(65U, 345345U));
+    expected = -4;
+    EXPECT_EQ(expected, getPercentageFrom(-10, 40));
 
-    expected = 11250U;
-    EXPECT_EQ(expected, getPercentageFrom(150U, 7500U));
+    expected = INT32_MAX;
+    EXPECT_EQ(expected, getPercentageFrom(INT32_MAX, INT32_MAX));
+
+    expected = INT32_MIN;
+    EXPECT_EQ(expected, getPercentageFrom(INT32_MIN, INT32_MIN));
+}
+
+TEST(UtilsTests, GetPorcentageTestsFloat)
+{
+    float expected = 7.3500000000000005;
+    EXPECT_FLOAT_EQ(expected, getPercentageFrom(7.0f, 105.0f));
+
+    expected = 0.0f;
+    EXPECT_FLOAT_EQ(expected, getPercentageFrom(0.0f, 154.0f));
+
+    expected = -11.13;
+    EXPECT_FLOAT_EQ(expected, getPercentageFrom(-10.6f, 105.0f));
+
+    expected = FLT_MAX;
+    EXPECT_FLOAT_EQ(expected, getPercentageFrom(FLT_MAX, FLT_MAX));
+
+    expected = FLT_MIN;
+    EXPECT_FLOAT_EQ(expected, getPercentageFrom(FLT_MIN, FLT_MIN));
 }
 
 TEST(UtilsTests, GetRandomNumberIsBeetweenRangeInteger)
