@@ -13,7 +13,7 @@ class SDLJoypad : public Joypad
 {
   public:
 
-    static constexpr std::string DEFAULT_JOYPAD_NAME = "NOT_FOUND";
+    static const std::string DEFAULT_JOYPAD_NAME;
 
     SDLJoypad(SDL_Joystick* joystick);
 
