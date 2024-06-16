@@ -11,8 +11,10 @@ endif()
 
 # set(CMAKE_EXPORT_COMPILE_COMMANDS true)
 
+set(FETCH_SDL_FROM_GIT true)
+set(DOENGINE_PREFERED_LANGUAGE 11)
 set(CMAKE_BUILD_TYPE Debug)
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD ${DOENGINE_PREFERED_LANGUAGE})
 
 set(SDL2IMAGE_INSTALL OFF)
 set(BUILD_SHARED_LIBS FALSE)
@@ -24,52 +26,11 @@ if(DOENGINE_TESTS)
     add_subdirectory(src/test)
 endif()
 
-include(FetchContent)
-
-
-message("Fecthing SDL Source code")
-
-# SDL2
-# SET(SDL_SHARED FALSE)
-FetchContent_Declare(
-    sdl_lib
-    GIT_REPOSITORY https://github.com/libsdl-org/SDL.git
-    GIT_TAG release-2.28.2
-)
-
-FetchContent_MakeAvailable(sdl_lib)
-
-# SDL2_image
-FetchContent_Declare(
-    sdl_image
-    GIT_REPOSITORY https://github.com/libsdl-org/SDL_image.git
-    GIT_SUBMODULES external/
-    GIT_TAG release-2.6.3
-)
-
-FetchContent_MakeAvailable(sdl_image)
-
-# SDL2_ttf
-FetchContent_Declare(
-    sdl_ttf
-    GIT_REPOSITORY https://github.com/libsdl-org/SDL_ttf.git
-    GIT_TAG release-2.20.2
-)
-
-FetchContent_MakeAvailable(sdl_ttf)
-
-# SDL2_mixer
-SET(SDL2MIXER_VENDORED TRUE)
-FetchContent_Declare(
-    sdl_mixer
-    GIT_REPOSITORY https://github.com/libsdl-org/SDL_mixer.git
-    GIT_TAG release-2.6.3
-)
-
-FetchContent_MakeAvailable(sdl_mixer)
-
-message("END Fecthing SDL Source code")
-
+if(FETCH_SDL_FROM_GIT)
+   include(cmake-module/fetchSDLProjectFromSource.cmake)
+else()
+    message("WARNING: SDL Would the Machine Installed Version")
+endif()
 
 include_directories(${CMAKE_SOURCE_DIR}/includes)
 
@@ -118,21 +79,32 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
     SDL2_ttf SDL2_image
     SDL2_mixer)
 
+
+
+set(DOENGINE_LIBRARIES )
+if(FETCH_SDL_FROM_GIT)
+  set(DOENGINE_LIBRARIES ${DOENGINE_LIBRARIES} 
+        SDL2::SDL2
+        SDL2::SDL2main
+        SDL2_ttf SDL2_image
+        SDL2_mixer
+  )    
+else()
+    set(DOENGINE_LIBRARIES ${DOENGINE_LIBRARIES} 
+        SDL2
+        SDL2main
+        SDL2_ttf SDL2_image
+        SDL2_mixer
+    )  
+endif()
+
 add_executable(${PROJECT_NAME}-sample
-    # Sample APP
-    sample/Window.h
-    sample/Window.cpp
-    sample/CanvasTestState.cpp
-    sample/MatrixTestState.cpp
-    sample/SortedState.cpp
-    sample/main.cpp
+   sample/ignored_main.cpp 
 )
 
 target_link_libraries(${PROJECT_NAME}-sample PRIVATE
     ${PROJECT_NAME}
-    SDL2::SDL2
-    SDL2::SDL2main
-    SDL2_ttf SDL2_image
-    SDL2_mixer)
+    ${DOENGINE_LIBRARIES}
+)
 
 # install(TARGETS ${PROJECT_NAME} DESTINATION /home/afl/Desktop/doengine )
