@@ -32,7 +32,10 @@ class TTFText : public Font
 
     void setColor(doengine::Color color) override
     {
-        this->color = static_cast<SDL_Color>(color.rgba);
+        this->color.r = color.r;
+        this->color.g = color.g;
+        this->color.b = color.b;
+        this->color.a = color.a;
     }
 
     void init() override
