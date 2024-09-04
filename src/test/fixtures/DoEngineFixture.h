@@ -1,6 +1,6 @@
 #pragma once
 
-#include "mocks/AbstractWindowMock.h"
+///#include "mocks/WindowManagerMock.h"
 #include "mocks/SDLMock.h"
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
@@ -14,7 +14,7 @@ namespace doengine::fixture
 class DoEngineFixture : public testing::Test
 {
   public:
-    DoEngineFixture() : _sdlMock(), _windowMock()
+    DoEngineFixture() : _sdlMock() ///, _windowMock()
     {
         SetSDLMock(&_sdlMock);
 
@@ -26,6 +26,6 @@ class DoEngineFixture : public testing::Test
     }
 
     NiceMock<mocks::SDLMock> _sdlMock;
-    NiceMock<mocks::AbstractWindowMock> _windowMock;
+    /// NiceMock<mocks::WindowManagerMock> _windowMock;
 };
 } // namespace doengine::fixture
