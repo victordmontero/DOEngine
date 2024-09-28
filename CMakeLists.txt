@@ -11,7 +11,7 @@ endif()
 
 # set(CMAKE_EXPORT_COMPILE_COMMANDS true)
 
-set(FETCH_SDL_FROM_GIT true)
+set(FETCH_SDL_FROM_GIT false)
 set(DOENGINE_PREFERED_LANGUAGE 11)
 set(CMAKE_BUILD_TYPE Debug)
 set(CMAKE_CXX_STANDARD ${DOENGINE_PREFERED_LANGUAGE})
@@ -38,6 +38,7 @@ include_directories(${CMAKE_SOURCE_DIR}/includes)
 
 # message("END Fecthing SDL Source code")
 set(DOENGINE_SRC
+includes/DS.h
     includes/WindowManager.h
      includes/Renderer.h
      src/Application/Geometric.cpp
@@ -93,19 +94,11 @@ set(DOENGINE_SRC
       includes/Mouse.h
       includes/Keyboard.h
       includes/Joypad.h
-
-
 )
 
 add_library(${PROJECT_NAME}
   ${DOENGINE_SRC}
 )
-
-target_link_libraries(${PROJECT_NAME} PRIVATE
-    SDL2::SDL2
-    SDL2::SDL2main
-    SDL2_ttf SDL2_image
-    SDL2_mixer)
 
 set(DOENGINE_LIBRARIES )
 if(FETCH_SDL_FROM_GIT)
@@ -124,13 +117,20 @@ else()
     )  
 endif()
 
+
+target_link_libraries(${PROJECT_NAME} PRIVATE ${DOENGINE_LIBRARIES})
+
 add_executable(${PROJECT_NAME}-sample
    sample/ignored_main.cpp 
 )
 
+
+# to build sample needs 
+# Zip support, ubuntu sudo apt-get install libzip-dev
 target_link_libraries(${PROJECT_NAME}-sample PRIVATE
     ${PROJECT_NAME}
     ${DOENGINE_LIBRARIES}
+ 
 )
 
 # install(TARGETS ${PROJECT_NAME} DESTINATION /home/afl/Desktop/doengine )

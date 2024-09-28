@@ -5,6 +5,26 @@
 #include <map>
 #include <memory>
 #include <string>
+struct PongState : public GameState
+{
+    virtual void OnEnter()
+    {
+    }
+    virtual void OnExit()
+    {
+    }
+    virtual void Update(float elapsed)
+    {
+    }
+    virtual void Render()
+    {
+    }
+};
+
+enum SampleStateId : int
+{
+    pongStateID = 1
+};
 
 struct PongState : public GameState
 {

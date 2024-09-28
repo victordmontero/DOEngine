@@ -13,7 +13,7 @@ using doengine::mocks::GameStateMock;
 class utGameStateManager : public ::testing::Test
 {
   public:
-    utGameStateManager() : _sut(nullptr), _gsId(0xCAFEBABE), _gsMock()
+    utGameStateManager() : _gsId(0xCAFEBABE)
     {
     }
 
