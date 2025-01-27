@@ -37,6 +37,7 @@ class SDLTTFText : public NativeTextRenderer
     virtual void DrawText(const char* text, int x, int y);
     virtual Texture* createText(const std::string& text);
     virtual void getTextSize(const std::string& text, int* w, int* h);
+    virtual void wrapText(const char* text, int maxWidth, char* wrappedText);
 };
 
 }; // namespace doengine

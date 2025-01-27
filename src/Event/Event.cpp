@@ -20,6 +20,7 @@ std::vector<JoyButtonUpEvent*> Event::joyButtonUpList;
 std::vector<JoyButtonDownEvent*> Event::joyButtonDownList;
 std::vector<JoyButtonTriggerEvent*> Event::joyButtonTriggerList;
 std::map<int, Joypad*> Event::joypadsConnected;
+std::unordered_map<unsigned char, bool> Event::keys_pressed;
 
 float Event::timeElapsed = 0.0f;
 
@@ -36,6 +37,7 @@ void Event::PollEvent()
         }
         case SDL_KEYDOWN: {
             //// SDL_Log("SDL_KEYDOWN");
+            keys_pressed[event.key.keysym.scancode]=true; ///(event.key.keysym.scancode);
             SDLKeyboard keyboard(event.key.keysym.scancode);
             for (auto itKeyboard : Event::keydown)
                 itKeyboard->OnKeydown(keyboard);
@@ -43,6 +45,7 @@ void Event::PollEvent()
         break;
         case SDL_KEYUP: {
             ///// SDL_Log("SDL_KEYUP");
+            keys_pressed[event.key.keysym.scancode]=false;
             SDLKeyboard keyboard;
 
             for (auto itKeyboard : Event::keyup)
@@ -103,13 +106,13 @@ void Event::PollEvent()
         }
         break;
         case SDL_MOUSEWHEEL: {
-            /// SDL_Log("SDL_MOUSEWHEEL");
+            SDL_Log("SDL_MOUSEWHEEL");
         }
         break;
         case SDL_JOYAXISMOTION:
         case SDL_CONTROLLERAXISMOTION:
-            /// SDL_Log("SDL_CONTROLLERAXISMOTION Axis %d, Value %d",
-            ///        event.jaxis.axis, event.jaxis.value);
+            SDL_Log("SDL_CONTROLLERAXISMOTION Axis %d, Value %d",
+                   event.jaxis.axis, event.jaxis.value);
 
             for (auto it : joyButtonTriggerList)
             {
@@ -119,7 +122,7 @@ void Event::PollEvent()
             }
             break;
         case SDL_JOYBUTTONUP:
-            /////// SDL_Log("SDL_JOYBUTTONUP  %d", event.jbutton.button);
+             SDL_Log("SDL_JOYBUTTONUP  %d", event.jbutton.button);
 
             for (auto it : joyButtonUpList)
             {
@@ -129,7 +132,7 @@ void Event::PollEvent()
             }
             break;
         case SDL_JOYBUTTONDOWN:
-            ////// SDL_Log("SDL_JOYBUTTONDOWN %d", event.jbutton.button);
+             SDL_Log("SDL_JOYBUTTONDOWN %d", event.jbutton.button);
 
             for (auto it : joyButtonDownList)
             {
@@ -139,7 +142,7 @@ void Event::PollEvent()
             }
             break;
         case SDL_JOYDEVICEREMOVED: {
-            ///// SDL_Log("SDL_JOYDEVICEREMOVED  %d", event.jbutton.which);
+            SDL_Log("SDL_JOYDEVICEREMOVED  %d", event.jbutton.which);
 
             auto joypad = joypadsConnected[event.jdevice.which];
 
@@ -181,6 +184,11 @@ int Event::getMousePosition(int* x, int* y)
     return SDL_GetMouseState(x, y);
 }
 
+int Event::getMousePosition(Point *point)
+{
+    return SDL_GetMouseState(&point->x, &                                                                                                                                                                                                                                                                                                                                           point->y);
+}
+
 void Event::AddKeyPressEventListener(KeyUpEvent* ev)
 {
     Event::keyup.push_back(ev);
@@ -189,6 +197,10 @@ void Event::AddKeyPressEventListener(KeyUpEvent* ev)
 void Event::AddKeyPressEventListener(KeyDownEvent* ev)
 {
     Event::keydown.push_back(ev);
+}
+
+bool Event::getLastKeyPressed(int scancode){
+  return keys_pressed[scancode];
 }
 
 void Event::RemoveKeyPressEventListener(KeyUpEvent* ev)

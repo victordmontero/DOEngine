@@ -91,4 +91,59 @@ Texture* SDLTTFText::createText(const std::string& text)
 {
 }
 
+ 
+void SDLTTFText::wrapText(const char* text, int maxWidth, char* wrappedText) 
+{
+    const char* current = text;
+    const char* wordStart;
+    char line[256] = "";
+    char temp[256] = "";
+    int width = 0;
+
+    while (*current) {
+        wordStart = current;
+
+        // Find the end of the current word
+        while (*current && *current != ' ' && *current != '\n') {
+            current++;
+        }
+
+        // Copy the word to a temporary buffer
+        strncpy(temp, wordStart, current - wordStart);
+        temp[current - wordStart] = '\0';
+
+        // Check the width of the line if the word is added
+        char testLine[256];
+        snprintf(testLine, sizeof(testLine), "%s %s", line, temp);
+        TTF_SizeText(font, testLine, &width, NULL);
+
+        if (width > maxWidth) {
+            // Add the current line to the wrapped text
+            strcat(wrappedText, line);
+            strcat(wrappedText, "\n");
+
+            // Start a new line with the current word
+            strcpy(line, temp);
+        } else {
+            // Add the word to the current line
+            if (*line) {
+                strcat(line, " ");
+            }
+            strcat(line, temp);
+        }
+
+        // Move to the next word
+        if (*current == ' ') {
+            current++;
+        }
+    }
+
+    // Add the last line to the wrapped text
+    if (*line) {
+        strcat(wrappedText, line);
+        strcat(wrappedText, "\n");
+    }
+}
+
+
 }; // namespace doengine

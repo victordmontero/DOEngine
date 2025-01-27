@@ -28,4 +28,11 @@ Texture* TTFText::createText(const std::string& text)
     return nativeRenderer->createText(text);
 }
 
+void TTFText::wrapText(const char* text, int maxWidth, char* wrappedText)
+{
+    nativeRenderer->wrapText(text,maxWidth,wrappedText);
+    return ;
+}
+ 
+
 } // namespace doengine

@@ -24,6 +24,9 @@ struct Rect
     Rect(int w, int h) : x{0}, y{0}, w{w}, h{h}
     {
     }
+    Rect(int x, int y,int w, int h) : x{x}, y{y}, w{w}, h{h}
+    {
+    }
 
     inline int left() const
     {

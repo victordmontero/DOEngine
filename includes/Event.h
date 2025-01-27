@@ -1,13 +1,16 @@
 #pragma once
 #include <vector>
+#include <unordered_map>
 // #include "DOEngine.h"
 #include "Application.h"
 #include "EventHandler.h"
+#include "Geometric.h"
 namespace doengine
 {
 struct Event
 {
     static float timeElapsed;
+    static std::unordered_map<unsigned char, bool> keys_pressed;
     static std::vector<KeyDownEvent*> keydown;
     static std::vector<KeyUpEvent*> keyup;
     static std::vector<MouseEvent*> mouseEvent;
@@ -17,6 +20,9 @@ struct Event
     static std::map<int, Joypad*> joypadsConnected;
 
     static int getMousePosition(int* x, int* y);
+    static int getMousePosition(Point *point);
+    static bool getLastKeyPressed(int scancode);
+
 
     static void PollEvent();
     static void AddKeyPressEventListener(KeyUpEvent* ev);

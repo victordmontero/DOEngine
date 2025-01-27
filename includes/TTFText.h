@@ -25,6 +25,7 @@ class TTFText
     void setFont(const std::string& path, int fntsize);
     void DrawText(const char* text, int x, int y);
     Texture* createText(const std::string& text);
+    void   wrapText(const char* text, int maxWidth, char* wrappedText);
 };
 
 } // namespace doengine

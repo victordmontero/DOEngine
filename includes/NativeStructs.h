@@ -33,6 +33,7 @@ struct NativeTextRenderer
     virtual void setForegroundColor(doengine::Color color) = 0;
     virtual void setBackgroundColor(doengine::Color color) = 0;
     virtual Texture* createText(const std::string& text) = 0;
+    virtual void wrapText(const char* text, int maxWidth, char* wrappedText) =0;
 };
 
 } // namespace doengine

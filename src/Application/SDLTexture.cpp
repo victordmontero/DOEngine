@@ -103,7 +103,7 @@ int SDLTexture::getWidth()
 }
 int SDLTexture::getHeight()
 {
-    size.y;
+    return size.y;
 }
 
 NativeTexture* SDLTexture::subTexture(Rect clipset)

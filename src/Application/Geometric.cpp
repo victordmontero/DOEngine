@@ -4,10 +4,14 @@
 namespace doengine
 {
 
+
+
 bool checkCollisionPointVsRect(const Rect& rect, const Point point)
 {
-    return (point.x >= rect.x && point.y >= rect.y && point.y <= rect.h &&
-            point.x <= rect.w);
+    return (point.x >= rect.x &&
+            point.x <= rect.x + rect.w &&
+            point.y >= rect.y &&
+            point.y <= rect.y + rect.h);
 }
 
 bool checkCollision(const Rect& rect1, const Rect& rect2)
