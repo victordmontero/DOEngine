@@ -57,7 +57,6 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    
 
     // Wait until the music finishes playing
     while (Mix_PlayingMusic()) {

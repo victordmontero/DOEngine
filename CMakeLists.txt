@@ -59,6 +59,7 @@ includes/DS.h
      src/Event/SDLMouse.cpp
      src/Event/SDLKeyboard.cpp
      src/Event/SDLJoypad.cpp      
+     src/Music/SDLMusicHandler.cpp      
 
      src/GameObject/GameObject.cpp
       src/Font/TTFText.cpp
@@ -94,6 +95,8 @@ includes/DS.h
       includes/Mouse.h
       includes/Keyboard.h
       includes/Joypad.h
+      includes/MusicHandler.h
+      includes/SDLMusicHandler.h
 )
 
 add_library(${PROJECT_NAME}
