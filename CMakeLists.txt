@@ -64,15 +64,18 @@ includes/DS.h
      src/Texture/Texture.cpp
      src/Event/SDLMouse.cpp
      src/Event/SDLKeyboard.cpp
+     src/Event/SDLJoypad.cpp
 
+    src/Music/SDLMusicHandler.cpp
+     src/Music/SDLSoundHandler.cpp
      src/Event/SDLJoypad.cpp
      src/Music/SDLMusicHandler.cpp
-     src/Music/SDLSoundHandler.cpp
      src/GameObject/GameObject.cpp
       src/Font/TTFText.cpp
      src/Event/Event.cpp
       src/Drawable/Gui.cpp
       src/Application/SDLTexture.cpp
+
      src/Application/SDLTexture.h
     includes/NativeStructs.h
     includes/Geometric.h
@@ -141,7 +144,6 @@ add_executable(${PROJECT_NAME}-sample
 target_link_libraries(${PROJECT_NAME}-sample PRIVATE
     ${PROJECT_NAME}
     ${DOENGINE_LIBRARIES}
- 
 )
 
 # install(TARGETS ${PROJECT_NAME} DESTINATION /home/afl/Desktop/doengine )
