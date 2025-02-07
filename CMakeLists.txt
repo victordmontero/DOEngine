@@ -4,6 +4,7 @@ project(DOENGINE)
 
 option(DOENGINE_COVERAGE "Compile with coverage flags" FALSE)
 option(DOENGINE_TESTS "Compiles and runs tests" FALSE)
+option(DOENGINE_SAMPLES "Compiles samples" TRUE)
 
 if(DOENGINE_COVERAGE)
     include(cmake-module/CodeCoverage.cmake)
@@ -24,6 +25,10 @@ set(SDL2TTF_VENDORED TRUE)
 if(DOENGINE_TESTS)
     enable_testing()
     add_subdirectory(src/test)
+endif()
+
+if(DOENGINE_SAMPLES)
+    add_subdirectory(sample)
 endif()
 
 if(FETCH_SDL_FROM_GIT)

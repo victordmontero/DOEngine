@@ -9,20 +9,20 @@ class MusicHandler
 {
 
   public:
-    virtual void addToList(std::string src) = 0;
+    virtual void addToList(const std::string& src) = 0;
     virtual void playFirst() = 0;
     virtual void playLast() = 0;
     virtual void PlayIndex(int index) = 0;
     virtual void removeIndex(int index) = 0;
-    virtual std::string getPlayMusicName() = 0;
     virtual void pause() = 0;
     virtual void stop() = 0;
+    virtual bool isPlayingMusic() const = 0;
 
     enum class Repeat
     {
-        OnlyThis,
+        OnlyThis = -1,
+        Once,
         All,
-        None,
     };
 
     virtual void setRepeat(Repeat repeat) = 0;
