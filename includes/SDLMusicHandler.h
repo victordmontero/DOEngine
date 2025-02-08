@@ -25,7 +25,8 @@ class SDLMusicHandler : public doengine::MusicHandler
     std::vector<Mix_Music*> musics;
     std::vector<Mix_Chunk*> sounds;
 
-//    bool isPlayingMusic;
+    Repeat repeatTimes;
+
     bool isPlayingSound;
     bool isOk;
 };

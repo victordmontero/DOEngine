@@ -13,11 +13,14 @@ add_executable(Music
     Music.cpp
 )
 
-add_custom_command(
-        OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/gymnopedie-1-erik-satie.mp3
-        COMMAND echo Salsa 
-                ${CMAKE_CURRENT_SOURCE_DIR}/assets/gymnopedie-1-erik-satie.mp3
-                ${CMAKE_CURRENT_BINARY_DIR}/gymnopedie-1-erik-satie.mp3)
+file(COPY ${ASSETS_DIR}
+     DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+
+#add_custom_command(
+#        OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/gymnopedie-1-erik-satie.mp3
+#        COMMAND echo Salsa 
+#                ${CMAKE_CURRENT_SOURCE_DIR}/assets/gymnopedie-1-erik-satie.mp3
+#                ${CMAKE_CURRENT_BINARY_DIR}/gymnopedie-1-erik-satie.mp3)
 # target_link_options(DOSAMPLE PRIVATE
 #     "LINKER:-static" -static-libgcc -static-libstdc++)
 

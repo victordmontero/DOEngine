@@ -1,6 +1,9 @@
 
 #include "Application.h"
+#include "Event.h"
+#include "EventHandler.h"
 #include "GameState.h"
+#include "MusicHandler.h"
 #include "SDLMusicHandler.h"
 #include <algorithm>
 #include <memory>
@@ -8,20 +11,22 @@
 
 using doengine::devices::SDLMusicHandler;
 
-class MusicState : public doengine::GameState
+class MusicState : public doengine::GameState, public doengine::KeyDownEvent
 {
   public:
     virtual void OnEnter()
     {
+        timeInSecs = 90;
+
         auto app = doengine::Application::getApplication();
-        SDL_Log("Entering state");
+        doengine::Event::AddKeyPressEventListener(this);
+
         const std::string MUSIC_NAME =
-            "/home/phenom/Music/gymnopedie-1-erik-satie.mp3";
+            "assets/sounds/gymnopedie-1-erik-satie.mp3";
         musicHandler = new SDLMusicHandler;
         musicHandler->addToList(MUSIC_NAME);
+        musicHandler->setRepeat(doengine::MusicHandler::Repeat::OnlyThis);
         musicHandler->playFirst();
-
-        timeInSecs = 60;
     }
     virtual void OnExit()
     {
@@ -39,15 +44,19 @@ class MusicState : public doengine::GameState
 
         if (timeInSecs-- <= 0)
         {
-            musicHandler->stop();
-            app->Quit();
+            //musicHandler->stop();
+            //app->Quit();
         }
 
         SDL_Delay(1000);
-
     }
     virtual void Render()
     {
+    }
+
+    void OnKeydown(const Keyboard& keyboard) override
+    {
+        SDL_Log("Key %d pressed down", keyboard.getLastKeyPressed());
     }
 
   private:

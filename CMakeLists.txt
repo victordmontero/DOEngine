@@ -22,6 +22,8 @@ set(BUILD_SHARED_LIBS FALSE)
 set(SDL2_DISABLE_INSTALL OFF)
 set(SDL2TTF_VENDORED TRUE)
 
+set(ASSETS_DIR ${CMAKE_SOURCE_DIR}/assets)
+
 if(DOENGINE_TESTS)
     enable_testing()
     add_subdirectory(src/test)
@@ -38,7 +40,6 @@ else()
 endif()
 
 include_directories(${CMAKE_SOURCE_DIR}/includes)
-
 
 
 # message("END Fecthing SDL Source code")
