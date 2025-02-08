@@ -45,7 +45,7 @@ class MusicState : public doengine::GameState, public doengine::KeyDownEvent
         if (timeInSecs-- <= 0)
         {
             //musicHandler->stop();
-            //app->Quit();
+            app->Quit();
         }
 
         SDL_Delay(1000);

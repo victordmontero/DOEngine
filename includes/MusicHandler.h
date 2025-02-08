@@ -9,14 +9,14 @@ class MusicHandler
 {
 
   public:
-    virtual void addToList(const std::string& src) = 0;
+    virtual int addToList(const std::string& src) = 0;
     virtual void playFirst() = 0;
     virtual void playLast() = 0;
     virtual void PlayIndex(int index) = 0;
-    virtual void removeIndex(int index) = 0;
-    virtual void pause() = 0;
-    virtual void stop() = 0;
-    virtual bool isPlayingMusic() const = 0;
+    virtual void removeIndex(const int index) = 0;
+    virtual void pause(const int) = 0;
+    virtual void stop(const int) = 0;
+    virtual bool isPlaying(const int) const = 0;
 
     enum class Repeat
     {
@@ -26,6 +26,7 @@ class MusicHandler
     };
 
     virtual void setRepeat(Repeat repeat) = 0;
+    virtual void setChannel(const int) = 0;
 };
 } // namespace doengine
 

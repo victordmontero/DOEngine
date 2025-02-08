@@ -10,7 +10,7 @@ constexpr int CHANNEL = 2;
 constexpr int CHUNK_SIZE = 2048;
 
 SDLMusicHandler::SDLMusicHandler()
-    : musics(), sounds(), repeatTimes(Repeat::Once), isPlayingSound(false), isOk(false)
+    : musics(), repeatTimes(Repeat::Once), isPlayingSound(false), isOk(false)
 {
     if (SDL_WasInit(SDL_INIT_AUDIO) == 0)
     {
@@ -50,7 +50,7 @@ SDLMusicHandler::~SDLMusicHandler()
     }
 }
 
-void SDLMusicHandler::addToList(const std::string& src)
+int SDLMusicHandler::addToList(const std::string& src)
 {
     if (isOk)
     {
@@ -65,6 +65,7 @@ void SDLMusicHandler::addToList(const std::string& src)
             musics.push_back(music);
         }
     }
+    return 0;
 }
 
 void SDLMusicHandler::playFirst()
@@ -89,7 +90,7 @@ void SDLMusicHandler::playLast()
     }
 }
 
-void SDLMusicHandler::PlayIndex(int index)
+void SDLMusicHandler::PlayIndex(const int index)
 {
     if (isOk && (index < musics.size()))
     {
@@ -100,25 +101,25 @@ void SDLMusicHandler::PlayIndex(int index)
     }
 }
 
-void SDLMusicHandler::removeIndex(int index)
+void SDLMusicHandler::removeIndex(const int index)
 {
     musics.erase(musics.begin() + index);
 }
 
-void SDLMusicHandler::pause()
+void SDLMusicHandler::pause(const int)
 {
-    if (isPlayingMusic())
+    if (isPlaying(0))
     {
         Mix_PauseMusic();
     }
 }
 
-void SDLMusicHandler::stop()
+void SDLMusicHandler::stop(const int)
 {
     Mix_HaltMusic();
 }
 
-bool SDLMusicHandler::isPlayingMusic() const
+bool SDLMusicHandler::isPlaying(const int) const
 {
     return Mix_PlayingMusic();
 }

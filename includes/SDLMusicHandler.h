@@ -11,19 +11,20 @@ class SDLMusicHandler : public doengine::MusicHandler
   public:
     SDLMusicHandler();
     ~SDLMusicHandler();
-    virtual void addToList(const std::string& src) override;
+    virtual int addToList(const std::string& src) override;
     virtual void playFirst() override;
     virtual void playLast() override;
-    virtual void PlayIndex(int index) override;
-    virtual void removeIndex(int index) override;
-    virtual void pause() override;
-    virtual void stop() override;
+    virtual void PlayIndex(const int index) override;
+    virtual void removeIndex(const int index) override;
+    virtual void pause(const int) override;
+    virtual void stop(const int) override;
     virtual void setRepeat(Repeat repeat) override;
-    virtual bool isPlayingMusic() const override;
+    virtual bool isPlaying(const int) const override;
 
   private:
+
+    virtual void setChannel(const int) override {};
     std::vector<Mix_Music*> musics;
-    std::vector<Mix_Chunk*> sounds;
 
     Repeat repeatTimes;
 

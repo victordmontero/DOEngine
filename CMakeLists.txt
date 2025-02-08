@@ -64,9 +64,10 @@ includes/DS.h
      src/Texture/Texture.cpp
      src/Event/SDLMouse.cpp
      src/Event/SDLKeyboard.cpp
-     src/Event/SDLJoypad.cpp      
-     src/Music/SDLMusicHandler.cpp      
 
+     src/Event/SDLJoypad.cpp
+     src/Music/SDLMusicHandler.cpp
+     src/Music/SDLSoundHandler.cpp
      src/GameObject/GameObject.cpp
       src/Font/TTFText.cpp
      src/Event/Event.cpp
@@ -103,6 +104,7 @@ includes/DS.h
       includes/Joypad.h
       includes/MusicHandler.h
       includes/SDLMusicHandler.h
+      includes/SDLSoundHandler.h
 )
 
 add_library(${PROJECT_NAME}
