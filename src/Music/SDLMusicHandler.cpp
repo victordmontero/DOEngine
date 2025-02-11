@@ -2,7 +2,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_mixer.h>
 
-namespace doengine::devices
+namespace doengine
 {
 
 constexpr int FRECUENCY = 44100;
@@ -65,7 +65,7 @@ int SDLMusicHandler::addToList(const std::string& src)
             musics.push_back(music);
         }
     }
-    return 0;
+    return musics.size() - 1;
 }
 
 void SDLMusicHandler::playFirst()
@@ -90,7 +90,7 @@ void SDLMusicHandler::playLast()
     }
 }
 
-void SDLMusicHandler::PlayIndex(const int index)
+void SDLMusicHandler::playIndex(const int index)
 {
     if (isOk && (index < musics.size()))
     {

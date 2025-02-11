@@ -2,7 +2,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_mixer.h>
 
-namespace doengine::devices
+namespace doengine
 {
 
 constexpr int FRECUENCY = 44100;
@@ -97,7 +97,7 @@ void SDLSoundHandler::playLast()
     }
 }
 
-void SDLSoundHandler::PlayIndex(const int index)
+void SDLSoundHandler::playIndex(const int index)
 {
     if (isOk && (index < sounds.size()))
     {

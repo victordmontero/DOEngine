@@ -4,9 +4,9 @@
 #include "MusicHandler.h"
 #include <vector>
 
-namespace doengine::devices
+namespace doengine
 {
-class SDLMusicHandler : public doengine::MusicHandler
+class SDLMusicHandler : public MusicHandler
 {
   public:
     SDLMusicHandler();
@@ -14,7 +14,7 @@ class SDLMusicHandler : public doengine::MusicHandler
     virtual int addToList(const std::string& src) override;
     virtual void playFirst() override;
     virtual void playLast() override;
-    virtual void PlayIndex(const int index) override;
+    virtual void playIndex(const int index) override;
     virtual void removeIndex(const int index) override;
     virtual void pause(const int) override;
     virtual void stop(const int) override;
