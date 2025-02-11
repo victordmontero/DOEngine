@@ -12,7 +12,7 @@ class MusicHandler
     virtual int addToList(const std::string& src) = 0;
     virtual void playFirst() = 0;
     virtual void playLast() = 0;
-    virtual void PlayIndex(int index) = 0;
+    virtual void playIndex(int index) = 0;
     virtual void removeIndex(const int index) = 0;
     virtual void pause(const int) = 0;
     virtual void stop(const int) = 0;

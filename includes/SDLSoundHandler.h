@@ -4,9 +4,9 @@
 #include "MusicHandler.h"
 #include <vector>
 
-namespace doengine::devices
+namespace doengine
 {
-class SDLSoundHandler : public doengine::MusicHandler
+class SDLSoundHandler : public MusicHandler
 {
   public:
     SDLSoundHandler();
@@ -14,7 +14,7 @@ class SDLSoundHandler : public doengine::MusicHandler
     virtual int addToList(const std::string& src) override;
     virtual void playFirst() override;
     virtual void playLast() override;
-    virtual void PlayIndex(const int index) override;
+    virtual void playIndex(const int index) override;
     virtual void removeIndex(const int index) override;
     virtual void pause(const int) override;
     virtual void stop(const int) override;
@@ -23,9 +23,11 @@ class SDLSoundHandler : public doengine::MusicHandler
     virtual bool isPlaying(const int) const override;
 
   private:
+    void play(Mix_Chunk* chunk);
+
     std::vector<Mix_Chunk*> sounds;
     int channel;
     Repeat repeatTimes;
     bool isOk;
 };
-} // namespace doengine::devices
+} // namespace doengine

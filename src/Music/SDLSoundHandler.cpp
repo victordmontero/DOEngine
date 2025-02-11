@@ -2,7 +2,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_mixer.h>
 
-namespace doengine::devices
+namespace doengine
 {
 
 constexpr int FRECUENCY = 44100;
@@ -41,17 +41,13 @@ SDLSoundHandler::~SDLSoundHandler()
 {
     if (isOk)
     {
+        stop(-1); // Stops all channels
         for (auto it = sounds.begin(); it != sounds.end(); it++)
         {
             Mix_FreeChunk(*it);
         }
         sounds.clear();
         Mix_CloseAudio();
-
-        if (SDL_WasInit(SDL_INIT_AUDIO) != 0)
-        {
-            SDL_QuitSubSystem(SDL_INIT_AUDIO);
-        }
     }
 }
 
@@ -77,11 +73,7 @@ void SDLSoundHandler::playFirst()
 {
     if (isOk)
     {
-        if (Mix_PlayChannel(channel, sounds.front(),
-                            static_cast<int>(repeatTimes)) == -1)
-        {
-            SDL_Log("Failed to play music: %s", Mix_GetError());
-        }
+        play(sounds.front());
     }
 }
 
@@ -89,23 +81,15 @@ void SDLSoundHandler::playLast()
 {
     if (isOk)
     {
-        if (Mix_PlayChannel(channel, sounds.back(),
-                            static_cast<int>(repeatTimes)) == -1)
-        {
-            SDL_Log("Failed to play music: %s", Mix_GetError());
-        }
+        play(sounds.back());
     }
 }
 
-void SDLSoundHandler::PlayIndex(const int index)
+void SDLSoundHandler::playIndex(const int index)
 {
     if (isOk && (index < sounds.size()))
     {
-        if (Mix_PlayChannel(channel, sounds.at(index),
-                            static_cast<int>(repeatTimes)) == -1)
-        {
-            SDL_Log("Failed to play music: %s", Mix_GetError());
-        }
+        play(sounds.at(index));
     }
 }
 
@@ -142,4 +126,12 @@ void SDLSoundHandler::setChannel(const int ch)
     channel = ch;
 }
 
-} // namespace doengine::devices
+void SDLSoundHandler::play(Mix_Chunk* chunk)
+{
+    if (Mix_PlayChannel(channel, chunk, static_cast<int>(repeatTimes)) == -1)
+    {
+        SDL_Log("Failed to play music: %s", Mix_GetError());
+    }
+}
+
+} // namespace doengine

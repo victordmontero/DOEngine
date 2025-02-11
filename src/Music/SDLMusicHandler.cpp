@@ -2,7 +2,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_mixer.h>
 
-namespace doengine::devices
+namespace doengine
 {
 
 constexpr int FRECUENCY = 44100;
@@ -65,17 +65,14 @@ int SDLMusicHandler::addToList(const std::string& src)
             musics.push_back(music);
         }
     }
-    return 0;
+    return musics.size() - 1;
 }
 
 void SDLMusicHandler::playFirst()
 {
     if (isOk)
     {
-        if (Mix_PlayMusic(musics.front(), static_cast<int>(repeatTimes)) == -1)
-        {
-            SDL_Log("Failed to play music: %s", Mix_GetError());
-        }
+        play(musics.front());
     }
 }
 
@@ -83,21 +80,15 @@ void SDLMusicHandler::playLast()
 {
     if (isOk)
     {
-        if (Mix_PlayMusic(musics.back(), -1) == -1)
-        {
-            SDL_Log("Failed to play music: %s", Mix_GetError());
-        }
+        play(musics.back());
     }
 }
 
-void SDLMusicHandler::PlayIndex(const int index)
+void SDLMusicHandler::playIndex(const int index)
 {
     if (isOk && (index < musics.size()))
     {
-        if (Mix_PlayMusic(musics.at(index), -1) == -1)
-        {
-            SDL_Log("Failed to play music: %s", Mix_GetError());
-        }
+        play(musics.at(index));
     }
 }
 
@@ -129,4 +120,12 @@ void SDLMusicHandler::setRepeat(Repeat repeat)
     repeatTimes = repeat;
 }
 
-} // namespace doengine::devices
+void SDLMusicHandler::play(Mix_Music* music)
+{
+    if (Mix_PlayMusic(music, static_cast<int>(repeatTimes)) == -1)
+    {
+        SDL_Log("Failed to play music: %s", Mix_GetError());
+    }
+}
+
+} // namespace doengine

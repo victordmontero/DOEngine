@@ -9,7 +9,7 @@
 #include <memory>
 #include <string>
 
-using doengine::devices::SDLSoundHandler;
+using doengine::SDLSoundHandler;
 
 class MusicState : public doengine::GameState
 {
@@ -29,7 +29,9 @@ class MusicState : public doengine::GameState
 
         soundHandler->setRepeat(doengine::MusicHandler::Repeat::OnlyThis);
 
+        soundHandler->setChannel(0);
         soundHandler->playFirst();
+        soundHandler->setChannel(1);
         soundHandler->playLast();
     }
     virtual void OnExit()
