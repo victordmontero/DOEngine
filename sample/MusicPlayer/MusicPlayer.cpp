@@ -16,10 +16,12 @@
 using namespace doengine;
 
 const std::vector<std::string> music = {
-    "CANCION CON YANDEL 1", "CANCION CON YANDEL 2", "CANCION CON YANDEL 3",
-    "CANCION CON YANDEL 4", "CANCION CON YANDEL 5", "CANCION CON YANDEL 6",
-    "CANCION CON YANDEL 7",
+    "PLAY TESTgi"
 };
+
+
+
+
 
 struct MusicPlayerState : public doengine::GameState
 {
@@ -40,7 +42,7 @@ struct MusicPlayerState : public doengine::GameState
       ///  parcial = ps->subTexture(Rect{20,10,10,10});
         text =new TTFText();
        /// text->setFont("./assets/fonts/DroidSans.ttf", 23);
-        fontRenderer = text->createBitmapFont("./assets/fonts/DroidSans.ttf", black, red);
+        fontRenderer = text->createBitmapFont("./assets/fonts/DroidSans.ttf", yellow, red);
     }
     virtual void OnExit()
     {
