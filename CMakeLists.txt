@@ -60,6 +60,7 @@ includes/DS.h
     src/Timer/FPSManager.cpp
     src/Tilemap/Tilemap.cpp
      src/Texture/Texture.cpp
+     src/Texture/Sprite.cpp
      src/Event/SDLMouse.cpp
      src/Event/SDLKeyboard.cpp
 
