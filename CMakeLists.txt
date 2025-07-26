@@ -7,7 +7,7 @@ option(DOENGINE_TESTS "Compiles and runs tests" OFF)
 option(DOENGINE_SAMPLES "Compiles samples" ON)
 
 if(DOENGINE_COVERAGE)
-    include(cmake-module/CodeCoverage.cmake)
+  include(cmake-module/CodeCoverage.cmake)
 endif()
 
 # set(CMAKE_EXPORT_COMPILE_COMMANDS true)
@@ -20,23 +20,23 @@ set(CMAKE_CXX_STANDARD ${DOENGINE_PREFERED_LANGUAGE})
 set(SDL2IMAGE_INSTALL OFF)
 set(BUILD_SHARED_LIBS FALSE)
 set(SDL2_DISABLE_INSTALL OFF)
-set(SDL2TTF_VENDORED TRUE)
+#set(SDL2TTF_VENDORED TRUE)
 
 if(FETCH_SDL_FROM_GIT)
-   include(cmake-module/fetchSDLProjectFromSource.cmake)
- else()
-    message("WARNING: SDL Would the Machine Installed Version")
+  include(cmake-module/fetchSDLProjectFromSource.cmake)
+else()
+  message("WARNING: SDL Would the Machine Installed Version")
 endif()
 
 set(ASSETS_DIR ${CMAKE_SOURCE_DIR}/assets)
 
 if(DOENGINE_TESTS)
-    enable_testing()
-    add_subdirectory(src/test)
+  enable_testing()
+  add_subdirectory(src/test)
 endif()
 
 if(DOENGINE_SAMPLES)
-    add_subdirectory(sample)
+  add_subdirectory(sample)
 endif()
 
 include_directories(${CMAKE_SOURCE_DIR}/includes)
@@ -64,49 +64,50 @@ set(DOENGINE_SRC
     src/Timer/FPSManager.cpp
     src/Tilemap/Tilemap.cpp
     src/Texture/Texture.cpp
+    src/Texture/Sprite.cpp
     src/Event/SDLMouse.cpp
     src/Event/SDLKeyboard.cpp
     src/Music/SDLMusicHandler.cpp
-     src/Music/SDLSoundHandler.cpp
-     src/Event/SDLJoypad.cpp
-     src/Music/SDLMusicHandler.cpp
-     src/GameObject/GameObject.cpp
-     src/Font/TTFText.cpp
-     src/Event/Event.cpp
-     src/Drawable/Gui.cpp
-     src/Application/SDLTexture.cpp
-     src/Application/SDLTexture.h
-     includes/NativeStructs.h
-     includes/Geometric.h
-     includes/Color.h
-     includes/defines.h
-     includes/TTFText.h
-     includes/Camera.h
-     includes/Event.h
-     includes/DOEngine.h
-     includes/DOEngine_SDL_includes.h
-     includes/EventHandler.h
-     includes/FPSManager.h
-     includes/GameObject.h
-     includes/GameState.h
-     includes/GameStateManager.h
-     includes/Grids.h
-       includes/LinkList.h
-        includes/sort.h
-       includes/Sprite.h
-        includes/Utils.h
-        includes/Texture.h
-        includes/Tile.h
-        includes/Tilemap.h
-        includes/UDPPacket.h
-        includes/Vector.h
-        includes/Application.h
-      includes/Mouse.h
-      includes/Keyboard.h
-      includes/Joypad.h
-      includes/MusicHandler.h
-      includes/SDLMusicHandler.h
-      includes/SDLSoundHandler.h
+    src/Music/SDLSoundHandler.cpp
+    src/Event/SDLJoypad.cpp
+    src/Music/SDLMusicHandler.cpp
+    src/GameObject/GameObject.cpp
+    src/Font/TTFText.cpp
+    src/Event/Event.cpp
+    src/Drawable/Gui.cpp
+    src/Application/SDLTexture.cpp
+    src/Application/SDLTexture.h
+    includes/NativeStructs.h
+    includes/Geometric.h
+    includes/Color.h
+    includes/defines.h
+    includes/TTFText.h
+    includes/Camera.h
+    includes/Event.h
+    includes/DOEngine.h
+    includes/DOEngine_SDL_includes.h
+    includes/EventHandler.h
+    includes/FPSManager.h
+    includes/GameObject.h
+    includes/GameState.h
+    includes/GameStateManager.h
+    includes/Grids.h
+    includes/LinkList.h
+    includes/sort.h
+    includes/Sprite.h
+    includes/Utils.h
+    includes/Texture.h
+    includes/Tile.h
+    includes/Tilemap.h
+    includes/UDPPacket.h
+    includes/Vector.h
+    includes/Application.h
+    includes/Mouse.h
+    includes/Keyboard.h
+    includes/Joypad.h
+    includes/MusicHandler.h
+    includes/SDLMusicHandler.h
+    includes/SDLSoundHandler.h
 )
 
 add_library(${PROJECT_NAME}
@@ -115,31 +116,31 @@ add_library(${PROJECT_NAME}
 
 set(DOENGINE_LIBRARIES )
 if(FETCH_SDL_FROM_GIT)
-  set(DOENGINE_LIBRARIES ${DOENGINE_LIBRARIES} 
+  set(DOENGINE_LIBRARIES ${DOENGINE_LIBRARIES}
         SDL2::SDL2
         SDL2::SDL2main
         SDL2_ttf
         SDL2_image
         SDL2_mixer
-  )    
+  )
 else()
-    set(DOENGINE_LIBRARIES ${DOENGINE_LIBRARIES} 
+  set(DOENGINE_LIBRARIES ${DOENGINE_LIBRARIES}
         SDL2
         SDL2main
         SDL2_ttf
         SDL2_image
         SDL2_mixer
         GL
-    )  
+    )
 endif()
 
 target_link_libraries(${PROJECT_NAME} PRIVATE ${DOENGINE_LIBRARIES})
 
 #add_executable(${PROJECT_NAME}-sample
-#   sample/ignored_main.cpp 
+#   sample/ignored_main.cpp
 #)
 add_executable(${PROJECT_NAME}-pong-sample
-   sample/pong/SimplePong.cpp 
+   sample/pong/SimplePong.cpp
 )
 
 add_executable(${PROJECT_NAME}-SpaceInvader-sample
@@ -155,7 +156,7 @@ add_executable(${PROJECT_NAME}-MusicPlayer-sample
 )
 
 
-# to build sample needs 
+# to build sample needs
 # Zip support, ubuntu sudo apt-get install libzip-dev
 #target_link_libraries(${PROJECT_NAME}-sample PRIVATE
 #    ${PROJECT_NAME}

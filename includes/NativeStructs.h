@@ -18,6 +18,10 @@ struct NativeTexture
     virtual void Draw(const Rect& offset) = 0;
     virtual void Draw(const Rect& offset, const Rect& clipset) = 0;
     virtual void SetTransparentColor(const Color& color) =0;
+    virtual void Draw(const Rect& offset, const Rect& clipset,
+                      const double angle) = 0;
+    virtual void Draw(const Rect& offset, const Rect& clipset,
+                      const double angle, const Point& center) = 0;
     virtual void ModulateColor(const Color& color) = 0;
     virtual void Destroy() = 0;
     virtual int getWidth() = 0;

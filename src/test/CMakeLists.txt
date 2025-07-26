@@ -34,14 +34,25 @@ add_executable(${PROJECT_NAME}
     units/utSDLKeyboard.cpp
     units/utSDLMouse.cpp
     units/utSDLJoypad.cpp
+    units/utSprite.cpp
 
     ../GameState/GameStateManager.cpp
     ../Network/UDPPacket.cpp
     ../Timer/FPSManager.cpp
-    #../Event/Event.cpp
+    ../Event/Event.cpp
     ../Event/SDLKeyboard.cpp
     ../Event/SDLMouse.cpp
     ../Event/SDLJoypad.cpp
+
+    ../Texture/Texture.cpp
+    ../Texture/Sprite.cpp
+    ../Application/Application.cpp
+    ../Application/WindowManager.cpp
+    ../Application/SDLWindowManager.cpp
+    ../Application/SDLRenderer.cpp
+    ../Application/SDLTTFText.cpp
+    ../Application/SDLTexture.cpp
+    ../Window/Window.cpp
 )
 
 add_compile_definitions(DOENGINE_TESTING)
@@ -70,6 +81,7 @@ add_library(DOENGINE_MOCKS
     mocks/UDPPacketMock.h
     mocks/MouseMock.h
     mocks/JoypadMock.h
+    mocks/NativeStructsMock.h
 )
 
 target_link_libraries(DOENGINE_MOCKS PUBLIC
@@ -92,14 +104,14 @@ include(GoogleTest)
 gtest_discover_tests(${PROJECT_NAME})
 
 if(DOENGINE_COVERAGE)
-    message("Compiling with coverage flags")
-    # set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fprofile-arcs -ftest-coverage")
-    # set(CMAKE_CXX_FLAGS " ${CMAKE_CXX_FLAGS} -fprofile-arcs -ftest-coverage")
-    # set(CMAKE_EXE_LINKER_FLAGS "-fprofile-arcs -ftest-coverage")
-    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O0")
-    set(CMAKE_CXX_FLAGS " ${CMAKE_CXX_FLAGS} -O0")
-    append_coverage_compiler_flags()
-    setup_target_for_coverage_gcovr_html(NAME ${PROJECT_NAME}_cov
+  message("Compiling with coverage flags")
+  # set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fprofile-arcs -ftest-coverage")
+  # set(CMAKE_CXX_FLAGS " ${CMAKE_CXX_FLAGS} -fprofile-arcs -ftest-coverage")
+  # set(CMAKE_EXE_LINKER_FLAGS "-fprofile-arcs -ftest-coverage")
+  set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O0")
+  set(CMAKE_CXX_FLAGS " ${CMAKE_CXX_FLAGS} -O0")
+  append_coverage_compiler_flags()
+  setup_target_for_coverage_gcovr_html(NAME ${PROJECT_NAME}_cov
         BASE_DIRECTORY ../
         EXCLUDE "test/" "build/"
     )

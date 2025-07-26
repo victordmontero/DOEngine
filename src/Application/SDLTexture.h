@@ -22,6 +22,10 @@ struct SDLTexture : public NativeTexture
     virtual bool validTexture() override;
     virtual void Draw(const Rect& offset) override;
     virtual void Draw(const Rect& offset, const Rect& clipset) override;
+    virtual void Draw(const Rect& offset, const Rect& clipset,
+                      const double angle) override;
+    virtual void Draw(const Rect& offset, const Rect& clipset,
+                      const double angle, const Point& center) override;
     virtual void ModulateColor(const Color& color) override;
     virtual void Destroy() override;
     virtual int getWidth() override;

@@ -22,13 +22,15 @@ class SDLRenderer : public Renderer
     virtual void setDrawColor(const Color& color) override;
     virtual void updateScreen() override;
 
-    virtual void DrawPoint(const Point& point, const Color& color);
-    virtual void DrawLine(const Point& p1, const Point& p2, const Color& color);
-    virtual void DrawRect(const Rect& rect, const Color& color);
-    virtual void DrawFillRect(const Rect& rect, const Color& color);
-    virtual void FillCircle(int x, int y, int radius, const Color& color);
+    virtual void DrawPoint(const Point& point, const Color& color) override;
+    virtual void DrawLine(const Point& p1, const Point& p2,
+                          const Color& color) override;
+    virtual void DrawRect(const Rect& rect, const Color& color) override;
+    virtual void DrawFillRect(const Rect& rect, const Color& color) override;
+    virtual void FillCircle(int x, int y, int radius,
+                            const Color& color) override;
     virtual void DrawTriangle(int x1, int y1, int x2, int y2, int x3, int y3,
-                              const Color& p);
+                              const Color& p) override;
 
     virtual void DrawRoundedRect(int x, int y, int w, int h, int roundedRadius,
                                  Color color) override;

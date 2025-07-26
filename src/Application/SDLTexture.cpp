@@ -1,3 +1,4 @@
+#include "Geometric.h"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <iostream>
@@ -276,19 +277,61 @@ void SDLTexture::Draw(const Rect& offset)
 
 void SDLTexture::Draw(const Rect& offset, const Rect& clipset)
 {
-    SDL_Rect rect{
-        offset.x,
-        offset.y,
-        offset.w,
-        offset.h,
-    };
-    SDL_Rect crect{
-        clipset.x,
-        clipset.y,
-        clipset.w,
-        clipset.h,
-    };
-    SDL_RenderCopy(renderer, this_texture,  &crect, &rect);
+    Draw(offset, clipset, 0.0, Point{clipset.w / 2, clipset.h / 2});
+}
+
+void SDLTexture::Draw(const Rect& offset, const Rect& clipset,
+                      const double angle)
+{
+    SDL_Rect rect;
+    SDL_Rect clip;
+    if (!valid)
+        return;
+    auto app = Application::getApplication();
+    auto wformat = (SDL_Window*)app->getWindow()->getNativeWindowFormatBuffer();
+    auto nrederer =
+        (SDL_Renderer*)app->getWindow()->getRenderer()->getNativeRenderer();
+    rect.x = offset.x;
+    rect.y = offset.y;
+    rect.w = offset.w;
+    rect.h = offset.h;
+
+    clip.x = clipset.x;
+    clip.y = clipset.y;
+    clip.w = clipset.w;
+    clip.h = clipset.h;
+
+    SDL_RenderCopyEx(nrederer, this_texture, &clip, &rect, angle, nullptr,
+                     SDL_FLIP_NONE);
+}
+
+void SDLTexture::Draw(const Rect& offset, const Rect& clipset,
+                      const double angle, const Point& center)
+{
+    SDL_Rect rect;
+    SDL_Rect clip;
+    SDL_Point center_point;
+    if (!valid)
+        return;
+    auto app = Application::getApplication();
+    auto wformat = (SDL_Window*)app->getWindow()->getNativeWindowFormatBuffer();
+    auto nrederer =
+        (SDL_Renderer*)app->getWindow()->getRenderer()->getNativeRenderer();
+    rect.x = offset.x;
+    rect.y = offset.y;
+    rect.w = offset.w;
+    rect.h = offset.h;
+
+    clip.x = clipset.x;
+    clip.y = clipset.y;
+    clip.w = clipset.w;
+    clip.h = clipset.h;
+
+    center_point.x = center.x;
+    center_point.y = center.y;
+
+    SDL_RenderCopyEx(nrederer, this_texture, &clip, &rect, angle, &center_point,
+                     SDL_FLIP_NONE);
 }
 
 void SDLTexture::ModulateColor(const Color& color)

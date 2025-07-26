@@ -5,9 +5,9 @@
 using std::map;
 using std::string;
 
+#include "Color.h"
 #include "Geometric.h"
 #include "NativeStructs.h"
-#include <Color.h>
 
 namespace doengine
 {
@@ -18,20 +18,26 @@ class Texture
 {
     NativeTexture* realNativeTexture;
 
-
   public:
     Texture();
     Texture(std::string path);
+    Texture(std::string path, NativeTexture* nativeTexture);
     ~Texture();
+
     void SetTransparentColor(const Color& color);
-    void Draw(const Rect& offset);
-    void Draw(const Rect& offset, const Rect& clipset);
-    void ModulateColor(const Color& color);
-    int getWidth();
-    int getHeight();
-    bool validTexture();
-    Texture* setNativeTexture(void *);
-    Texture* subTexture(const Rect& clipset);
+    Texture* setNativeTexture(void*);
+    virtual void Draw(const Rect& offset);
+    virtual void Draw(const Rect& offset, const Rect& clipset);
+    virtual void Draw(const Rect& offset, const Rect& clipset,
+                      const double angle);
+    virtual void Draw(const Rect& offset, const Rect& clipset,
+                      const double angle, const Point& center);
+    virtual void ModulateColor(const Color& color);
+    virtual int getWidth();
+    virtual int getHeight();
+    virtual bool validTexture();
+
+    virtual Texture* subTexture(const Rect& clipset);
 };
 
 class TextureManager
