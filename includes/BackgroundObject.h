@@ -1,14 +1,14 @@
 #pragma once
 #include "Application.h"
 #include "GameObject.h"
-
+#include "Timer.h"
+#include <vector>
+namespace doengine
+{
 class Background : public GameObject
 {
-  protected:
-    Window* window;
-
   public:
-    Background(Window* window) : window{window}, GameObject(window)
+    Background()
     {
     }
     virtual ~Background()
@@ -20,9 +20,13 @@ class Background : public GameObject
 
 class ParallaxBackground : public Background
 {
+  Timer *timer;
+  std::vector<std::variant<std::string, int>> texture_ids;
   public:
-    ParallaxBackground(Window* window, const char* assets, int width, int h);
+    ParallaxBackground();
     virtual ~ParallaxBackground();
     virtual void Update(long timestamp);
     virtual void Draw();
 };
+
+}

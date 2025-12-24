@@ -1,25 +1,41 @@
 #pragma once
-
+#include <algorithm>
 #include "Camera.h"
+#include "Geometric.h"
 
 namespace doengine
 {
 
-class Camera
-{
-    //   Vector<int> camera_pos;
 
-  public:
-    enum class CameraMovement : unsigned char
+class Camera : public GameObject
+{
+public:
+    enum class CameraMovement
     {
         CameraUp,
         CameraDown,
         CameraLeft,
-        CameraRight,
-        CameraNotMovement
+        CameraRight
     };
 
-    virtual Camera* Update(CameraMovement where) = 0;
+private:
+
+public:
+    Camera(int viewportW, int viewportH, int tileSize, float smoothing = 0.1f)
+    {
+
+    }
+
+    virtual void Update(float elapsed){}
+    virtual void Render()
+    {
+        /// TBI
+    }
+
+private:
+
 };
+
+ 
 
 } // namespace doengine

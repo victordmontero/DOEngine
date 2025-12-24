@@ -45,6 +45,17 @@ void SDLRenderer::updateScreen()
     SDL_RenderPresent(renderer);
 }
 
+void SDLRenderer::RenderSetClipRect(const Rect& rect)
+{
+    SDL_Rect rectx{rect.x, rect.y, rect.w,rect.h};
+    SDL_RenderSetClipRect(renderer, &rectx);
+}
+
+void SDLRenderer::ResetRenderSetClipRect()
+{
+    SDL_RenderSetClipRect(renderer, nullptr);
+}
+
 void SDLRenderer::DrawPoint(const Point& point, const Color& color)
 {
     this->setDrawColor(color);
@@ -83,6 +94,38 @@ void SDLRenderer::DrawFillRect(const Rect& rect, const Color& color)
     rect1.y = rect.y;
     SDL_RenderFillRect(renderer, &rect1);
 }
+
+void SDLRenderer::DrawRect(const Rect& rect, const Color& color, int thickness)
+{
+    if (thickness <= 0)
+        return;
+
+    // Set draw color
+    SDL_SetRenderDrawColor(
+        renderer,
+        color.r,
+        color.g,
+        color.b,
+        color.a
+    );
+
+    // Draw rectangle borders by expanding inward
+    for (int i = 0; i < thickness; ++i)
+    {
+        SDL_Rect r;
+        r.x = rect.x + i;
+        r.y = rect.y + i;
+        r.w = rect.w - (i * 2);
+        r.h = rect.h - (i * 2);
+
+        // Avoid invalid rects
+        if (r.w <= 0 || r.h <= 0)
+            break;
+
+        SDL_RenderDrawRect(renderer, &r);
+    }
+}
+
 void SDLRenderer::FillCircle(int x, int y, int radius, const Color& color)
 {
     this->setDrawColor(color);
@@ -125,6 +168,12 @@ NativeTexture* SDLRenderer::loadTextureFromImageFile(const char* src,
     auto texture = new SDLTexture();
     return texture->loadFromFile(src);
 }
+
+NativeTexture* SDLRenderer::loadTextureFromImageFile(const char* src)
+{
+    auto texture = new SDLTexture();
+    return texture->loadFromFile(src);
+}
  
 NativeTexture* SDLRenderer::createTexture()
 {
@@ -135,7 +184,34 @@ NativeTextRenderer* SDLRenderer::getTextRenderer()
 {
     auto textRenderer = new doengine::SDLTTFText();
     return textRenderer;
-    /// return nullptr;
+}
+void SDLRenderer::DrawTexture(const std::variant<std::string, int> &id,int x, int y)
+{
+    auto text = TextureManager::getTextureManager()->getTexture(id);
+    if(text)
+        text->Draw(x,y);
+}
+void SDLRenderer::DrawTexture(const std::variant<std::string, int>& id,const Rect& offset)
+{
+    auto text = TextureManager::getTextureManager()->getTexture(id);
+    if(text)
+        text->Draw(offset);
+}
+void SDLRenderer::DrawTexture(const std::variant<std::string, int>&id,const Rect& offset, const Rect& clipset )
+{
+    auto text = TextureManager::getTextureManager()->getTexture(id);
+    if(text)
+        text->Draw(offset, clipset);
+}
+
+void SDLRenderer::QueryTexture(const std::variant<std::string, int>& id, Rect& info)
+{
+    auto text = TextureManager::getTextureManager()->getTexture(id);
+    if(text)
+    {
+        info.w = text->getWidth();
+        info.h = text->getHeight();
+    }
 }
 
 void renderFilledCircle(SDL_Renderer* renderer, int x, int y, int radius)

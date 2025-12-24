@@ -18,26 +18,61 @@ uint32_t FpsManager::getDeltaTime()
 
 float FpsManager::getElapsedTime()
 {
-    return (float)(elapsed - start);
+    last_elapsed = (float)(elapsed - start);
+    return last_elapsed;
+}
+
+float FpsManager::getLastElapsedTime()
+{
+    return static_cast<float>(last_elapsed);
 }
 
 void FpsManager::Start()
 {
     start = SDL_GetTicks();
+    frequency = SDL_GetPerformanceFrequency();
+    lastCounter = SDL_GetPerformanceCounter();
 }
 
 void FpsManager::Handle()
 {
-    elapsed = SDL_GetTicks();
-    uint32_t ticks = 1000 / fps;
-    if (ticks > (elapsed - start))
+    const uint32_t frameDelay = 1000 / fps;
+
+    uint32_t frameTime = SDL_GetTicks() - start;
+
+    if (frameTime < frameDelay)
     {
-        wait =  ticks - (elapsed - start);
-        ////SDL_Log("FPS %ld", wait);
-        if (wait > 0)
-            SDL_Delay(wait);
-        start = elapsed;
-    } 
+        SDL_Delay(frameDelay - frameTime);
+    }
+
+    start = SDL_GetTicks();
 }
 
-} // namespace doengine
+void FpsManager::beginFrame()
+{
+    lastCounter = SDL_GetPerformanceCounter();
+}
+
+double FpsManager::endFrame()
+{
+    uint64_t now = SDL_GetPerformanceCounter();
+    double deltaTime = static_cast<double>(now - lastCounter) / frequency;
+
+    const double targetFrameTime = 1.0 / fps;
+
+    if (deltaTime < targetFrameTime)
+    {
+        SDL_Delay(static_cast<Uint32>((targetFrameTime - deltaTime) * 1000.0));
+
+        now = SDL_GetPerformanceCounter();
+        deltaTime = static_cast<double>(now - lastCounter) / frequency;
+    }
+
+    return deltaTime;
+}
+
+double FpsManager::getTicks()
+{
+    return SDL_GetTicks();
+}
+}

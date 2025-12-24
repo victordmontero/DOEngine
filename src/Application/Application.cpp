@@ -17,7 +17,6 @@ Application::Application()
     gsm = new GameStateManager();
     fps_handler = new FpsManager();
     fps_handler->setFPS(60);
-    
 }
 
 void Application::destroy()
@@ -45,17 +44,19 @@ void Application::setFullScreen()
 
 void Application::setWindowMode()
 {
-    windowManager->setFullScreen();
+    windowManager->setWindowMode();
 }
 void Application::PollEvent()
 {
     fps_handler->Start();
+    fps_handler->beginFrame();
     Event::PollEvent();
 }
 
 void Application::Update()
 {
-    gsm->Update(fps_handler->getDeltaTime());
+    auto deltaTime = fps_handler->endFrame();
+    gsm->Update(deltaTime);
 }
 
 void Application::Render()
@@ -80,7 +81,48 @@ Renderer* Application::getRender() const
 
 const bool Application::IsRunning() const
 {
+    /// LogOuput(logger_type::Information, "Is running %d", run);
     return run;
+}
+
+long Application::getElapsedTime()
+{
+    return fps_handler->getElapsedTime();
+}
+
+uint32_t Application::getDeltaTime()
+{
+    return fps_handler->getDeltaTime();
+}
+
+void Application::setW(int w)
+{
+    window_rect.w = w;
+    _internalResize();
+}
+void Application::setH(int h)
+{
+    window_rect.h = h;
+    _internalResize();
+}
+void Application::setSize(int w, int h)
+{
+    window_rect.w = w;
+    window_rect.h = h;
+    _internalResize();
+}
+int Application::getH()
+{
+    return window_rect.h;
+}
+int Application::getW()
+{
+    return window_rect.w;
+}
+
+Rect Application::getDisplayMode(int m)
+{
+    return windowManager->getWindowDisplayMode(m);
 }
 
 void Application::SetWindowPencilColor(const Color& color)
@@ -94,9 +136,19 @@ void Application::clearScreen(const Color& color)
 
 void Application::createWindow(const Rect& rect)
 {
-    run = windowManager->createWindow(rect);
     this->setW(rect.w);
     this->setH(rect.h);
+    run = windowManager->createWindow(rect);
+}
+
+void Application::addState(GameState* state, int id)
+{
+    gsm->AddState(id, state);
+}
+
+void Application::setState(int id)
+{
+    gsm->SetState(id);
 }
 
 } // namespace doengine

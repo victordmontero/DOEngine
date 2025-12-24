@@ -26,14 +26,17 @@ target_link_libraries(GTest::GTest INTERFACE gtest_main gmock_main)
 
 add_executable(${PROJECT_NAME}
     fixtures/DoEngineFixture.h
+    units/utApplication.cpp
     units/utUtils.cpp
     units/utLinkList.cpp
+    units/utCircularArray.cpp
     # units/utGameStateManager.cpp
     units/utFPSManager.cpp
     #units/utEventHandler.cpp
     units/utSDLKeyboard.cpp
     units/utSDLMouse.cpp
     units/utSDLJoypad.cpp
+    units/utSpriteOffset.cpp
 
     ../GameState/GameStateManager.cpp
     ../Network/UDPPacket.cpp
