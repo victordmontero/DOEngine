@@ -1,5 +1,6 @@
 #pragma once
-
+#ifdef SDL_MOCKS_ACTIVE
+#include <SDL2/SDL.h>
 #include "DOEngine_SDL_includes.h"
 
 
@@ -45,3 +46,4 @@ class SDLMock
 extern doengine::mocks::SDLMock* sdlMock;
 void SetSDLMock(doengine::mocks::SDLMock* newSdlMock);
 
+#endif

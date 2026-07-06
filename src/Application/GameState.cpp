@@ -1,6 +1,7 @@
 #include "GameState.h"
 #include "Application.h"
 #include "Renderer.h"
+#include <algorithm>
 namespace doengine
 {
 GameState::GameState()

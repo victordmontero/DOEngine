@@ -28,11 +28,9 @@ add_executable(SnakeGame
     SnakeGame/SnakeGame.cpp
 )
 
-add_executable(AnnetteWorld
-    AnnetteWorld/AnnetteWorld.cpp
+add_executable(Collector
+    Collector/main.cpp
 )
-
-
 
 
 file(COPY ${ASSETS_DIR}
@@ -74,14 +72,19 @@ target_link_libraries(SnakeGame PRIVATE
     SDL2main
     SDL2_ttf SDL2_image
     SDL2_mixer)
-
-
-target_link_libraries(AnnetteWorld PRIVATE
+target_link_libraries(Collector PRIVATE
     DOENGINE
     SDL2
     SDL2main
     SDL2_ttf SDL2_image
     SDL2_mixer)
+
+#target_link_libraries(AnnetteWorld PRIVATE
+#    DOENGINE
+#    SDL2
+#    SDL2main
+#    SDL2_ttf SDL2_image
+#    SDL2_mixer)
 
 # sudo apt install libsdl2-dev libavcodec-dev libavformat-dev libavutil-dev libswscale-dev
 target_link_libraries(VideoPlayer PRIVATE

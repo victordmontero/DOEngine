@@ -1,6 +1,6 @@
 #include "SDLMock.h"
 #include <cstddef>
-
+#ifdef SDL_MOCKS_ACTIVE
 using namespace doengine::mocks;
 
 SDLMock* sdlMock = nullptr;
@@ -131,3 +131,4 @@ void SetSDLMock(SDLMock* newSdlMock)
 {
     sdlMock = newSdlMock;
 }
+#endif
