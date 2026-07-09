@@ -1,6 +1,5 @@
 /*
-
-AnnetteWorld: Allow Gamers to build Homes
+ 
 WIP: Create MainScreen State.
 TODO: Change Graphics Depends on Seasons and Having Fallback
 

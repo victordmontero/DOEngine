@@ -73,10 +73,6 @@ struct BinaryTree
     }
 };
 
- 
-
-
-
 template<int32_t Initial, int32_t MaxValue = std::numeric_limits<int32_t>::max()>
 class CircularInteger
 {

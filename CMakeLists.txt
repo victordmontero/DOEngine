@@ -140,6 +140,8 @@ set(DOENGINE_SRC
     includes/Geometric.h
     includes/Color.h
     includes/defines.h
+    includes/NothingNess.h
+    includes/AnimatedSprite.h
     includes/TTFText.h
     includes/FontCache.h
     includes/Camera.h

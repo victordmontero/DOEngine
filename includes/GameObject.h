@@ -10,7 +10,7 @@ namespace doengine
 
 class Renderer;
 
-enum ObjecType
+enum class ObjecType
 {
     Player = 0,
     Level,
@@ -50,7 +50,7 @@ class GameObject
     Renderer* getRenderer();
     Rect getPosition();
 
-    inline const int getId()
+    inline int getId()
     {
         return id;
     }
