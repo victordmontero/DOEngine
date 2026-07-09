@@ -1,3 +1,36 @@
+/*
+ * ============================================================================
+ * DOEngine
+ * Copyright (c) 2026 Victor D. Montero, Aneury Perez
+ * All Rights Reserved.
+ *
+ * Licensed under the MIT License.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to
+ * deal in the Software without restriction, including without limitation the
+ * rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+ * sell copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * 1. The above copyright notice, this license notice, and this disclaimer
+ *    MUST be included in all copies or substantial portions of the Software.
+ *
+ * 2. This notice may not be removed from the original source files distributed
+ *    as part of this project.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ * DEALINGS IN THE SOFTWARE.
+ *
+ * ============================================================================
+ */
+
+
 #include "opengl_decls.h"
 #include <iostream>
 #include "DOEngine_SDL_includes.h"
@@ -648,29 +681,29 @@ void PrimitiveGLRenderer::init()
 
 void PrimitiveGLRenderer::quit(){}
 
-void PrimitiveGLRenderer::setProjection(const Mat4& projection){}
+void PrimitiveGLRenderer::setProjection(const Mat4&  ){}
 
-void PrimitiveGLRenderer::drawPoint(const Point& point, const Color& color, float size)
+void PrimitiveGLRenderer::drawPoint(const Point&  , const Color&  , float  )
 {
-    SDL_Window *window = (SDL_Window *)Application::getApplication()->getWindow()->getNativeWindowFormatBuffer();
+   // SDL_Window *window = (SDL_Window *)Application::getApplication()->getWindow()->getNativeWindowFormatBuffer();
     
 }
-void PrimitiveGLRenderer::drawLine(const Point& start, const Point& end, const Color& color,
-              float width )
+void PrimitiveGLRenderer::drawLine(const Point&  , const Point&  , const Color&  ,
+              float   )
 {
-    SDL_Window *window = (SDL_Window *)Application::getApplication()->getWindow()->getNativeWindowFormatBuffer();
+    ///SDL_Window *window = (SDL_Window *)Application::getApplication()->getWindow()->getNativeWindowFormatBuffer();
     ///GL_DrawLine(window,start.x, start.y, end.x, end.y, color,width);
 }
-void PrimitiveGLRenderer::drawCircle(const Point& center, float radius, const Color& color,
-                int segments, bool filled)
+void PrimitiveGLRenderer::drawCircle(const Point&  , float  , const Color&  ,
+                int  , bool  )
 {
-    SDL_Window *window = (SDL_Window *)Application::getApplication()->getWindow()->getNativeWindowFormatBuffer();
+   /// SDL_Window *window = (SDL_Window *)Application::getApplication()->getWindow()->getNativeWindowFormatBuffer();
    /// GL_DrawCircle(window,center.x, center.y, radius,color,2,segments);
 }
 
-void PrimitiveGLRenderer::drawRect(const Rect& rect, const Color& color, bool filled)
+void PrimitiveGLRenderer::drawRect(const Rect&  , const Color&  , bool  )
 {
-    SDL_Window *window = (SDL_Window *)Application::getApplication()->getWindow()->getNativeWindowFormatBuffer();
+   /// SDL_Window *window = (SDL_Window *)Application::getApplication()->getWindow()->getNativeWindowFormatBuffer();
    /// GL_DrawRect(window, rect, color);
 } // namespace doengine
 

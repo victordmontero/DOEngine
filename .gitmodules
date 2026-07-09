@@ -1,0 +1,3 @@
+[submodule "external/doengine-shared"]
+	path = external/doengine-shared
+	url = https://github.com/aneury1/doengine-shared.git

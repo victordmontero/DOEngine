@@ -1,3 +1,36 @@
+/*
+ * ============================================================================
+ * DOEngine
+ * Copyright (c) 2026 Victor D. Montero, Aneury Perez
+ * All Rights Reserved.
+ *
+ * Licensed under the MIT License.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to
+ * deal in the Software without restriction, including without limitation the
+ * rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+ * sell copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * 1. The above copyright notice, this license notice, and this disclaimer
+ *    MUST be included in all copies or substantial portions of the Software.
+ *
+ * 2. This notice may not be removed from the original source files distributed
+ *    as part of this project.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ * DEALINGS IN THE SOFTWARE.
+ *
+ * ============================================================================
+ */
+
+
 #include "SDLTTFText.h"
 #include "Application.h"
 #include "DOEngine_SDL_includes.h"
@@ -94,7 +127,7 @@ void SDLTTFText::setFont(const std::string& path, int fntsize)
     }
 }
 
-static void drawText(SDL_Renderer* renderer, const std::string& text, int x,
+[[maybe_unused]]static void drawText(SDL_Renderer* renderer, const std::string& text, int x,
                      int y)
 {
     auto fontTexture = memoryBitMapFonts[1];
@@ -108,7 +141,7 @@ static void drawText(SDL_Renderer* renderer, const std::string& text, int x,
         SDL_Rect destRect = {x + static_cast<int>(i * CHAR_WIDTH), y,
                              CHAR_WIDTH, CHAR_HEIGHT * 2};
 
-        int result = SDL_RenderCopy(renderer, fontTexture, &srcRect, &destRect);
+        SDL_RenderCopy(renderer, fontTexture, &srcRect, &destRect);
         /// SDL_Log("TRying....%d %s", result, SDL_GetError());
     }
 }
@@ -128,11 +161,13 @@ void SDLTTFText::DrawText(const char* text, int x, int y)
     if (DrawTextByGlyphs(x, y, text))
         return;
     LogOuput(logger_type::Information, "Default Behavour");
+    /*
     SDL_Color bg;
     bg.a = bg_color.a;
     bg.r = bg_color.r;
     bg.b = bg_color.b;
     bg.g = bg_color.g;
+*/
     SDL_Color scolor;
     scolor.r = fg_color.r;
     scolor.g = fg_color.g;
@@ -165,17 +200,18 @@ void SDLTTFText::getTextSize(const std::string& text, int* w, int* h)
         TTF_SizeText(font, text.c_str(), w, h);
 }
 
-Texture* SDLTTFText::createText(const std::string& text)
+Texture* SDLTTFText::createText(const std::string&  )
 {
     return nullptr;
 }
 
-void SDLTTFText::wrapText(const char* text, int maxWidth, char* wrappedText)
+void SDLTTFText::wrapText(const char* text, int maxWidth, char* /*wrappedTextOutput*/)
 {
+#ifdef TBTESTED
     const char* current = text;
     const char* wordStart;
-    char line[255] = "";
-    char temp[255] = "";
+    char line[256] = {0x00};
+    char temp[256] = {0x00};
     int width = 0;
 
     while (*current)
@@ -193,7 +229,7 @@ void SDLTTFText::wrapText(const char* text, int maxWidth, char* wrappedText)
         temp[current - wordStart] = '\0';
 
         // Check the width of the line if the word is added
-        char testLine[256];
+        char testLine[258];
         snprintf(testLine, sizeof(testLine), "%s %s", line, temp);
         TTF_SizeText(font, testLine, &width, NULL);
 
@@ -229,6 +265,43 @@ void SDLTTFText::wrapText(const char* text, int maxWidth, char* wrappedText)
         strcat(wrappedText, line);
         strcat(wrappedText, "\n");
     }
+#endif
+    std::string wrappedText;
+    wrappedText.clear();
+
+    std::string line;
+    std::string word;
+
+    std::istringstream stream(text);
+
+    while (stream >> word)
+    {
+        std::string testLine = line.empty()
+            ? word
+            : line + " " + word;
+
+        int width = 0;
+        TTF_SizeText(font, testLine.c_str(), &width, nullptr);
+
+        if (width > maxWidth && !line.empty())
+        {
+            wrappedText += line;
+            wrappedText += '\n';
+
+            line = word;
+        }
+        else
+        {
+            line = std::move(testLine);
+        }
+    }
+
+    if (!line.empty())
+    {
+        wrappedText += line;
+    }
+
+    ///Copy WrappedText into output...
 }
 
 void replacePixels(SDL_Texture* texture, SDL_Renderer* renderer, int width,
@@ -294,7 +367,7 @@ Texture* SDLTTFText::createBitmapFont(const std::string& font_path,
     }
 
     // Create texture to store characters
-    int textureWidth = CHAR_WIDTH * CHARS_PER_ROW;
+    int textureWidth = doengine::CHAR_WIDTH * CHARS_PER_ROW;
     int textureHeight = ((CHARSET_SIZE / CHARS_PER_ROW) + 1) * CHAR_HEIGHT;
 
     SDL_Texture* texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888,
@@ -531,7 +604,7 @@ int SDLTTFText::getFontHeight()
     return 0;
 }
 
-doengine::Rect SDLTTFText::getTextSize(const char* str)
+doengine::Rect SDLTTFText::getTextSize(const char*  )
 {
     doengine::Rect rect;
 
