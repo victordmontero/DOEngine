@@ -24,6 +24,14 @@ Texture::Texture(std::string path)
     this->realNativeTexture =
         render->loadTextureFromImageFile(path.c_str(), color);
 }
+
+Texture::Texture(std::string path, const Color& color)
+{
+    auto render = Application::getApplication()->getRender();
+    this->realNativeTexture =
+        render->loadTextureFromImageFile(path.c_str(), color);
+}
+
 Texture::~Texture()
 {
 }
@@ -85,7 +93,7 @@ TextureManager* TextureManager::getTextureManager()
 }
 
 void TextureManager::loadTextureFromFile(
-    const std::variant<std::string, int>& id, string src)
+    const std::variant<std::string, int>& id, string src, const Color trans)
 {
     Texture* texture = new Texture(src);
     addTexture(id, texture);
@@ -140,6 +148,7 @@ void TextureManager::removeTexture(std::string id)
 
 Texture* TextureManager::getTexture(const std::variant<std::string, int>& id)
 {
+ 
     auto find = textures.find(id);
     if (find == textures.end())
         return nullptr;

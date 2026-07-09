@@ -238,9 +238,11 @@ SDLTexture* SDLTexture::loadFromFile(const char* src)
     auto sf = loadSurface(src, renderer, nullptr);
     if (sf)
     {
+        SDL_Log("loading this texture=%s", src);
         this_texture = FreeAndRecreateAtexture(sf, this_texture, renderer);
         path = src;
         valid = this_texture != nullptr;
+        SDL_Log("loading this texture=>%s valid=>%d", src, valid);
         GetColorMod(this_texture, &originalColor);
         SDL_QueryTexture(this_texture, nullptr, nullptr, &size.x, &size.y);
     }

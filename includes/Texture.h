@@ -24,6 +24,7 @@ class Texture
   public:
     Texture();
     Texture(std::string path);
+    Texture(std::string path, const Color& color);
     ~Texture();
     void SetTransparentColor(const Color& color);
     void Draw(int x, int y);
@@ -54,7 +55,7 @@ class TextureManager
   public:
     static TextureManager* getTextureManager();
 
-    void loadTextureFromFile(const std::variant<std::string, int>& key, string src);
+    void loadTextureFromFile(const std::variant<std::string, int>& key, string src,const Color trans={0,0,0,0});
     void loadFont(const std::variant<std::string, int>& key, string src, int pts);
     TTFText* getFont(const std::variant<std::string, int>& id);
 

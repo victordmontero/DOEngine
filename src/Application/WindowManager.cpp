@@ -17,7 +17,8 @@ WindowManager* WindowManager::getWindowManager()
     else
     {
         LogOuput(logger_type::Information," Opengl Renderer");
-        WindowManager* manager = new SDLOpenglWindowManager(); ///
+        SDLWindowManager* manager = new SDLWindowManager();
+        /// WindowManager* manager = new SDLOpenglWindowManager(); ///
         return manager;
     }
 }
