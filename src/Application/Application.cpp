@@ -100,6 +100,7 @@ void Application::Render()
 void Application::Quit()
 {
     run = false;
+    gsm->RemoveState(gsm->GetCurrentState());
 }
 WindowManager* Application::getWindow()
 {

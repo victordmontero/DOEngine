@@ -13,6 +13,10 @@ add_executable(Music
     Music.cpp
 )
 
+add_executable(BattleCityRecreation
+    BattleCityRecreation/BattleCityRecreation.cpp
+)
+
 add_executable(Sound
     Sound.cpp
 )
@@ -46,7 +50,17 @@ target_link_libraries(DoSample PRIVATE
     
     )
 
+
 target_link_libraries(Music PRIVATE
+    doengine
+    SDL2-static
+    SDL2_image
+    SDL2_ttf
+    SDL2_mixer
+    
+    )
+
+target_link_libraries(BattleCityRecreation PRIVATE
     doengine
     SDL2-static
     SDL2_image

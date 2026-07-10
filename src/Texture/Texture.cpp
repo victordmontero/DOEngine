@@ -67,6 +67,7 @@ Texture::Texture(std::string path, const Color& color)
 
 Texture::~Texture()
 {
+    delete realNativeTexture;
 }
 void Texture::Draw(int x, int y)
 {
@@ -80,6 +81,16 @@ void Texture::Draw(const Rect& offset)
 void Texture::Draw(const Rect& offset, const Rect& clipset)
 {
     this->realNativeTexture->Draw(offset, clipset);
+}
+void Texture::Draw(const Rect& offset, const Rect& clipset, const double angle)
+{
+    this->realNativeTexture->Draw(offset, clipset, angle);
+}
+
+void Texture::Draw(const Rect& offset, const Rect& clipset, const double angle,
+                   const Point& center)
+{
+    this->realNativeTexture->Draw(offset, clipset, angle, center);
 }
 void Texture::ModulateColor(const Color& color)
 {
@@ -181,7 +192,7 @@ void TextureManager::removeTexture(std::string )
 
 Texture* TextureManager::getTexture(const std::variant<std::string, int>& id)
 {
- 
+
     auto find = textures.find(id);
     if (find == textures.end())
         return nullptr;

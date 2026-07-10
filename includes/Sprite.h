@@ -30,28 +30,64 @@
  * ============================================================================
  */
 
-
 #pragma once
-#include <map>
-#include <vector>
-#include <variant>
-#include "GameObject.h"
-#include "SpriteOffset.h"
+
 #include "Geometric.h"
+#include "Texture.h"
+#include <cstddef>
+#include <cstdint>
+#include <vector>
 
 namespace doengine
 {
-class Sprite : public GameObject
+
+enum class ClipType
 {
-  protected:
-    Rect offset;
-    Rect clipset;
-    SpriteAnimationOffset *animations;
-    std::variant<std::string, int> texture_id;
+    Contiguous,
+    Free
+};
+
+enum class Direction
+{
+    None,
+    Horizontal,
+    Vertical,
+    Diagonal
+};
+
+class Sprite
+{
   public:
-    virtual ~Sprite() = default;
-    virtual void Update(float timer = 0) = 0;
-    virtual void Render() = 0;
-    virtual bool isColliding(GameObject* other) = 0;
+    Sprite(Texture* texture, const std::vector<Rect>& frames,
+           const Point& offset = Point(0, 0),
+           const ClipType = ClipType::Contiguous, const size_t spriteCount = 1,
+           const Direction direction = Direction::None);
+
+    ~Sprite();
+
+    void Draw(const Rect& dstRect);
+    void Update(const float deltaTime);
+    void setClipType(const ClipType type);
+    void setSpriteCount(const size_t);
+    void setDirection(const Direction);
+    void setDuration(const float duration);
+    void setFrameId(const size_t frameId);
+
+    ClipType getClipType() const;
+    Texture* getTexture() const;
+    size_t getSpriteCount() const;
+    size_t getFrameId() const;
+    Direction getDirection() const;
+
+  protected:
+    const std::vector<Rect> frames;
+    Texture* texture;
+    Point offset;
+    float duration;
+    float startTime;
+    ClipType clipType;
+    size_t animId;
+    size_t spriteCount;
+    Direction direction;
 };
 } // namespace doengine

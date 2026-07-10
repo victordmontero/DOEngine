@@ -51,9 +51,8 @@ class SDLRenderer : public Renderer
     virtual void clear() override;
     virtual void setDrawColor(const Color& color) override;
     virtual void updateScreen() override;
-    virtual void RenderSetClipRect(const Rect& ) override;
+    virtual void RenderSetClipRect(const Rect&) override;
     virtual void ResetRenderSetClipRect() override;
-
 
     virtual void DrawPoint(const Point& point, const Color& color);
     virtual void DrawLine(const Point& p1, const Point& p2, const Color& color);
@@ -62,7 +61,7 @@ class SDLRenderer : public Renderer
     virtual void DrawFillRect(const Rect& rect, const Color& color);
     virtual void FillCircle(int x, int y, int radius, const Color& color);
     virtual void DrawTriangle(int x1, int y1, int x2, int y2, int x3, int y3,
-                              const Color& p);
+                              const Color& p) override;
 
     virtual void DrawRoundedRect(int x, int y, int w, int h, int roundedRadius,
                                  Color color) override;
@@ -72,12 +71,16 @@ class SDLRenderer : public Renderer
     virtual NativeTexture* loadTextureFromImageFile(const char* src) override;
     virtual NativeTextRenderer* getTextRenderer() override;
 
-     virtual NativeTexture* createTexture()override;
+    virtual NativeTexture* createTexture() override;
 
-    virtual void DrawTexture(const std::variant<std::string, int> &,int x, int y) override;
-    virtual void DrawTexture(const std::variant<std::string, int> &,const Rect& ) override;
-    virtual void DrawTexture(const std::variant<std::string, int>&,const Rect&, const Rect& ) override;
-    virtual void QueryTexture(const std::variant<std::string, int>&, Rect& info) override;
+    virtual void DrawTexture(const std::variant<std::string, int>&, int x,
+                             int y) override;
+    virtual void DrawTexture(const std::variant<std::string, int>&,
+                             const Rect&) override;
+    virtual void DrawTexture(const std::variant<std::string, int>&, const Rect&,
+                             const Rect&) override;
+    virtual void QueryTexture(const std::variant<std::string, int>&,
+                              Rect& info) override;
 
   private:
     SDL_Renderer* renderer;

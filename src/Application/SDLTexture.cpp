@@ -62,8 +62,8 @@ SDL_Surface* loadSurface(const char* src, SDL_Renderer* r,
         LogOuput(logger_type::Information, "Surface and Window Ready");
         ///SDL_Surface* screen = SDL_GetWindowSurface(w);
         //// SDL_Surface* r = SDL_ConvertSurface(surface, screen->format, 0);
-        ///SDL_FreeSurface(surface);
-        auto r  = surface;
+        /// SDL_FreeSurface(surface);
+        auto r = surface;
         surface = nullptr;
         if (r && transparentColor)
         {
@@ -112,8 +112,11 @@ SDL_Texture* FreeAndRecreateAtexture(SDL_Surface* sf, SDL_Texture* this_texture,
 }
 
 // Function to extract a subtexture
-SDL_Texture* ExtractSubTexture(SDL_Renderer* renderer, SDL_Texture* source, SDL_Rect region) {
-    if (!source) {
+SDL_Texture* ExtractSubTexture(SDL_Renderer* renderer, SDL_Texture* source,
+                               SDL_Rect region)
+{
+    if (!source)
+    {
         std::cerr << "Error: Source texture is null!" << std::endl;
         return nullptr;
     }
@@ -132,17 +135,13 @@ SDL_Texture* ExtractSubTexture(SDL_Renderer* renderer, SDL_Texture* source, SDL_
     SDL_QueryTexture(source, &format, &access, &width, &height);
 
     // Create target texture
-    SDL_Texture* subTexture =
-        SDL_CreateTexture(renderer,
-                          format,
-                          SDL_TEXTUREACCESS_TARGET,
-                          region.w,
-                          region.h);
+    SDL_Texture* subTexture = SDL_CreateTexture(
+        renderer, format, SDL_TEXTUREACCESS_TARGET, region.w, region.h);
 
     if (!subTexture)
     {
-        std::cerr << "Failed to create subTexture: "
-                  << SDL_GetError() << std::endl;
+        std::cerr << "Failed to create subTexture: " << SDL_GetError()
+                  << std::endl;
         return nullptr;
     }
 
@@ -180,17 +179,13 @@ SDL_Texture* CopyTexture(SDL_Renderer* renderer, SDL_Texture* srcTexture,
 
     // Create target texture
     SDL_Texture* targetTexture =
-        SDL_CreateTexture(renderer,
-                          SDL_PIXELFORMAT_RGBA8888,
-                          SDL_TEXTUREACCESS_TARGET,
-                          width,
-                          height);
+        SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888,
+                          SDL_TEXTUREACCESS_TARGET, width, height);
 
     if (!targetTexture)
     {
         SDL_LogError(SDL_LOG_CATEGORY_APPLICATION,
-                     "Failed to create target texture: %s",
-                     SDL_GetError());
+                     "Failed to create target texture: %s", SDL_GetError());
         return nullptr;
     }
 
@@ -199,9 +194,7 @@ SDL_Texture* CopyTexture(SDL_Renderer* renderer, SDL_Texture* srcTexture,
     // Apply color modulation if requested
     if (colorMod)
     {
-        SDL_SetTextureColorMod(srcTexture,
-                               colorMod->r,
-                               colorMod->g,
+        SDL_SetTextureColorMod(srcTexture, colorMod->r, colorMod->g,
                                colorMod->b);
         SDL_SetTextureAlphaMod(srcTexture, colorMod->a);
     }
@@ -225,7 +218,6 @@ void GetColorMod(SDL_Texture* texture, SDL_Color* color)
 {
     SDL_GetTextureColorMod(texture, &color->r, &color->g, &color->b);
 }
-
 
 } // namespace
 
@@ -282,17 +274,15 @@ SDLTexture* SDLTexture::loadFromFile(const char* src)
     return this;
 }
 
-
 NativeTexture* SDLTexture::subTexture(Rect clipset)
 {
     SDLTexture* ret = new SDLTexture();
     if (valid)
     {
-        ///Todo: Fix bound checks for this function....
+        /// Todo: Fix bound checks for this function....
 
         SDL_Rect offset{clipset.x, clipset.y, clipset.w, clipset.h};
-        ret->this_texture =
-            ExtractSubTexture(renderer, this_texture, offset);
+        ret->this_texture = ExtractSubTexture(renderer, this_texture, offset);
         ret->valid = ret->this_texture != NULL;
         ret->path = this->path;
         ret->size.x = clipset.w;
@@ -304,28 +294,30 @@ NativeTexture* SDLTexture::subTexture(Rect clipset)
 
     return this;
 }
-void *SDLTexture::getNativeBuffer()
+void* SDLTexture::getNativeBuffer()
 {
     return this_texture;
 }
 
 NativeTexture* SDLTexture::setNativeTexture(void* text)
 {
-    int w,h;
+    int w, h;
     Uint32 format;
     int access;
-    SDL_Texture* tmp = (SDL_Texture *)text;
-    if(tmp==nullptr||SDL_QueryTexture(tmp,&format,&access,&w, &h)!=0){
-        LogOuput(logger_type::Error, "Invalid Native Texture Error: %s", SDL_GetError());
+    SDL_Texture* tmp = (SDL_Texture*)text;
+    if (tmp == nullptr || SDL_QueryTexture(tmp, &format, &access, &w, &h) != 0)
+    {
+        LogOuput(logger_type::Error, "Invalid Native Texture Error: %s",
+                 SDL_GetError());
         return nullptr;
     }
     Destroy();
-    this_texture = CopyTexture(renderer,tmp, w,h);
+    this_texture = CopyTexture(renderer, tmp, w, h);
     valid = this_texture != nullptr;
     size.x = w;
     size.y = h;
     GetColorMod(this_texture, &originalColor);
-    return  this;
+    return this;
 }
 
 bool SDLTexture::validTexture()
@@ -335,23 +327,18 @@ bool SDLTexture::validTexture()
 
 void SDLTexture::Destroy()
 {
-    if(valid||this_texture)
+    if (valid || this_texture)
     {
         SDL_DestroyTexture(this_texture);
         this_texture = nullptr;
         size.x = size.y = 0;
-        valid=false;
+        valid = false;
     }
 }
 
 void SDLTexture::Draw(int x, int y)
 {
-    SDL_Rect rect{
-        x,
-        y,
-        this->size.x,
-        this->size.y
-    };
+    SDL_Rect rect{x, y, this->size.x, this->size.y};
     SDL_RenderCopy(renderer, this_texture, NULL, &rect);
 }
 
@@ -368,19 +355,61 @@ void SDLTexture::Draw(const Rect& offset)
 
 void SDLTexture::Draw(const Rect& offset, const Rect& clipset)
 {
-    SDL_Rect rect{
-        offset.x,
-        offset.y,
-        offset.w,
-        offset.h,
-    };
-    SDL_Rect crect{
-        clipset.x,
-        clipset.y,
-        clipset.w,
-        clipset.h,
-    };
-    SDL_RenderCopy(renderer, this_texture,  &crect, &rect);
+    Draw(offset, clipset, 0.0, Point{clipset.w / 2, clipset.h / 2});
+}
+
+void SDLTexture::Draw(const Rect& offset, const Rect& clipset,
+                      const double angle)
+{
+    SDL_Rect rect;
+    SDL_Rect clip;
+    if (!valid)
+        return;
+    auto app = Application::getApplication();
+    auto wformat = (SDL_Window*)app->getWindow()->getNativeWindowFormatBuffer();
+    auto nrederer =
+        (SDL_Renderer*)app->getWindow()->getRenderer()->getNativeRenderer();
+    rect.x = offset.x;
+    rect.y = offset.y;
+    rect.w = offset.w;
+    rect.h = offset.h;
+
+    clip.x = clipset.x;
+    clip.y = clipset.y;
+    clip.w = clipset.w;
+    clip.h = clipset.h;
+
+    SDL_RenderCopyEx(nrederer, this_texture, &clip, &rect, angle, nullptr,
+                     SDL_FLIP_NONE);
+}
+
+void SDLTexture::Draw(const Rect& offset, const Rect& clipset,
+                      const double angle, const Point& center)
+{
+    SDL_Rect rect;
+    SDL_Rect clip;
+    SDL_Point center_point;
+    if (!valid)
+        return;
+    auto app = Application::getApplication();
+    auto wformat = (SDL_Window*)app->getWindow()->getNativeWindowFormatBuffer();
+    auto nrederer =
+        (SDL_Renderer*)app->getWindow()->getRenderer()->getNativeRenderer();
+    rect.x = offset.x;
+    rect.y = offset.y;
+    rect.w = offset.w;
+    rect.h = offset.h;
+
+    clip.x = clipset.x;
+    clip.y = clipset.y;
+    clip.w = clipset.w;
+    clip.h = clipset.h;
+
+    center_point.x = center.x;
+    center_point.y = center.y;
+
+    SDL_RenderCopyEx(nrederer, this_texture, &clip, &rect, angle, &center_point,
+                     SDL_FLIP_NONE);
 }
 
 void SDLTexture::ModulateColor(const Color& color)
@@ -395,7 +424,7 @@ int SDLTexture::getWidth()
 
 int SDLTexture::getHeight()
 {
-    return this->size.y;   
+    return this->size.y;
 }
- 
+
 } // namespace doengine
