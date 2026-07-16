@@ -6,7 +6,7 @@ message("Fecthing SDL Source code")
 FetchContent_Declare(
     sdl_lib
     GIT_REPOSITORY https://github.com/libsdl-org/SDL.git
-    GIT_TAG release-2.32.4 
+    GIT_TAG release-2.32.8
 )
 
 FetchContent_MakeAvailable(sdl_lib)

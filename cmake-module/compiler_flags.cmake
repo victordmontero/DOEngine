@@ -1,0 +1,7 @@
+if(DOENGINE_WARNINGS_AS_ERRORS)
+    if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+        target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -Werror)
+    endif()
+elseif(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+    target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra)
+endif()

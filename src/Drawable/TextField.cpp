@@ -1,3 +1,34 @@
+/*
+ * ============================================================================
+ * DOEngine
+ * Copyright (c) 2026 Victor D. Montero, Aneury Perez
+ * All Rights Reserved.
+ *
+ * Licensed under the MIT License.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to
+ * deal in the Software without restriction, including without limitation the
+ * rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+ * sell copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * 1. The above copyright notice, this license notice, and this disclaimer
+ *    MUST be included in all copies or substantial portions of the Software.
+ *
+ * 2. This notice may not be removed from the original source files distributed
+ *    as part of this project.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ * DEALINGS IN THE SOFTWARE.
+ *
+ * ============================================================================
+ */
 
 #include "TextField.h"
 #include "Color.h"
@@ -6,9 +37,18 @@
 
 namespace doengine
 {
+    Rect rect;
+    Color textColor;
+    Color bgColor;
+    Color borderColor;
+    std::string text;
+    bool focused;
 
+    std::string fontsrc;
+    TTFText* font;
+    Renderer* renderer;
 TextField::TextField(int x, int y, int w, int h, const std::string& font)
-    : rect{x, y, w, h}, fontsrc(font), renderer(renderer), focused(false)
+    : rect{x, y, w, h}, focused(false), fontsrc(font),  renderer(nullptr)
 {
     textColor = {255, 0, 0, 255};     // Black text
     bgColor = {255, 255, 255, 255}; // White background
@@ -20,7 +60,7 @@ TextField::TextField(int x, int y, int w, int h, const std::string& font)
     renderer = Application::getApplication()->getRender();
 }
 
-void TextField::MouseMove(const Mouse& mouse)
+void TextField::MouseMove(const Mouse&  )
 {
 }
 void TextField::MouseButtonDown(const Mouse& mouse)
@@ -79,11 +119,11 @@ void TextField::Render()
         // text.c_str(), textColor); SDL_Texture* textTexture =
         // SDL_CreateTextureFromSurface(renderer, textSurface);
 
-        int textSurfaceH = 100;
-        int textSurfaceW = 100;
+        //int textSurfaceH = 100;
+        //int textSurfaceW = 100;
 
-        Rect textRect = {rect.x + 5, rect.y + (rect.h - textSurfaceH) / 2,
-                         textSurfaceW, textSurfaceH};
+        // Rect textRect = {rect.x + 5, rect.y + (rect.h - textSurfaceH) / 2,
+        //                 textSurfaceW, textSurfaceH};
         
         font->setColor(Colors::red);
         font->DrawText(rect.x + 15, rect.y + 14, text.c_str());
