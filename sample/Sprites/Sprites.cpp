@@ -188,7 +188,7 @@ void PlayState::OnEnter()
     Player* player5 =
         new Player(spriteRpgTexture, player3Spriteframes, Point(3, 0),
                    ClipType::Contiguous, 1U, Direction::Horizontal, 0.8);
-    player5->sprite->setFrameId(3U);
+    player5->sprite->setFrameId(1U);
 
     explosion->Move(Rect(100, 150, 5, 5));
     player->Move(Rect(100, 350, 5, 5));

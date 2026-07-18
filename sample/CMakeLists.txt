@@ -13,29 +13,16 @@ add_executable(Music
     Music.cpp
 )
 
-add_executable(BattleCityRecreation
-    BattleCityRecreation/BattleCityRecreation.cpp
-)
-
 add_executable(Sound
     Sound.cpp
 )
 
-add_executable(Particles
-    Particles/Particles.cpp
-)
-add_executable(VideoPlayer
-    VideoPlayer/VideoPlayer.cpp
-)
-
-add_executable(SnakeGame
-    SnakeGame/SnakeGame.cpp
-)
-
-add_executable(Collector
-    Collector/main.cpp
-)
-
+add_subdirectory(SpriteSelectorRect SpriteSelectorRect/build)
+add_subdirectory(Collector Collector/build)
+add_subdirectory(Sprites Sprites/build)
+add_subdirectory(SnakeGame SnakeGame/build)
+add_subdirectory(Particles Particles/build)
+add_subdirectory(VideoPlayer VideoPlayer/build)
 
 file(COPY ${ASSETS_DIR}
      DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
@@ -47,70 +34,20 @@ target_link_libraries(DoSample PRIVATE
     SDL2_image
     SDL2_ttf
     SDL2_mixer
-    
-    )
-
+)
 
 target_link_libraries(Music PRIVATE
     doengine
     SDL2-static
     SDL2_image
     SDL2_ttf
-    SDL2_mixer
-    
-    )
-
-target_link_libraries(BattleCityRecreation PRIVATE
-    doengine
-    SDL2-static
-    SDL2_image
-    SDL2_ttf
-    SDL2_mixer
-    
-    )
+    SDL2_mixer    
+)
 
 target_link_libraries(Sound PRIVATE
     doengine
     SDL2-static
     SDL2_image
     SDL2_ttf
-    SDL2_mixer
-    
-    )
-
-target_link_libraries(Particles PRIVATE
-    doengine
-    SDL2-static
-    SDL2_image
-    SDL2_ttf
-    SDL2_mixer
-    )
-
-
-target_link_libraries(SnakeGame PRIVATE
-    doengine
-    SDL2-static
-    SDL2_image
-    SDL2_ttf
-    SDL2_mixer
-    )
-target_link_libraries(Collector PRIVATE
-    doengine
-    SDL2-static
-    SDL2_image
-    SDL2_ttf
-    SDL2_mixer
-    
-    )
-# sudo apt install libsdl2-dev libavcodec-dev libavformat-dev libavutil-dev libswscale-dev
-target_link_libraries(VideoPlayer PRIVATE
-    doengine
-    SDL2-static
-    SDL2_image
-    SDL2_ttf
-    SDL2_mixer
-    avformat 
-    avcodec 
-    avutil 
-    swscale
-    )
+    SDL2_mixer    
+)
