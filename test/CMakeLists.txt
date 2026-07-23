@@ -1,5 +1,6 @@
 
-cmake_minimum_required(VERSION 2.13)
+cmake_minimum_required(VERSION 3.22.1)
+
 project(Doengine_tests)
 
 include_directories(${CMAKE_SOURCE_DIR}/includes)
@@ -36,15 +37,25 @@ add_executable(${PROJECT_NAME}
     units/utSDLKeyboard.cpp
     units/utSDLMouse.cpp
     units/utSDLJoypad.cpp
-    units/utSpriteOffset.cpp
+    units/utSprite.cpp
 
-    ../GameState/GameStateManager.cpp
-    ../Network/UDPPacket.cpp
-    ../Timer/FPSManager.cpp
-    #../Event/Event.cpp
-    ../Event/SDLKeyboard.cpp
-    ../Event/SDLMouse.cpp
-    ../Event/SDLJoypad.cpp
+    ../src/GameState/GameStateManager.cpp
+    ../src/Network/UDPPacket.cpp
+    ../src/Timer/FPSManager.cpp
+    ../src/Event/Event.cpp
+    ../src/Event/SDLKeyboard.cpp
+    ../src/Event/SDLMouse.cpp
+    ../src/Event/SDLJoypad.cpp
+
+    ../src/Texture/Texture.cpp
+    ../src/Texture/Sprite.cpp
+    ../src/Application/Application.cpp
+    ../src/Application/WindowManager.cpp
+    ../src/Application/SDLWindowManager.cpp
+    ../src/Application/SDLRenderer.cpp
+    ../src/Application/SDLTTFText.cpp
+    ../src/Application/SDLTexture.cpp
+    ../src/Window/Window.cpp
 )
 
 add_compile_definitions(DOENGINE_TESTING)
@@ -73,6 +84,7 @@ add_library(DOENGINE_MOCKS
     mocks/UDPPacketMock.h
     mocks/MouseMock.h
     mocks/JoypadMock.h
+    mocks/NativeStructsMock.h
 )
 
 target_link_libraries(DOENGINE_MOCKS PUBLIC
@@ -95,14 +107,14 @@ include(GoogleTest)
 gtest_discover_tests(${PROJECT_NAME})
 
 if(DOENGINE_COVERAGE)
-    message("Compiling with coverage flags")
-    # set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fprofile-arcs -ftest-coverage")
-    # set(CMAKE_CXX_FLAGS " ${CMAKE_CXX_FLAGS} -fprofile-arcs -ftest-coverage")
-    # set(CMAKE_EXE_LINKER_FLAGS "-fprofile-arcs -ftest-coverage")
-    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O0")
-    set(CMAKE_CXX_FLAGS " ${CMAKE_CXX_FLAGS} -O0")
-    append_coverage_compiler_flags()
-    setup_target_for_coverage_gcovr_html(NAME ${PROJECT_NAME}_cov
+  message("Compiling with coverage flags")
+  # set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fprofile-arcs -ftest-coverage")
+  # set(CMAKE_CXX_FLAGS " ${CMAKE_CXX_FLAGS} -fprofile-arcs -ftest-coverage")
+  # set(CMAKE_EXE_LINKER_FLAGS "-fprofile-arcs -ftest-coverage")
+  set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O0")
+  set(CMAKE_CXX_FLAGS " ${CMAKE_CXX_FLAGS} -O0")
+  append_coverage_compiler_flags()
+  setup_target_for_coverage_gcovr_html(NAME ${PROJECT_NAME}_cov
         BASE_DIRECTORY ../
         EXCLUDE "test/" "build/"
     )

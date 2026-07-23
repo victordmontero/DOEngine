@@ -61,5 +61,10 @@ class GameStateManager
 
     virtual void Update(float elapsed);
     virtual void Render();
+
+    int GetCurrentState() const
+    {
+        return current_state;
+    }
 };
 } // namespace doengine

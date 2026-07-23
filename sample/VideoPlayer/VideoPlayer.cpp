@@ -8,7 +8,6 @@ extern "C" {
 #include <iostream>
 int main(int argc, char* argv[])
 {
- 
 
     const char* filename = "/home/neonland/snap/obs-studio/1316/1.mp4";/// argv[1];
 
