@@ -30,7 +30,6 @@
  * ============================================================================
  */
 
-
 #include "DOEngine_SDL_includes.h"
 #include <iostream>
 
@@ -184,8 +183,8 @@ SDL_Texture* CopyTexture(SDL_Renderer* renderer, SDL_Texture* srcTexture,
 
     if (!targetTexture)
     {
-        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION,
-                     "Failed to create target texture: %s", SDL_GetError());
+        // SDL_LogError(SDL_LOG_CATEGORY_APPLICATION,
+        //              "Failed to create target texture: %s", SDL_GetError());
         return nullptr;
     }
 

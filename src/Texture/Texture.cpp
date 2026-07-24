@@ -30,9 +30,9 @@
  * ============================================================================
  */
 
-
 #include "Texture.h"
 #include "Application.h"
+#include "NativeStructs.h"
 #include <variant>
 namespace doengine
 {
@@ -65,9 +65,18 @@ Texture::Texture(std::string path, const Color& color)
         render->loadTextureFromImageFile(path.c_str(), color);
 }
 
+Texture::Texture(std::string path, doengine::NativeTexture* realNativeTexture)
+    : realNativeTexture(realNativeTexture)
+{
+}
+
 Texture::~Texture()
 {
-    delete realNativeTexture;
+    if (realNativeTexture == nullptr)
+    {
+        delete realNativeTexture;
+        realNativeTexture = nullptr;
+    }
 }
 void Texture::Draw(int x, int y)
 {
