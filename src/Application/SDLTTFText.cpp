@@ -30,7 +30,6 @@
  * ============================================================================
  */
 
-
 #include "SDLTTFText.h"
 #include "Application.h"
 #include "DOEngine_SDL_includes.h"
@@ -353,7 +352,7 @@ Texture* SDLTTFText::createBitmapFont(const std::string& font_path,
     auto renderer = static_cast<SDL_Renderer*>(rrenderer->getNativeRenderer());
     if (!renderer)
     {
-        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Renderer is null!");
+        // SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Renderer is null!");
         return nullptr;
     }
 
@@ -361,8 +360,8 @@ Texture* SDLTTFText::createBitmapFont(const std::string& font_path,
     TTF_Font* font = TTF_OpenFont(font_path.c_str(), CharHeight);
     if (!font)
     {
-        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Failed to load font: %s",
-                     TTF_GetError());
+        // SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Failed to load font: %s",
+        //              TTF_GetError());
         return nullptr;
     }
 
@@ -375,8 +374,8 @@ Texture* SDLTTFText::createBitmapFont(const std::string& font_path,
                                              textureWidth, textureHeight);
     if (!texture)
     {
-        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION,
-                     "Failed to create texture: %s", SDL_GetError());
+        // SDL_LogError(SDL_LOG_CATEGORY_APPLICATION,
+        //              "Failed to create texture: %s", SDL_GetError());
         TTF_CloseFont(font);
         return nullptr;
     }
@@ -398,8 +397,8 @@ Texture* SDLTTFText::createBitmapFont(const std::string& font_path,
             TTF_RenderGlyph_Blended(font, c, {fg.r, fg.g, fg.b, fg.a});
         if (!charSurface)
         {
-            SDL_LogError(SDL_LOG_CATEGORY_APPLICATION,
-                         "Failed to render glyph %c: %s", c, TTF_GetError());
+            // SDL_LogError(SDL_LOG_CATEGORY_APPLICATION,
+            //              "Failed to render glyph %c: %s", c, TTF_GetError());
             continue;
         }
         SDL_SetColorKey(charSurface, SDL_TRUE,
@@ -408,9 +407,9 @@ Texture* SDLTTFText::createBitmapFont(const std::string& font_path,
             SDL_CreateTextureFromSurface(renderer, charSurface);
         if (!charTexture)
         {
-            SDL_LogError(SDL_LOG_CATEGORY_APPLICATION,
-                         "Failed to create texture for character %c: %s", c,
-                         SDL_GetError());
+            // SDL_LogError(SDL_LOG_CATEGORY_APPLICATION,
+            //              "Failed to create texture for character %c: %s", c,
+            //              SDL_GetError());
             SDL_FreeSurface(charSurface);
             continue;
         }
@@ -420,9 +419,9 @@ Texture* SDLTTFText::createBitmapFont(const std::string& font_path,
 
         if (SDL_RenderCopy(renderer, charTexture, &srcRect, &dstRect) != 0)
         {
-            SDL_LogError(SDL_LOG_CATEGORY_APPLICATION,
-                         "SDL_RenderCopy failed for character %c: %s", c,
-                         SDL_GetError());
+            // SDL_LogError(SDL_LOG_CATEGORY_APPLICATION,
+            //              "SDL_RenderCopy failed for character %c: %s", c,
+            //              SDL_GetError());
         }
         else
         {
@@ -474,7 +473,7 @@ Texture* SDLTTFText::createGlyph()
     auto renderer = static_cast<SDL_Renderer*>(rrenderer->getNativeRenderer());
     if (!renderer)
     {
-        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Renderer is null!");
+        // SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Renderer is null!");
         LogOuput(logger_type::Error, "GlyphTexture is Null");
         return nullptr;
     }
@@ -546,7 +545,7 @@ bool SDLTTFText::DrawTextByGlyphs(int x, int y, const std::string& text,
     auto renderer = static_cast<SDL_Renderer*>(rrenderer->getNativeRenderer());
     if (!renderer)
     {
-        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Renderer is null!");
+        // SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Renderer is null!");
         LogOuput(logger_type::Error, "GlyphTexture is Null");
         return false;
     }
